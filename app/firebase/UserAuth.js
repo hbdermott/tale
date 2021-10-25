@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth } from "./Firebase";
-import {signInWithEmailAndPassword, signOut} from "firebase/auth"
+import {signInWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithPopup, signOut} from "firebase/auth"
 
 const formatUser = (user) => ({
 	uid: user.uid,
@@ -26,27 +26,22 @@ export default function useFirebaseAuth() {
 		setLoading(false);
 	};
 
-	const loginWithProvider = (provider) => {
-		signInWithPopup(auth, new provider())
-			.then((result) => {
-				// This gives you a GitHub Access Token. You can use it to access the GitHub API.
-				const credential = provider.credentialFromResult(result);
-				const token = credential.accessToken;
+	const loginWithProvider = async (provider) => {
+		try{
+			const res = await signInWithPopup(auth, new provider())
+			const credential = provider.credentialFromResult(res);
+			const token = credential.accessToken;
+			const user = res.user;
 
-				// The signed-in user info.
-				const user = result.user;
-				// ...
-			})
-			.catch((error) => {
-				// Handle Errors here.
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				// The email of the user's account used.
-				const email = error.email;
-				// The AuthCredential type that was used.
-				const credential = provider.credentialFromError(error);
-				// ...
-			});
+		} catch(error){
+			if (error.code === 'auth/account-exists-with-different-credential') {
+				// const pendingCred = error.credential;
+				// const email = error.email;
+				// const methods = await fetchSignInMethodsForEmail(auth, email)
+				// const result = await signInWithPopup(auth, provider)
+				// const link = await linkWithCredential(auth.currentUser, pendingCred)
+			}
+		}
 	}
 
 	const login = (email, password) => signInWithEmailAndPassword(auth, email, password);
