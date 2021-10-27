@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { auth } from "./Firebase";
-import {signInWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithPopup, signOut} from "firebase/auth"
+import {signInWithEmailAndPassword, fetchSignInMethodsForEmail, signInWithCredential, OAuthProvider, signInWithPopup, signOut, onAuthStateChanged, GoogleAuthProvider, linkWithCredential} from "firebase/auth"
 
 const formatUser = (user) => ({
 	uid: user.uid,
@@ -35,13 +35,25 @@ export default function useFirebaseAuth() {
 
 		} catch(error){
 			if (error.code === 'auth/account-exists-with-different-credential') {
-				// const pendingCred = error.credential;
-				// const email = error.email;
-				// const methods = await fetchSignInMethodsForEmail(auth, email)
-				// const result = await signInWithPopup(auth, provider)
-				// const link = await linkWithCredential(auth.currentUser, pendingCred)
+				console.log("here")
+				const pendingCred = error.credential;
+				const email = error.email;
+				// const methods = await fetchSignInMethodsForEmail(auth, user.email)
+				// if(methods[0] === "password"){
+
+				// }
+				return {link: true, main: GoogleAuthProvider, cred: pendingCred}
+				// const result = await signInWithPopup(auth, new GoogleAuthProvider())
+				
 			}
 		}
+	}
+
+	const linkProvider = async (credential) => {
+		const prevUser = auth.currentUser;
+		const result = signInWithCredential(auth, credential)
+		const cred = OAuthProvider.credentialFromResult(result);
+		const link = await linkWithCredential(prevUser, cred)
 	}
 
 	const login = (email, password) => signInWithEmailAndPassword(auth, email, password);
@@ -54,7 +66,7 @@ export default function useFirebaseAuth() {
 
 	// listen for Firebase state change
 	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged(authStateChanged);
+		const unsubscribe = onAuthStateChanged(auth, authStateChanged);
 		return () => unsubscribe();
 	}, []);
 
@@ -63,6 +75,7 @@ export default function useFirebaseAuth() {
 		loading,
 		login,
 		loginWithProvider,
+		linkProvider,
 		logout
 	};
 }
