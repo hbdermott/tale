@@ -3,14 +3,18 @@ import { useState } from "react";
 import { useAuth } from "../../context/User";
 
 const ProviderLogin = ({provider, icon, color = 'white'}) => {
-	const { loginWithProvider } = useAuth();
-	const [loading, setLoading] = useState(false);
+	const {loginWithProvider, linkProvider} = useAuth();
+	const [isLoading, setLoading] = useState(false);
 	return (
 		<IconButton
-			isLoading={loading}
+			isLoading={isLoading}
 			onClick={async () => {
 				setLoading(true);
-				await loginWithProvider(provider);
+				const res = await loginWithProvider(provider);
+				if(res?.link){
+					await loginWithProvider(res.main);
+					await linkProvider(res.cred);
+				}
 				setLoading(false);
 			}}
 			icon={icon}
