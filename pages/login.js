@@ -12,7 +12,7 @@ const Login = () => {
 	const router = useRouter();
 	useEffect(() => {
 		if (user) router.push("/");
-	}, [user]);
+	}, [user, router]);
     return (
 			<Flex h="100vh" justify="center" align="center">
 				<Box rounded="lg" boxShadow="dark-lg" bg="#333">

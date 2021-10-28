@@ -13,7 +13,6 @@ function MyApp({ Component, pageProps }) {
 		<UserProvider>
 			<ChakraProvider theme={theme}>
 				<Component {...pageProps} />
-				<ToggleTheme />
 			</ChakraProvider>
 		</UserProvider>
 	);

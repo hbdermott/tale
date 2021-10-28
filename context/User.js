@@ -4,9 +4,10 @@ import useFirebaseAuth from "../app/firebase/UserAuth";
 const userContext = createContext({
 	user: null,
 	loading: true,
-    login: async () => {},
-    loginWithProvider: async () => {},
-    logout: async () => {}
+	login: async () => {},
+	loginWithProvider: async () => {},
+	linkProvider: async () => {},
+	logout: async () => {},
 });
 
 export function UserProvider({ children }) {
