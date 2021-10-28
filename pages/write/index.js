@@ -7,7 +7,7 @@ import { db } from "../../app/firebase/Firebase";
 import { collection, addDoc } from "firebase/firestore"; 
 import { createEditor } from 'slate'
 import { Slate, Editable, withReact } from 'slate-react'
-import SlateEditor from "../../components/Slate/Slate";
+import PlateEditor from "../../components/Plate/Plate";
 
 const Write = (props) => {
 	const { user, loading } = useAuth();
@@ -18,7 +18,7 @@ const Write = (props) => {
 	}, [user, loading, router]);
 
 	return (
-			<SlateEditor />
+			<PlateEditor />
 	);
 };
 
