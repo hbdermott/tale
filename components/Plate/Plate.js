@@ -36,15 +36,13 @@ import { ToolbarColorPicker } from "@udecode/plate-font-ui";
 import { FontDownload, FormatColorText, LineWeight, OndemandVideo } from "@styled-icons/material";
 import { Link } from "@styled-icons/bootstrap";
 import { Image } from "@styled-icons/boxicons-solid";
-import { ToolbarLineHeight } from "@udecode/plate-line-height-ui";
-import { ToolbarLink } from "@udecode/plate-link-ui";
-import { ToolbarImage } from "@udecode/plate-image-ui";
-import { ToolbarMediaEmbed } from "@udecode/plate-media-embed-ui";
 import { CONFIG } from "./config";
 import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
 import { useMemo } from "react";
-import { Box } from "@chakra-ui/layout";
-import { Editable } from "slate-react";
+import { Box, Divider } from "@chakra-ui/layout";
+import LinkButton from "./ToolbarButtons/LinkButton";
+import MediaButton from "./ToolbarButtons/MediaButton";
+import ImageButton from "./ToolbarButtons/ImageButton";
 const PlateEditor = () => {
 	let components = createPlateComponents({
 		...CONFIG.components
@@ -70,7 +68,7 @@ const PlateEditor = () => {
 				createListPlugin(),
 				createTablePlugin(),
 				createMediaEmbedPlugin(),
-				createCodeBlockPlugin(),
+				// createCodeBlockPlugin(),
 				createAlignPlugin(CONFIG.align),
 				createBoldPlugin(),
 				createCodePlugin(),
@@ -80,9 +78,9 @@ const PlateEditor = () => {
 				createStrikethroughPlugin(),
 				createSubscriptPlugin(),
 				createSuperscriptPlugin(),
-				createFontBackgroundColorPlugin(),
+				// createFontBackgroundColorPlugin(),
 				createFontFamilyPlugin(),
-				createFontColorPlugin(),
+				// createFontColorPlugin(),
 				createFontSizePlugin(),
 				createFontWeightPlugin(),
 				createKbdPlugin(),
@@ -112,27 +110,28 @@ const PlateEditor = () => {
 		}, [options]);
 
 		return (
-			<Box height="60%" style={{overflowY: "scroll", overflowX: "clip"}}width="1200px" borderRadius="20px">
-				<HeadingToolbar>
+			<Box width="1200px" borderRadius="20px">
+				<HeadingToolbar className="toolbar">
 					<ToolbarButtonsBasicElements />
 					<ToolbarButtonsList />
 					<ToolbarButtonsIndent />
 					<ToolbarButtonsBasicMarks />
-					<ToolbarColorPicker
+					{/* <ToolbarColorPicker
 						pluginKey={MARK_COLOR}
 						icon={<FormatColorText />}
 					/>
 					<ToolbarColorPicker
 						pluginKey={MARK_BG_COLOR}
 						icon={<FontDownload />}
-					/>
+					/> */}
 					<ToolbarButtonsAlign />
-					<ToolbarLineHeight icon={<LineWeight />} />
-					<ToolbarLink icon={<Link />} />
-					<ToolbarImage icon={<Image />} />
-					<ToolbarMediaEmbed icon={<OndemandVideo />} />
+					{/* <ToolbarLineHeight icon={<LineWeight />} /> */}
+					<LinkButton icon={<Link />} />
+					<ImageButton icon={<Image />} />
+					<MediaButton icon={<OndemandVideo />} />
 					<ToolbarButtonsTable />
 				</HeadingToolbar>
+				<Divider />
 				<Plate
 					// id="playground"
 					plugins={pluginsMemo}

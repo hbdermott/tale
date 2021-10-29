@@ -45,21 +45,33 @@ a {
   box-sizing: border-box;
 }
 
-.init {
-  background-color: #333333;
-  border-radius: 6px;
-  margin: 2px;
-
+.baseToolbarButton {
+  width: 100% !important;
+  height: 100% !important;
+}
+.baseToolbarButton:hover {
+  color: inherit !important;
 }
 
-.init:hover {
-  background-color: white;
+.activeToolbarButton{
+  all: unset;
+  width: 100% !important;
+  height: 100% !important;
+  color: inherit !important;
+  background-color: #68D39166;
+  border-radius: 2px;
 }
 
-.act {
-  background-color: aliceblue;
+.toolbar{
+  border: none !important;
+  color: inherit !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding: 0px 10px 10px;
+  justify-content: space-around;
 }
-
 /* body::-webkit-scrollbar {
   width: 1em;
 }

@@ -16,7 +16,7 @@ const Write = (props) => {
 	// }, [user, loading, router]);
 
 	return (
-		<Flex direction="column" mt="200px" w="100%" h="100vh">
+		<Flex direction="column" align="center" pt="150px" pb="200px" w="100%" h="100vh">
 			<PlateEditor/>
 		</Flex>
 	);
