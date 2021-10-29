@@ -1,96 +1,152 @@
-import React, { useState } from "react";
-import { createPlateComponents, createPlateOptions, Plate } from "@udecode/plate";
-import { createHistoryPlugin, createReactPlugin, getPlatePluginType, useEventEditorId, useStoreEditorRef } from "@udecode/plate-core";
-import { createParagraphPlugin } from "@udecode/plate-paragraph";
-import { createBlockquotePlugin, ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
-import { createHeadingPlugin, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H6 } from "@udecode/plate-heading";
-import {
-	createBoldPlugin,
-	createCodePlugin,
-	createItalicPlugin,
-	createStrikethroughPlugin,
-	createUnderlinePlugin,
-} from "@udecode/plate-basic-marks";
+import { createPlateComponents, createPlateOptions } from "@udecode/plate";
+import { createAlignPlugin } from "@udecode/plate-alignment";
+import { createDeserializeAstPlugin } from "@udecode/plate-ast-serializer";
+import { createAutoformatPlugin } from "@udecode/plate-autoformat";
+import { createBoldPlugin, createCodePlugin, createItalicPlugin, createStrikethroughPlugin, createSubscriptPlugin, createSuperscriptPlugin, createUnderlinePlugin } from "@udecode/plate-basic-marks";
+import { createBlockquotePlugin } from "@udecode/plate-block-quote";
+import { createExitBreakPlugin, createSoftBreakPlugin } from "@udecode/plate-break";
+import { createCodeBlockPlugin } from "@udecode/plate-code-block";
+import { createComboboxPlugin } from "@udecode/plate-combobox";
+import { createHistoryPlugin, createReactPlugin, Plate } from "@udecode/plate-core";
+import { createDeserializeCSVPlugin } from "@udecode/plate-csv-serializer";
+import { createFontBackgroundColorPlugin, createFontColorPlugin, createFontFamilyPlugin, createFontSizePlugin, createFontWeightPlugin, MARK_BG_COLOR, MARK_COLOR } from "@udecode/plate-font";
+import { createHeadingPlugin } from "@udecode/plate-heading";
+import { createHighlightPlugin } from "@udecode/plate-highlight";
+import { createHorizontalRulePlugin } from "@udecode/plate-horizontal-rule";
+import { createDeserializeHTMLPlugin } from "@udecode/plate-html-serializer";
+import { createImagePlugin } from "@udecode/plate-image";
+import { createIndentPlugin } from "@udecode/plate-indent";
 import { createKbdPlugin } from "@udecode/plate-kbd";
-import { HeadingToolbar, ToolbarElement } from "@udecode/plate-toolbar";
-import { ToolbarCodeBlock } from "@udecode/plate-code-block-ui";
-import { ELEMENT_CODE_BLOCK } from "@udecode/plate-code-block";
-import { Button } from "@chakra-ui/button";
+import { createLineHeightPlugin } from "@udecode/plate-line-height";
+import { createLinkPlugin } from "@udecode/plate-link";
+import { createListPlugin, createTodoListPlugin } from "@udecode/plate-list";
+import { createDeserializeMDPlugin } from "@udecode/plate-md-serializer";
+import { createMediaEmbedPlugin } from "@udecode/plate-media-embed";
+import { createMentionPlugin } from "@udecode/plate-mention";
+import { createNodeIdPlugin } from "@udecode/plate-node-id";
+// import { createNormalizeTypesPlugin } from "@udecode/plate-normalizers";
+import { createParagraphPlugin } from "@udecode/plate-paragraph";
+import { createResetNodePlugin } from "@udecode/plate-reset-node";
+import { createSelectOnBackspacePlugin } from "@udecode/plate-select";
+import { createTablePlugin } from "@udecode/plate-table";
+import { HeadingToolbar } from "@udecode/plate-toolbar";
+import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
+import { BallonToolbarMarks, ToolbarButtonsAlign, ToolbarButtonsBasicElements, ToolbarButtonsBasicMarks, ToolbarButtonsIndent, ToolbarButtonsList, ToolbarButtonsTable } from "./Toolbars";
+import { ToolbarColorPicker } from "@udecode/plate-font-ui";
+import { FontDownload, FormatColorText, LineWeight, OndemandVideo } from "@styled-icons/material";
+import { Link } from "@styled-icons/bootstrap";
+import { Image } from "@styled-icons/boxicons-solid";
+import { ToolbarLineHeight } from "@udecode/plate-line-height-ui";
+import { ToolbarLink } from "@udecode/plate-link-ui";
+import { ToolbarImage } from "@udecode/plate-image-ui";
+import { ToolbarMediaEmbed } from "@udecode/plate-media-embed-ui";
+import { CONFIG } from "./config";
+import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
+import { useMemo } from "react";
+import { Box } from "@chakra-ui/layout";
+import { Editable } from "slate-react";
 const PlateEditor = () => {
-	const [value, setValue] = useState(null);
-	const plugins = [
-		createReactPlugin(),
-		createHistoryPlugin(),
-		createParagraphPlugin(),
-		createBlockquotePlugin(),
-		createHeadingPlugin(),
-		createBoldPlugin(),
-		createItalicPlugin(),
-		createUnderlinePlugin(),
-		createStrikethroughPlugin(),
-		createCodePlugin(),
-		createKbdPlugin(),
-	];
-	const editableProps = {
-		placeholder: "Type…",
-		style: {
-			padding: "15px",
-		},
+	let components = createPlateComponents({
+		...CONFIG.components
+	});
+	components = withStyledPlaceHolders(components);
+
+	const options = createPlateOptions();
+
+	const Editor = () => {
+
+		const pluginsMemo = useMemo(() => {
+			const plugins = [
+				createReactPlugin(),
+				createHistoryPlugin(),
+				createParagraphPlugin(),
+				createBlockquotePlugin(),
+				createTodoListPlugin(),
+				createHeadingPlugin(),
+				createImagePlugin(),
+				createHorizontalRulePlugin(),
+				createLineHeightPlugin(CONFIG.lineHeight),
+				createLinkPlugin(),
+				createListPlugin(),
+				createTablePlugin(),
+				createMediaEmbedPlugin(),
+				createCodeBlockPlugin(),
+				createAlignPlugin(CONFIG.align),
+				createBoldPlugin(),
+				createCodePlugin(),
+				createItalicPlugin(),
+				createHighlightPlugin(),
+				createUnderlinePlugin(),
+				createStrikethroughPlugin(),
+				createSubscriptPlugin(),
+				createSuperscriptPlugin(),
+				createFontBackgroundColorPlugin(),
+				createFontFamilyPlugin(),
+				createFontColorPlugin(),
+				createFontSizePlugin(),
+				createFontWeightPlugin(),
+				createKbdPlugin(),
+				createNodeIdPlugin(),
+				createIndentPlugin(CONFIG.indent),
+				createAutoformatPlugin(CONFIG.autoformat),
+				createResetNodePlugin(CONFIG.resetBlockType),
+				createSoftBreakPlugin(CONFIG.softBreak),
+				createExitBreakPlugin(CONFIG.exitBreak),
+				// createNormalizeTypesPlugin(),
+				createTrailingBlockPlugin(CONFIG.trailingBlock),
+				createSelectOnBackspacePlugin(CONFIG.selectOnBackspace),
+				createComboboxPlugin(),
+				createMentionPlugin(),
+			];
+
+			plugins.push(
+				...[
+					createDeserializeMDPlugin({ plugins }),
+					createDeserializeCSVPlugin({ plugins }),
+					createDeserializeHTMLPlugin({ plugins }),
+					createDeserializeAstPlugin({ plugins }),
+				]
+			);
+
+			return plugins;
+		}, [options]);
+
+		return (
+			<Box backgroundColor="black" height="60%" width="50%" borderRadius="20px">
+				<HeadingToolbar>
+					<ToolbarButtonsBasicElements />
+					<ToolbarButtonsList />
+					<ToolbarButtonsIndent />
+					<ToolbarButtonsBasicMarks />
+					<ToolbarColorPicker
+						pluginKey={MARK_COLOR}
+						icon={<FormatColorText />}
+					/>
+					<ToolbarColorPicker
+						pluginKey={MARK_BG_COLOR}
+						icon={<FontDownload />}
+					/>
+					<ToolbarButtonsAlign />
+					<ToolbarLineHeight icon={<LineWeight />} />
+					<ToolbarLink icon={<Link />} />
+					<ToolbarImage icon={<Image />} />
+					<ToolbarMediaEmbed icon={<OndemandVideo />} />
+					<ToolbarButtonsTable />
+				</HeadingToolbar>
+				<Plate
+					// id="playground"
+					plugins={pluginsMemo}
+					components={components}
+					options={options}
+					editableProps={CONFIG.editableProps}
+				>
+					<BallonToolbarMarks />
+				</Plate>
+			</Box>
+		);
 	};
 
-  const ToolbarButtonsBasicElements = () => {
-    const editor = useStoreEditorRef(useEventEditorId('focus'));
-
-    return (
-			<>
-				<ToolbarElement
-                    as={Button}
-					type={getPlatePluginType(editor, ELEMENT_H1)}
-					icon={<div>a</div>}
-				/>
-				<ToolbarElement
-					type={getPlatePluginType(editor, ELEMENT_H2)}
-					icon={<div>a</div>}
-				/>
-				<ToolbarElement
-					type={getPlatePluginType(editor, ELEMENT_H3)}
-					icon={<div>a</div>}
-				/>
-				<ToolbarElement
-					type={getPlatePluginType(editor, ELEMENT_H4)}
-					icon={<div>a</div>}
-				/>
-				<ToolbarElement
-					type={getPlatePluginType(editor, ELEMENT_H5)}
-					icon={<div>a</div>}
-				/>
-				<ToolbarElement
-					type={getPlatePluginType(editor, ELEMENT_H6)}
-					icon={<div>a</div>}
-
-				/>
-				<ToolbarElement
-					type={getPlatePluginType(editor, ELEMENT_BLOCKQUOTE)}
-					icon={<div>a</div>}
-				/>
-			</>
-		);
-  };
-
-	return (
-		<>
-			<HeadingToolbar style={{border: "none"}}>
-				<ToolbarButtonsBasicElements />
-			</HeadingToolbar>
-			<Plate
-				editableProps={editableProps}
-				onChange={(val) => setValue(val)}
-				plugins={plugins}
-                components={createPlateComponents()}
-                options={createPlateOptions()}
-			/>
-		</>
-	);
-}
+	return <Editor />;
+};
 
 export default PlateEditor;

@@ -29,7 +29,9 @@
 		"slate-history": "^0.66.0",
 		"slate-hyperscript": "^0.67.0",
 		"slate-react": "^0.68.1",
-		"styled-components": "^5.3.3"
+		"styled-components": "^5.3.3",
+		"styled-icons": "^10.45.0",
+		"tippy.js": "^6.3.2"
 	},
 	"devDependencies": {
 		"eslint": "7.32.0",
