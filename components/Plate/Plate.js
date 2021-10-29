@@ -112,7 +112,7 @@ const PlateEditor = () => {
 		}, [options]);
 
 		return (
-			<Box backgroundColor="black" height="60%" width="50%" borderRadius="20px">
+			<Box height="60%" style={{overflowY: "scroll", overflowX: "clip"}}width="1200px" borderRadius="20px">
 				<HeadingToolbar>
 					<ToolbarButtonsBasicElements />
 					<ToolbarButtonsList />

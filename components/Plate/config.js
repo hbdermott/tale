@@ -43,7 +43,7 @@ const resetBlockTypesCommonRule = {
 
 export const CONFIG = {
 	editableProps: {
-		spellCheck: false,
+		spellCheck: true,
 		autoFocus: true,
 		placeholder: "Type…",
 		style: {
