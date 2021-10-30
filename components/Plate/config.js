@@ -34,10 +34,9 @@ import {
 
 import { css } from "styled-components";
 import { autoformatRules } from "./autoformat/autoformatRules";
-// import { MENTIONABLES } from "./mentionables";
 
 const resetBlockTypesCommonRule = {
-	types: [ELEMENT_BLOCKQUOTE, ELEMENT_TODO_LI],
+	types: [ELEMENT_BLOCKQUOTE, ELEMENT_TODO_LI, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_H5, ELEMENT_H5, ELEMENT_H6, ELEMENT_CODE_BLOCK],
 	defaultType: ELEMENT_PARAGRAPH,
 };
 
@@ -45,7 +44,7 @@ export const CONFIG = {
 	editableProps: {
 		spellCheck: true,
 		autoFocus: true,
-		placeholder: "Type…",
+		// placeholder: "Type…",
 		style: {
 			padding: "15px",
 		},
