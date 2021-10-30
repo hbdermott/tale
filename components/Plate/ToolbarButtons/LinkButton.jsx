@@ -1,8 +1,14 @@
 import { Button } from "@chakra-ui/button";
 import { ToolbarLink } from "@udecode/plate-link-ui";
-const LinkButton = ({classes, ...rest}) => {
-        return (
-		<Button p={0} m={0} colorScheme="teal" variant="outline">
+import { defaultButtonProps } from "./theme/defaultButtonProps";
+const LinkButton = ({
+	classes,
+	button,
+	...rest
+}) => {
+	const buttonStyle = Object.assign({}, button, defaultButtonProps);
+	return (
+		<Button {...buttonStyle}>
 			<ToolbarLink
 				{...rest}
 				classNames={
@@ -13,7 +19,7 @@ const LinkButton = ({classes, ...rest}) => {
 			/>
 		</Button>
 	);
-}
+};
 export default LinkButton
 
 

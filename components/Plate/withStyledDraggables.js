@@ -8,8 +8,6 @@ import {
 	ELEMENT_H2,
 	ELEMENT_H3,
 	ELEMENT_H4,
-	ELEMENT_H5,
-	ELEMENT_H6,
 	ELEMENT_IMAGE,
 	ELEMENT_MEDIA_EMBED,
 	ELEMENT_OL,
@@ -38,8 +36,6 @@ export const withStyledDraggables = (components) => {
 				ELEMENT_H2,
 				ELEMENT_H3,
 				ELEMENT_H4,
-				ELEMENT_H5,
-				ELEMENT_H6,
 				ELEMENT_IMAGE,
 				ELEMENT_OL,
 				ELEMENT_UL,
@@ -92,7 +88,7 @@ export const withStyledDraggables = (components) => {
 			},
 		},
 		{
-			keys: [ELEMENT_H4, ELEMENT_H5, ELEMENT_H6],
+			keys: [ELEMENT_H4],
 			styles: {
 				gutterLeft: css`
 					padding: 0.75em 0 0;

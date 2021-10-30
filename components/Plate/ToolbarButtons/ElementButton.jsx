@@ -1,10 +1,12 @@
 import { Button } from "@chakra-ui/button";
-import { getPlatePluginType } from "@udecode/plate-core";
-import { ToolbarElement } from "@udecode/plate-toolbar";
+import { ToolbarElement, getPlatePluginType } from "@udecode/plate";
+import { defaultButtonProps } from "./theme/defaultButtonProps";
 
-const ElementButton = ({ editor, type, classes, ...rest }) => {
+const ElementButton = ({ editor, type, classes, button, ...rest }) => {
+	const buttonStyle = Object.assign({}, button, defaultButtonProps);
+
 	return (
-		<Button p={0} m={0} colorScheme="teal" variant="outline">
+		<Button {...buttonStyle}>
 			<ToolbarElement
 				type={getPlatePluginType(editor, type)}
 				classNames={

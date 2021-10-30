@@ -1,5 +1,4 @@
 import {
-  AutoformatRule,
   ELEMENT_BLOCKQUOTE,
   ELEMENT_CODE_BLOCK,
   ELEMENT_DEFAULT,
@@ -7,14 +6,11 @@ import {
   ELEMENT_H2,
   ELEMENT_H3,
   ELEMENT_H4,
-  ELEMENT_H5,
-  ELEMENT_H6,
   ELEMENT_HR,
   getPlatePluginType,
   insertEmptyCodeBlock,
   insertNodes,
   setNodes,
-  SPEditor,
 } from '@udecode/plate';
 import { clearBlockFormat } from './autoformatUtils';
 
@@ -41,18 +37,6 @@ export const autoformatBlocks = [
     mode: 'block',
     type: ELEMENT_H4,
     match: '#### ',
-    preFormat: clearBlockFormat,
-  },
-  {
-    mode: 'block',
-    type: ELEMENT_H5,
-    match: '##### ',
-    preFormat: clearBlockFormat,
-  },
-  {
-    mode: 'block',
-    type: ELEMENT_H6,
-    match: '###### ',
     preFormat: clearBlockFormat,
   },
   {
