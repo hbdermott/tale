@@ -1,4 +1,6 @@
-import { Bold, Italic, Underline } from "@styled-icons/feather";
+import { HStack, Stack } from "@chakra-ui/layout";
+import { TextBold, TextItalic, TextUnderline, TextStrikethrough } from "@styled-icons/fluentui-system-filled";
+
 import {
 	MARK_BOLD,
 	MARK_ITALIC,
@@ -11,7 +13,7 @@ import {
 import MarkButton from "../ToolbarButtons/MarkButton";
 
 const ToolbarBalloons = () => {
-	const editor = useStoreEditorRef(useEventEditorId("focus"));
+	const editor = useStoreEditorRef(useEventEditorId('focus'));
 	const arrow = false;
 	const theme = "dark";
 	const tooltip = {
@@ -20,7 +22,7 @@ const ToolbarBalloons = () => {
 		duration: [200, 0],
 		hideOnClick: false,
 		offset: [0, 17],
-		placement: "top",
+		placement: "bottom",
 	};
 
 	return (
@@ -30,22 +32,25 @@ const ToolbarBalloons = () => {
 			}}
 			theme={theme}
 			arrow={arrow}
+			classNames={{root: "balloonToolbar"}}
 		>
-			<MarkButton
-				type={getPlatePluginType(editor, MARK_BOLD)}
-				icon={<Bold />}
-				tooltip={{ content: "Bold (⌘B)", ...tooltip }}
-			/>
-			<MarkButton
-				type={getPlatePluginType(editor, MARK_ITALIC)}
-				icon={<Italic />}
-				tooltip={{ content: "Italic (⌘I)", ...tooltip }}
-			/>
-			<MarkButton
-				type={getPlatePluginType(editor, MARK_UNDERLINE)}
-				icon={<Underline />}
-				tooltip={{ content: "Underline (⌘U)", ...tooltip }}
-			/>
+			<HStack spacing={2}>
+				<MarkButton
+					type={getPlatePluginType(editor, MARK_BOLD)}
+					icon={<TextBold />}
+					tooltip={{ content: "Bold: ⌘B", ...tooltip }}
+				/>
+				<MarkButton
+					type={getPlatePluginType(editor, MARK_ITALIC)}
+					icon={<TextItalic />}
+					tooltip={{ content: "Italic: ⌘I", ...tooltip }}
+				/>
+				<MarkButton
+					type={getPlatePluginType(editor, MARK_UNDERLINE)}
+					icon={<TextUnderline />}
+					tooltip={{ content: "Underline: ⌘U", ...tooltip }}
+				/>
+			</HStack>
 		</BalloonToolbar>
 	);
 };

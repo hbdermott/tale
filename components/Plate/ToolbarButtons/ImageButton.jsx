@@ -1,9 +1,15 @@
 
 import { Button } from "@chakra-ui/button";
 import { ToolbarImage } from "@udecode/plate";
-const ImageButton = ({ classes, ...rest }) => {
+import { defaultButtonProps } from "./theme/defaultButtonProps";
+const ImageButton = ({
+	classes,
+	button,
+	...rest
+}) => {
+	const buttonStyle = Object.assign({}, button, defaultButtonProps);
 	return (
-		<Button p={0} m={0} colorScheme="teal" variant="outline">
+		<Button {...buttonStyle}>
 			<ToolbarImage
 				{...rest}
 				classNames={

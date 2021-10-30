@@ -1,19 +1,27 @@
 import { Button } from "@chakra-ui/button";
 import { ToolbarAlign } from "@udecode/plate";
+import { defaultButtonProps } from "./theme/defaultButtonProps";
 
-const AlignButton = ({classes, ...rest}) => {
+const AlignButton = ({button, ...rest}) => {
+	const buttonStyle = Object.assign({}, button, defaultButtonProps);
 	return (
-		<Button p={0} m={0} colorScheme="teal" variant="outline">
-			<ToolbarAlign
-				{...rest}
-				classNames={
-					classes
-						? classes
-						: { root: "baseToolbarButton", active: "activeToolbarButton" }
-				}
-			/>
+		<Button {...buttonStyle}>
+			<AlignDefault {...rest}/>
 		</Button>
 	);
 };
 
-export default AlignButton;
+const AlignDefault = ({classes, ...rest}) => {
+	return (
+		<ToolbarAlign
+			{...rest}
+			classNames={
+				classes
+					? classes
+					: { root: "baseToolbarButton", active: "activeToolbarButton" }
+			}
+		/>
+	);
+}
+
+export {AlignDefault, AlignButton};

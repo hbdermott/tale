@@ -1,9 +1,11 @@
 
 import { Button } from "@chakra-ui/button";
 import { ToolbarMediaEmbed } from "@udecode/plate-media-embed-ui";
-const MediaButton = ({ classes, ...rest }) => {
+import { defaultButtonProps } from "./theme/defaultButtonProps";
+const MediaButton = ({ classes, button, ...rest }) => {
+	const buttonStyle = Object.assign({}, button, defaultButtonProps);
 	return (
-		<Button p={0} m={0} colorScheme="teal" variant="outline">
+		<Button {...buttonStyle}>
 			<ToolbarMediaEmbed
 				{...rest}
 				classNames={

@@ -16,12 +16,10 @@ import { createDeserializeHTMLPlugin } from "@udecode/plate-html-serializer";
 import { createImagePlugin } from "@udecode/plate-image";
 import { createIndentPlugin } from "@udecode/plate-indent";
 import { createKbdPlugin } from "@udecode/plate-kbd";
-import { createLineHeightPlugin } from "@udecode/plate-line-height";
 import { createLinkPlugin } from "@udecode/plate-link";
 import { createListPlugin, createTodoListPlugin } from "@udecode/plate-list";
 import { createDeserializeMDPlugin } from "@udecode/plate-md-serializer";
 import { createMediaEmbedPlugin } from "@udecode/plate-media-embed";
-import { createMentionPlugin } from "@udecode/plate-mention";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
 import { createParagraphPlugin } from "@udecode/plate-paragraph";
 import { createResetNodePlugin } from "@udecode/plate-reset-node";
@@ -39,7 +37,7 @@ import { Box, Divider } from "@chakra-ui/layout";
 import LinkButton from "./ToolbarButtons/LinkButton";
 import MediaButton from "./ToolbarButtons/MediaButton";
 import ImageButton from "./ToolbarButtons/ImageButton";
-import ToolbarHeaders from "./ToolbarGroups/ToolbarHeaders";
+import ToolbarHeaders from "./ToolbarGroups/ToolbarHeaders"
 import ToolbarLists from "./ToolbarGroups/ToolbarLists";
 import ToolbarIndents from "./ToolbarGroups/ToolbarIndents";
 import ToolbarMarks from './ToolbarGroups/ToolbarMarks'
@@ -66,12 +64,10 @@ const PlateEditor = () => {
 				createHeadingPlugin(),
 				createImagePlugin(),
 				createHorizontalRulePlugin(),
-				createLineHeightPlugin(CONFIG.lineHeight),
 				createLinkPlugin(),
 				createListPlugin(),
 				createTablePlugin(),
 				createMediaEmbedPlugin(),
-				// createCodeBlockPlugin(),
 				createAlignPlugin(CONFIG.align),
 				createBoldPlugin(),
 				createCodePlugin(),
@@ -81,9 +77,7 @@ const PlateEditor = () => {
 				createStrikethroughPlugin(),
 				createSubscriptPlugin(),
 				createSuperscriptPlugin(),
-				// createFontBackgroundColorPlugin(),
 				createFontFamilyPlugin(),
-				// createFontColorPlugin(),
 				createFontSizePlugin(),
 				createFontWeightPlugin(),
 				createKbdPlugin(),
@@ -93,11 +87,9 @@ const PlateEditor = () => {
 				createResetNodePlugin(CONFIG.resetBlockType),
 				createSoftBreakPlugin(CONFIG.softBreak),
 				createExitBreakPlugin(CONFIG.exitBreak),
-				// createNormalizeTypesPlugin(),
 				createTrailingBlockPlugin(CONFIG.trailingBlock),
 				createSelectOnBackspacePlugin(CONFIG.selectOnBackspace),
 				createComboboxPlugin(),
-				createMentionPlugin(),
 			];
 
 			plugins.push(
@@ -110,14 +102,14 @@ const PlateEditor = () => {
 			);
 
 			return plugins;
-		}, [options]);
+		}, []);
 
 
 		return (
 			<Box width="1200px" pb={20} pt={10}>
 				<Divider />
 				<Plate
-					// id="playground"
+					id="focus"
 					plugins={pluginsMemo}
 					components={components}
 					options={options}
@@ -126,24 +118,15 @@ const PlateEditor = () => {
 					<ToolbarBalloons />
 				</Plate>
 				<HeadingToolbar className="toolbar">
-					<ToolbarHeaders />
 					<ToolbarLists />
 					<ToolbarIndents />
 					<ToolbarMarks />
-					{/* <ToolbarColorPicker
-						pluginKey={MARK_COLOR}
-						icon={<FormatColorText />}
-					/>
-					<ToolbarColorPicker
-						pluginKey={MARK_BG_COLOR}
-						icon={<FontDownload />}
-					/> */}
 					<ToolbarAligns />
-					{/* <ToolbarLineHeight icon={<LineWeight />} /> */}
+					<ToolbarTables />
+					<ToolbarHeaders />
 					<LinkButton icon={<Link />} />
 					<ImageButton icon={<Image />} />
 					<MediaButton icon={<OndemandVideo />} />
-					<ToolbarTables />
 				</HeadingToolbar>
 			</Box>
 		);

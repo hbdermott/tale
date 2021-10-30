@@ -1,5 +1,4 @@
 import {
-  AutoformatRule,
   MARK_BOLD,
   MARK_CODE,
   MARK_HIGHLIGHT,
