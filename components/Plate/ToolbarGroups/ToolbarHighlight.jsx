@@ -1,9 +1,9 @@
-import { Highlighter } from "@styled-icons/fa-solid";;
 import {
 	MARK_HIGHLIGHT,
 	useEventEditorId,
 	useStoreEditorRef,
 } from "@udecode/plate";
+import { Highlight } from "@styled-icons/fluentui-system-filled";
 import MarkButton from "../ToolbarButtons/MarkButton";
 
 const ToolbarHighlight = () => {
@@ -12,7 +12,7 @@ const ToolbarHighlight = () => {
 	return (
 		<MarkButton
 			type={getPlatePluginType(editor, MARK_HIGHLIGHT)}
-			icon={<Highlighter />}
+			icon={<Highlight />}
 		/>
 	);
 };

@@ -1,12 +1,12 @@
 import { TextAlignLeft, TextAlignCenter, TextAlignRight, TextAlignJustify } from "@styled-icons/fluentui-system-filled";
-import {AlignButton} from "../ToolbarButtons/AlignButton";
+import ToolbarAlign from "../Custom/ToolbarAlign";
 const ToolbarAligns = () => {
 	return (
 		<>
-			<AlignButton align="left" icon={<TextAlignLeft/>} />
-			<AlignButton align="center" icon={<TextAlignCenter />} />
-			<AlignButton align="right" icon={<TextAlignRight />} />
-			<AlignButton align="justify" icon={<TextAlignJustify />} />
+			<ToolbarAlign align="left" icon={<TextAlignLeft/>} />
+			<ToolbarAlign align="center" icon={<TextAlignCenter />} />
+			<ToolbarAlign align="right" icon={<TextAlignRight />} />
+			<ToolbarAlign align="justify" icon={<TextAlignJustify />} />
 		</>
 	);
 };

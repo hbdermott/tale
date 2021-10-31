@@ -1,9 +1,9 @@
 import React from "react";
-import { DragIndicator } from "@styled-icons/material/DragIndicator";
+import { Drag } from "@styled-icons/fluentui-system-filled";
 import Tippy from "@tippyjs/react";
 import {
 	ELEMENT_BLOCKQUOTE,
-	ELEMENT_CODE_BLOCK,
+	// ELEMENT_CODE_BLOCK,
 	ELEMENT_H1,
 	ELEMENT_H2,
 	ELEMENT_H3,
@@ -20,6 +20,7 @@ import {
 } from "@udecode/plate";
 import { css } from "styled-components";
 import tw from "twin.macro";
+import { DragControls } from "framer-motion";
 
 export const withStyledDraggables = (components) => {
 	return withDraggables(components, [
@@ -41,12 +42,12 @@ export const withStyledDraggables = (components) => {
 				ELEMENT_UL,
 				ELEMENT_TABLE,
 				ELEMENT_MEDIA_EMBED,
-				ELEMENT_CODE_BLOCK,
+				// ELEMENT_CODE_BLOCK,
 			],
 			onRenderDragHandle: ({ styles, ...props }) => (
 				<Tippy {...grabberTooltipProps}>
 					<button type="button" {...props} css={styles}>
-						<DragIndicator
+						<Drag
 							style={{
 								width: 18,
 								height: 18,
@@ -109,11 +110,11 @@ export const withStyledDraggables = (components) => {
 				gutterLeft: tw`paddingTop[18px]`,
 			},
 		},
-		{
-			key: ELEMENT_CODE_BLOCK,
-			styles: {
-				gutterLeft: tw`pt-3`,
-			},
-		},
+		// {
+		// 	key: ELEMENT_CODE_BLOCK,
+		// 	styles: {
+		// 		gutterLeft: tw`pt-3`,
+		// 	},
+		// },
 	]);
 };

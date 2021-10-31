@@ -63,7 +63,7 @@ a {
   border: 2px solid #68D39166;
 
 }
-
+  
 .toolbar{
   border: none !important;
   color: inherit !important;
@@ -102,3 +102,4 @@ body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 } */
+

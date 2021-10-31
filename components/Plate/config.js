@@ -1,5 +1,4 @@
 import {
-	CodeBlockElement,
 	createPlateComponents,
 	createPlateOptions,
 	ELEMENT_BLOCKQUOTE,
@@ -16,7 +15,6 @@ import {
 	isBlockAboveEmpty,
 	isSelectionAtBlockStart,
 	KEYS_HEADING,
-	withProps,
 } from "@udecode/plate";
 import { autoformatRules } from "./autoformat/autoformatRules";
 

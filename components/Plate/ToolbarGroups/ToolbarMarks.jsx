@@ -7,36 +7,33 @@ import {
 	MARK_SUBSCRIPT,
 	MARK_SUPERSCRIPT,
 	MARK_UNDERLINE,
-	useEventEditorId,
-	useStoreEditorRef,
 } from "@udecode/plate";
-import MarkButton from "../ToolbarButtons/MarkButton";
+import ToolbarMark from "../Custom/ToolbarMark";
 
 const ToolbarMarks = () => {
-	const editor = useStoreEditorRef(useEventEditorId("focus"));
 	return (
 		<>
-			<MarkButton editor={editor} type={MARK_BOLD} icon={<TextBold />} />
-			<MarkButton editor={editor} type={MARK_ITALIC} icon={<TextItalic />} />
-			<MarkButton editor={editor} type={MARK_UNDERLINE} icon={<TextUnderline />} />
-			<MarkButton
-				editor={editor}
-				type={MARK_STRIKETHROUGH}
+			<ToolbarMark typeName={MARK_BOLD} icon={<TextBold />} />
+			<ToolbarMark  typeName={MARK_ITALIC} icon={<TextItalic />} />
+			<ToolbarMark  typeName={MARK_UNDERLINE} icon={<TextUnderline />} />
+			<ToolbarMark
+				
+				typeName={MARK_STRIKETHROUGH}
 				icon={<TextStrikethrough />}
 			/>
-			<MarkButton
-				editor={editor}
-				type={MARK_SUPERSCRIPT}
+			<ToolbarMark
+				
+				typeName={MARK_SUPERSCRIPT}
 				clear={MARK_SUBSCRIPT}
 				icon={<TextSuperscript />}
 			/>
-			<MarkButton
-				editor={editor}
-				type={MARK_SUBSCRIPT}
+			<ToolbarMark
+				
+				typeName={MARK_SUBSCRIPT}
 				clear={MARK_SUPERSCRIPT}
 				icon={<TextSubscript />}
 			/>
-			<MarkButton editor={editor} type={MARK_CODE} icon={<Code />} />
+			<ToolbarMark  typeName={MARK_CODE} icon={<Code />} />
 		</>
 	);
 };

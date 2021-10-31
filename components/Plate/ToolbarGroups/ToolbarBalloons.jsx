@@ -8,9 +8,8 @@ import {
 	BalloonToolbar,
 	useEventEditorId,
 	useStoreEditorRef,
-	getPlatePluginType,
 } from "@udecode/plate";
-import MarkButton from "../ToolbarButtons/MarkButton";
+import ToolbarMark from "../Custom/ToolbarMark";
 
 const ToolbarBalloons = () => {
 	const editor = useStoreEditorRef(useEventEditorId('focus'));
@@ -35,20 +34,17 @@ const ToolbarBalloons = () => {
 			classNames={{root: "balloonToolbar"}}
 		>
 			<HStack spacing={2}>
-				<MarkButton
-					type={getPlatePluginType(editor, MARK_BOLD)}
+				<ToolbarMark
+					typeName={MARK_BOLD}
 					icon={<TextBold />}
-					tooltip={{ content: "Bold: ⌘B", ...tooltip }}
 				/>
-				<MarkButton
-					type={getPlatePluginType(editor, MARK_ITALIC)}
+				<ToolbarMark
+					typeName={MARK_ITALIC}
 					icon={<TextItalic />}
-					tooltip={{ content: "Italic: ⌘I", ...tooltip }}
 				/>
-				<MarkButton
-					type={getPlatePluginType(editor, MARK_UNDERLINE)}
+				<ToolbarMark
+					typeName={MARK_UNDERLINE}
 					icon={<TextUnderline />}
-					tooltip={{ content: "Underline: ⌘U", ...tooltip }}
 				/>
 			</HStack>
 		</BalloonToolbar>

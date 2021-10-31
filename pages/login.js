@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { useAuth } from "../context/User";
 import { useRouter } from "next/router";
-import { Box, Center, Container, Flex, Heading, HStack, Spacer, VStack } from "@chakra-ui/layout";
-import { FcGoogle } from "react-icons/fc";
-import { FiGithub, FiFacebook } from "react-icons/fi";
+import { Box, Center, Flex, Heading, HStack, VStack } from "@chakra-ui/layout";
 import ProviderLogin from "../components/Login/Provider";
 import { GoogleAuthProvider, GithubAuthProvider, FacebookAuthProvider } from "@firebase/auth";
 import EmailLogin from "../components/Login/Email";
+import { FacebookF, Github, Google } from "@styled-icons/fa-brands";
 const Login = () => {
 	const {user} = useAuth();
 	const router = useRouter();
@@ -21,16 +20,16 @@ const Login = () => {
 							<Heading mt={3} ml={5} textAlign="center">Login</Heading>
 							<HStack pt={2} pr={3}>
 								<ProviderLogin
-									icon={<FiFacebook />}
+									icon={<FacebookF/>}
 									provider={FacebookAuthProvider}
 									color="#4267B2"
 								/>
 								<ProviderLogin
-									icon={<FiGithub />}
+									icon={<Github/>}
 									provider={GithubAuthProvider}
 								/>
 								<ProviderLogin
-									icon={<FcGoogle />}
+									icon={<Google/>}
 									provider={GoogleAuthProvider}
 								/>
 							</HStack>

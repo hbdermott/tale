@@ -1,4 +1,4 @@
-import { Keyboard } from "@styled-icons/fluentui-system-filled";e
+import { Keyboard } from "@styled-icons/fluentui-system-filled";
 import { MARK_KBD, useEventEditorId, useStoreEditorRef } from "@udecode/plate";
 import MarkButton from "../ToolbarButtons/MarkButton";
 

@@ -6,17 +6,17 @@ import {
 	useEventEditorId,
 	useStoreEditorRef,
 } from "@udecode/plate";
-import ToolButton from "../ToolbarButtons/ToolButton";
+import ToolbarButton from "../Custom/ToolbarButton";
 
 export const ToolbarIndents = () => {
 	const editor = useStoreEditorRef(useEventEditorId("focus"));
 	return (
 		<>
-			<ToolButton
+			<ToolbarButton
 				onMouseDown={editor && getPreventDefaultHandler(outdent, editor)}
 				icon={<TextIndentDecrease />}
 			/>
-			<ToolButton
+			<ToolbarButton
 				onMouseDown={editor && getPreventDefaultHandler(indent, editor)}
 				icon={<TextIndentIncrease />}
 			/>

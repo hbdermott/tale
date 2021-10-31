@@ -24,12 +24,9 @@ import { createNodeIdPlugin } from "@udecode/plate-node-id";
 import { createParagraphPlugin } from "@udecode/plate-paragraph";
 import { createResetNodePlugin } from "@udecode/plate-reset-node";
 import { createSelectOnBackspacePlugin } from "@udecode/plate-select";
-import { createTablePlugin } from "@udecode/plate-table";
 import { HeadingToolbar } from "@udecode/plate-toolbar";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
-import { OndemandVideo } from "@styled-icons/material";
-import { Link } from "@styled-icons/bootstrap";
-import { Image } from "@styled-icons/boxicons-solid";
+import { Link, VideoAdd, ImageAdd } from "@styled-icons/fluentui-system-filled";
 import { CONFIG } from "./config";
 import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
 import { useMemo } from "react";
@@ -42,8 +39,9 @@ import ToolbarLists from "./ToolbarGroups/ToolbarLists";
 import ToolbarIndents from "./ToolbarGroups/ToolbarIndents";
 import ToolbarMarks from './ToolbarGroups/ToolbarMarks'
 import ToolbarAligns from "./ToolbarGroups/ToolbarAligns";
-import ToolbarTables from "./ToolbarGroups/ToolbarTables";
 import ToolbarBalloons from "./ToolbarGroups/ToolbarBalloons";
+import ToolbarHeaderMenu from "./Compact/ToolbarHeaderMenu";
+import ToolbarImage from "./Custom/ToolbarImage";
 const PlateEditor = () => {
 	let components = createPlateComponents({
 		...CONFIG.components
@@ -66,7 +64,6 @@ const PlateEditor = () => {
 				createHorizontalRulePlugin(),
 				createLinkPlugin(),
 				createListPlugin(),
-				createTablePlugin(),
 				createMediaEmbedPlugin(),
 				createAlignPlugin(CONFIG.align),
 				createBoldPlugin(),
@@ -109,7 +106,7 @@ const PlateEditor = () => {
 			<Box width="1200px" pb={20} pt={10}>
 				<Divider />
 				<Plate
-					id="focus"
+					id="main-editor"
 					plugins={pluginsMemo}
 					components={components}
 					options={options}
@@ -118,15 +115,15 @@ const PlateEditor = () => {
 					<ToolbarBalloons />
 				</Plate>
 				<HeadingToolbar className="toolbar">
+					<ToolbarHeaderMenu/>
 					<ToolbarLists />
 					<ToolbarIndents />
 					<ToolbarMarks />
 					<ToolbarAligns />
-					<ToolbarTables />
 					<ToolbarHeaders />
 					<LinkButton icon={<Link />} />
-					<ImageButton icon={<Image />} />
-					<MediaButton icon={<OndemandVideo />} />
+					<ToolbarImage icon={<ImageAdd />} />
+					<MediaButton icon={<VideoAdd />} />
 				</HeadingToolbar>
 			</Box>
 		);

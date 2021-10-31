@@ -12,7 +12,7 @@ const Home = () => {
 
 	useEffect(() => {
 		if (!loading && !user) router.push("/login");
-	}, [user, loading]);
+	}, [user, loading, router]);
   return (
     <>
 		<div className="bg-image">

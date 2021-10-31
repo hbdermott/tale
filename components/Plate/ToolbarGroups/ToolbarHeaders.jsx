@@ -1,36 +1,19 @@
-import { H1, H2, H3, H4, H5, H6 } from "@styled-icons/remix-editor";
 import {
 	ELEMENT_H1,
 	ELEMENT_H2,
 	ELEMENT_H3,
-	ELEMENT_H4,
-	ELEMENT_H5,
-	ELEMENT_H6,
 	useEventEditorId,
 	useStoreEditorRef,
 } from "@udecode/plate";
-import ElementButton from "../ToolbarButtons/ElementButton";
+import {TextHeader1, TextHeader2, TextHeader3} from "@styled-icons/fluentui-system-filled"
+import ToolbarElement from "../Custom/ToolbarElement";
 
 const ToolbarHeaders = () => {
-	const editor = useStoreEditorRef(useEventEditorId("focus"));
 	return (
 		<>
-			<ElementButton editor={editor} type={ELEMENT_H1} icon={<H1 />} />
-			<ElementButton editor={editor} type={ELEMENT_H2} icon={<H2 />} />
-			<ElementButton editor={editor} type={ELEMENT_H3} icon={<H3 />} />
-			<ElementButton editor={editor} type={ELEMENT_H4} icon={<H4 />} />
-			{/* <ElementButton editor={editor} type={ELEMENT_H5} icon={<H5/>} />
-			<ElementButton editor={editor} type={ELEMENT_H6} icon={<H6 />} /> */}
-			{/* <ElementButton
-				editor={editor}
-				type={ELEMENT_BLOCKQUOTE}
-				icon={<FormatQuote />}
-			/> */}
-			{/* <ToolbarCodeBlock
-				editor={editor}
-				type={ELEMENT_CODE_BLOCK}
-				icon={<CodeBlock />}
-			/> */}
+			<ToolbarElement typeName={ELEMENT_H1} icon={<TextHeader1 />} />
+			<ToolbarElement typeName={ELEMENT_H2} icon={<TextHeader2 />} />
+			<ToolbarElement typeName={ELEMENT_H3} icon={<TextHeader3 />} />
 		</>
 	);
 };

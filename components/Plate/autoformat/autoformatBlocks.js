@@ -1,6 +1,6 @@
 import {
   ELEMENT_BLOCKQUOTE,
-  ELEMENT_CODE_BLOCK,
+  // ELEMENT_CODE_BLOCK,
   ELEMENT_DEFAULT,
   ELEMENT_H1,
   ELEMENT_H2,
@@ -58,17 +58,17 @@ export const autoformatBlocks = [
       });
     },
   },
-  {
-    mode: 'block',
-    type: ELEMENT_CODE_BLOCK,
-    match: '```',
-    triggerAtBlockStart: false,
-    preFormat: clearBlockFormat,
-    format: (editor) => {
-      insertEmptyCodeBlock(editor, {
-        defaultType: getPlatePluginType(editor, ELEMENT_DEFAULT),
-        insertNodesOptions: { select: true },
-      });
-    },
-  },
+  // {
+  //   mode: 'block',
+  //   type: ELEMENT_CODE_BLOCK,
+  //   match: '```',
+  //   triggerAtBlockStart: false,
+  //   preFormat: clearBlockFormat,
+  //   format: (editor) => {
+  //     insertEmptyCodeBlock(editor, {
+  //       defaultType: getPlatePluginType(editor, ELEMENT_DEFAULT),
+  //       insertNodesOptions: { select: true },
+  //     });
+  //   },
+  // },
 ];
