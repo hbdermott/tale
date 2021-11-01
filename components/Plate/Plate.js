@@ -42,6 +42,7 @@ import ToolbarAligns from "./ToolbarGroups/ToolbarAligns";
 import ToolbarBalloons from "./ToolbarGroups/ToolbarBalloons";
 import ToolbarHeaderMenu from "./Compact/ToolbarHeaderMenu";
 import ToolbarImage from "./Custom/ToolbarImage";
+import ToolbarMedia from "./Custom/ToolbarMedia";
 const PlateEditor = () => {
 	let components = createPlateComponents({
 		...CONFIG.components
@@ -123,7 +124,7 @@ const PlateEditor = () => {
 					<ToolbarHeaders />
 					<LinkButton icon={<Link />} />
 					<ToolbarImage icon={<ImageAdd />} />
-					<MediaButton icon={<VideoAdd />} />
+					<ToolbarMedia icon={<VideoAdd />} />
 				</HeadingToolbar>
 			</Box>
 		);
