@@ -13,7 +13,7 @@ import {
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { Button } from "@chakra-ui/button";
-import { useStoreEditorRef } from "@udecode/plate-core";
+import { useStoreEditorRef, useStoreEditorState } from "@udecode/plate-core";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Flex, Text } from "@chakra-ui/layout";
 import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/alert";
@@ -30,7 +30,7 @@ const ModalLink = ({
 	...props
 }) => {
 	
-	// const [URL, setURL] = useState(false);
+	const editor = useStoreEditorState(editorID || "main-editor");
 	return (
 		<Modal
 			// closeOnOverlayClick={false}
@@ -57,7 +57,7 @@ const ModalLink = ({
 						return errors;
 					}}
 					onSubmit={async (values) => {
-						e.preventDefault();
+						// e.preventDefault();
 						insert(editor, values.url);
 						onClose();
 					}}

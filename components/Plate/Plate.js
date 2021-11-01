@@ -30,7 +30,7 @@ import { Link, VideoAdd, ImageAdd } from "@styled-icons/fluentui-system-filled";
 import { CONFIG } from "./config";
 import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
 import { useMemo } from "react";
-import { Box, Divider } from "@chakra-ui/layout";
+import { Box, Center, Divider, Flex } from "@chakra-ui/layout";
 import LinkButton from "./ToolbarButtons/LinkButton";
 import MediaButton from "./ToolbarButtons/MediaButton";
 import ImageButton from "./ToolbarButtons/ImageButton";
@@ -43,6 +43,8 @@ import ToolbarBalloons from "./ToolbarGroups/ToolbarBalloons";
 import ToolbarHeaderMenu from "./Compact/ToolbarHeaderMenu";
 import ToolbarImage from "./Custom/ToolbarImage";
 import ToolbarMedia from "./Custom/ToolbarMedia";
+import { createEditor } from "slate";
+import { ReactEditor } from "slate-react";
 const PlateEditor = () => {
 	let components = createPlateComponents({
 		...CONFIG.components
@@ -52,7 +54,8 @@ const PlateEditor = () => {
 	const options = createPlateOptions();
 
 	const Editor = () => {
-
+		const slateEditor = createEditor()
+		
 		const pluginsMemo = useMemo(() => {
 			const plugins = [
 				createReactPlugin(),
@@ -104,28 +107,44 @@ const PlateEditor = () => {
 
 
 		return (
-			<Box width="1200px" pb={20} pt={10}>
-				<Divider />
+			<Box
+				width="1200px"
+				h="100%"
+				borderX="1px solid gray"
+				borderTop="1px solid gray"
+				borderTopRadius={20}
+				className="editor-container"
+				mt={10}
+				pb={20}
+				pt={10}
+				px={10}
+				overflow="auto"
+				onClick={() => ReactEditor.focus(slateEditor)}
+			>
 				<Plate
 					id="main-editor"
+					onblur={() => console.log('hello')}
 					plugins={pluginsMemo}
+					editor={slateEditor}
 					components={components}
 					options={options}
 					editableProps={CONFIG.editableProps}
 				>
 					<ToolbarBalloons />
 				</Plate>
-				<HeadingToolbar className="toolbar">
-					<ToolbarHeaderMenu/>
-					<ToolbarLists />
-					<ToolbarIndents />
-					<ToolbarMarks />
-					<ToolbarAligns />
-					<ToolbarHeaders />
-					<LinkButton icon={<Link />} />
-					<ToolbarImage icon={<ImageAdd />} />
-					<ToolbarMedia icon={<VideoAdd />} />
-				</HeadingToolbar>
+				<Center>
+					<HeadingToolbar className="toolbar">
+						<ToolbarHeaderMenu />
+						<ToolbarLists />
+						<ToolbarIndents />
+						<ToolbarMarks />
+						<ToolbarAligns />
+						<ToolbarHeaders />
+						<LinkButton icon={<Link />} />
+						<ToolbarImage icon={<ImageAdd />} />
+						<ToolbarMedia icon={<VideoAdd />} />
+					</HeadingToolbar>
+				</Center>
 			</Box>
 		);
 	};

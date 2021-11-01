@@ -73,7 +73,7 @@ a {
   margin-right: 0 !important;
   padding: 10px !important;
   justify-content: space-around;
-  width: inherit !important;
+  width: 1000px !important;
   position: fixed !important;
   bottom: 2% !important;
   z-index: 100 !important;
@@ -103,3 +103,12 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 } */
 
+.editor-container::-webkit-scrollbar {
+  display: none;
+  overflow: auto;
+}
+
+.editor-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

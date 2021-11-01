@@ -28,7 +28,7 @@ export const CONFIG = {
 		spellCheck: true,
 		autoFocus: true,
 		style: {
-			padding: "15px",
+			fontSize: "1.4rem",
 		},
 	},
 	options: createPlateOptions(),

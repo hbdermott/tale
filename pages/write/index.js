@@ -13,7 +13,7 @@ const Write = (props) => {
 	// }, [user, loading, router]);
 
 	return (
-		<Flex direction="column" align="center" w="100%" h="100vh">
+		<Flex onClick={(e) => e.preventDefault()} direction="column" align="center" w="100%" h="100vh">
 			<PlateEditor/>
 		</Flex>
 	);
