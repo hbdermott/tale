@@ -45,24 +45,18 @@ import ToolbarMedia from "./components/Toolbar/Buttons/ToolbarMedia";
 import ToolbarLink from "./components/Toolbar/Buttons/ToolbarLink";
 import { createEditor } from "slate";
 import { createDndPlugin } from "@udecode/plate-dnd";
-import { withStyledDraggables } from "./withStyledDraggables";
+// import { withStyledDraggables } from "./withStyledDraggables";
 import ToolbarImportCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarImportCompact";
 import ToolbarLayoutCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarLayoutCompact";
 import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarMarkupCompact";
 import { ToolbarColorPicker } from "./components/Toolbar/Buttons/ToolbarColorPicker";
-import { createColorPlugin } from "./createColorPlugin";
 
 const PlateEditor = () => {
 	let components = createPlateComponents({
 		...CONFIG.components,
-		[MARK_BG_COLOR]: withStyledProps(StyledLeaf, {
-			leafProps: {
-				[MARK_BG_COLOR]: ["color"],
-			},
-		}),
 	});
 	components = withStyledPlaceHolders(components);
-	components = withStyledDraggables(components);
+	// components = withStyledDraggables(components);
 	const options = createPlateOptions();
 
 	const Editor = () => {
@@ -142,6 +136,10 @@ const PlateEditor = () => {
 						editor={slateEditor}
 						components={components}
 						options={options}
+						initialValue={[{
+      type: 'p',
+      children: [{ text: '' }],
+    }]}
 						editableProps={CONFIG.editableProps}
 					>
 						<ToolbarBalloons />

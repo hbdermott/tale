@@ -40,7 +40,10 @@ export const ToolbarColorPicker = ({
 					e.preventDefault();
 					setVisible(!visible);
 				}} />
-        {visible && <TwitterPicker color={selectedColor} onChange={(color) => setSelectedColor(color.hex)}/>}
+        {visible && <TwitterPicker color={selectedColor} onChange={(color, e) => {
+            e.preventDefault();
+            setSelectedColor(color.hex)
+            }}/>}
     </>
   );
 };

@@ -7,7 +7,6 @@ import {
 	ELEMENT_H1,
 	ELEMENT_H2,
 	ELEMENT_H3,
-	ELEMENT_H4,
 	ELEMENT_IMAGE,
 	ELEMENT_MEDIA_EMBED,
 	ELEMENT_OL,
@@ -36,7 +35,6 @@ export const withStyledDraggables = (components) => {
 				ELEMENT_H1,
 				ELEMENT_H2,
 				ELEMENT_H3,
-				ELEMENT_H4,
 				ELEMENT_IMAGE,
 				ELEMENT_OL,
 				ELEMENT_UL,
@@ -84,16 +82,6 @@ export const withStyledDraggables = (components) => {
 				gutterLeft: css`
 					padding: 1em 0 1px;
 					font-size: 1.25em;
-				`,
-				// blockToolbarWrapper: tw`height[1.3em]`,
-			},
-		},
-		{
-			keys: [ELEMENT_H4],
-			styles: {
-				gutterLeft: css`
-					padding: 0.75em 0 0;
-					font-size: 1.1em;
 				`,
 				// blockToolbarWrapper: tw`height[1.3em]`,
 			},

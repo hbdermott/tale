@@ -76,14 +76,12 @@ const ModalLink = ({
 											pointerEvents="none"
 											color="gray.300"
 											backgroundColor="gray.600"
-											style={{ zIndex: 0 }}
+											borderLeftRadius={5}
 										>
 											<Link style={{ width: "24px" }} />
 										</InputLeftElement>
-										<Field
-											type="text"
-											name="url"
-											render={({ field, form: { errors } }) => (
+										<Field type="text" name="url">
+											{({ field, form: { errors } }) => (
 												<Input
 													isInvalid={errors.url}
 													{...field}
@@ -92,7 +90,7 @@ const ModalLink = ({
 													pl={12}
 												/>
 											)}
-										/>
+										</Field>
 									</InputGroup>
 								</FormControl>
 								{named && (
@@ -107,18 +105,16 @@ const ModalLink = ({
 											>
 												<Link style={{ width: "24px" }} />
 											</InputLeftElement>
-											<Field
-												type="text"
-												name="reference"
-												render={({ field }) => (
+											<Field type="text" name="reference">
+												{({ field }) => (
 													<Input
 														{...field}
-														placeholder="How it looks..."
+														placeholder="How it Looks..."
 														type="text"
 														pl={12}
 													/>
 												)}
-											/>
+											</Field>
 										</InputGroup>
 									</FormControl>
 								)}
