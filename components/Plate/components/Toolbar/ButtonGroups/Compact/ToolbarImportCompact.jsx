@@ -3,6 +3,7 @@ import {
     VideoAdd,
     ImageAdd,
     Link,
+    DocumentAdd,
 } from "@styled-icons/fluentui-system-filled";
 import { Menu, MenuButton, MenuList } from "@chakra-ui/menu";
 import { Button } from "@chakra-ui/button";
@@ -20,7 +21,7 @@ const ToolbarImportCompact = () => {
 				p={2}
 				iconSpacing={0}
 				aria-label="Header Menu"
-				rightIcon={<ChevronUp style={{ width: "16px" }} />}
+				rightIcon={<DocumentAdd style={{ width: "20px" }} />}
 			></MenuButton>
 			<MenuList flexDirection="row" minWidth="none" p={2} m={0}>
 				<VStack width="fit-content">

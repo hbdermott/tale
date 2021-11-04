@@ -47,6 +47,7 @@ import { createEditor } from "slate";
 import { createDndPlugin } from "@udecode/plate-dnd";
 import { withStyledDraggables } from "./withStyledDraggables";
 import ToolbarImportCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarImportCompact";
+import ToolbarLayoutCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarLayoutCompact";
 
 
 const PlateEditor = () => {
@@ -142,12 +143,8 @@ const PlateEditor = () => {
 							<ToolbarLists />
 							<ToolbarIndents />
 							<ToolbarMarks />
-							<ToolbarAligns />
-							<ToolbarHeaders />
-							<ToolbarLink icon={<Link />} />
-							<ToolbarImage icon={<ImageAdd />} />
-							<ToolbarMedia icon={<VideoAdd />} />
 							<ToolbarImportCompact/>
+							<ToolbarLayoutCompact/>
 						</HeadingToolbar>
 					</Center>
 				</DndProvider>
