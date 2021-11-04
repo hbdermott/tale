@@ -48,6 +48,7 @@ import { createDndPlugin } from "@udecode/plate-dnd";
 import { withStyledDraggables } from "./withStyledDraggables";
 import ToolbarImportCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarImportCompact";
 import ToolbarLayoutCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarLayoutCompact";
+import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarMarkupCompact";
 
 
 const PlateEditor = () => {
@@ -141,8 +142,9 @@ const PlateEditor = () => {
 						<HeadingToolbar className="toolbar">
 							<ToolbarHeaderMenu />
 							<ToolbarLists />
-							<ToolbarIndents />
-							<ToolbarMarks />
+							{/* <ToolbarIndents /> */}
+							{/* <ToolbarMarks /> */}
+							<ToolbarMarkupCompact/>
 							<ToolbarImportCompact/>
 							<ToolbarLayoutCompact/>
 						</HeadingToolbar>
