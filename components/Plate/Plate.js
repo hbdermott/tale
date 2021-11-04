@@ -10,7 +10,7 @@ import { createExitBreakPlugin, createSoftBreakPlugin } from "@udecode/plate-bre
 import { createComboboxPlugin } from "@udecode/plate-combobox";
 import { createHistoryPlugin, createReactPlugin, Plate} from "@udecode/plate-core";
 import { createDeserializeCSVPlugin } from "@udecode/plate-csv-serializer";
-import { createFontColorPlugin, createFontFamilyPlugin, createFontSizePlugin, createFontWeightPlugin, MARK_COLOR} from "@udecode/plate-font";
+import { createFontBackgroundColorPlugin, createFontColorPlugin, createFontFamilyPlugin, createFontSizePlugin, createFontWeightPlugin, MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
 import { createHeadingPlugin } from "@udecode/plate-heading";
 import { createHighlightPlugin } from "@udecode/plate-highlight";
 import { createHorizontalRulePlugin } from "@udecode/plate-horizontal-rule";
@@ -52,10 +52,14 @@ import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/Tool
 import { ToolbarColorPicker } from "./components/Toolbar/Buttons/ToolbarColorPicker";
 import { createColorPlugin } from "./createColorPlugin";
 
-
 const PlateEditor = () => {
 	let components = createPlateComponents({
 		...CONFIG.components,
+		[MARK_BG_COLOR]: withStyledProps(StyledLeaf, {
+			leafProps: {
+				[MARK_BG_COLOR]: ["color"],
+			},
+		}),
 	});
 	components = withStyledPlaceHolders(components);
 	components = withStyledDraggables(components);
@@ -89,6 +93,7 @@ const PlateEditor = () => {
 				createFontSizePlugin(),
 				createFontWeightPlugin(),
 				createFontColorPlugin(),
+				createFontBackgroundColorPlugin(),
 				createKbdPlugin(),
 				createNodeIdPlugin(),
 				createIndentPlugin(CONFIG.indent),
@@ -148,6 +153,8 @@ const PlateEditor = () => {
 							{/* <ToolbarIndents /> */}
 							{/* <ToolbarMarks /> */}
 							<ToolbarColorPicker pluginKey={MARK_COLOR} />
+							<ToolbarColorPicker pluginKey={MARK_BG_COLOR} />
+
 							<ToolbarMarkupCompact />
 							<ToolbarImportCompact />
 							<ToolbarLayoutCompact />

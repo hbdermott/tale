@@ -30,7 +30,7 @@ export const ToolbarColorPicker = ({
         Transforms.select(editor, editor.selection);
         ReactEditor.focus(editorRef);
         setMarks(editor, { [type]: selectedColor });
-        console.log(Editor.marks(editor)?.color)
+        console.log(Editor.marks(editor)?.[type])
       }
   }, [selectedColor])
 
