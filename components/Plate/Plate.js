@@ -1,4 +1,6 @@
 import { createPlateComponents, createPlateOptions, selectEditor } from "@udecode/plate";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { createAlignPlugin } from "@udecode/plate-alignment";
 import { createDeserializeAstPlugin } from "@udecode/plate-ast-serializer";
 import { createAutoformatPlugin } from "@udecode/plate-autoformat";
@@ -42,7 +44,8 @@ import ToolbarImage from "./components/Toolbar/Buttons/ToolbarImage";
 import ToolbarMedia from "./components/Toolbar/Buttons/ToolbarMedia";
 import ToolbarLink from "./components/Toolbar/Buttons/ToolbarLink";
 import { createEditor } from "slate";
-
+import { createDndPlugin } from "@udecode/plate-dnd";
+import { withStyledDraggables } from "./withStyledDraggables";
 
 
 const PlateEditor = () => {
@@ -50,7 +53,7 @@ const PlateEditor = () => {
 		...CONFIG.components
 	});
 	components = withStyledPlaceHolders(components);
-
+	components = withStyledDraggables(components);
 	const options = createPlateOptions();
 
 	const Editor = () => {
@@ -90,6 +93,7 @@ const PlateEditor = () => {
 				createTrailingBlockPlugin(CONFIG.trailingBlock),
 				createSelectOnBackspacePlugin(CONFIG.selectOnBackspace),
 				createComboboxPlugin(),
+				createDndPlugin(),
 			];
 
 			plugins.push(
@@ -118,31 +122,33 @@ const PlateEditor = () => {
 				pt={10}
 				px={10}
 				overflow="auto"
-				onClick={() => selectEditor(slateEditor, {focus: true})}
+				onClick={() => selectEditor(slateEditor, { focus: true })}
 			>
-				<Plate
-					id="main-editor"
-					plugins={pluginsMemo}
-					editor={slateEditor}
-					components={components}
-					options={options}
-					editableProps={CONFIG.editableProps}
-				>
-					<ToolbarBalloons />
-				</Plate>
-				<Center>
-					<HeadingToolbar className="toolbar">
-						<ToolbarHeaderMenu />
-						<ToolbarLists />
-						<ToolbarIndents />
-						<ToolbarMarks />
-						<ToolbarAligns />
-						<ToolbarHeaders />
-						<ToolbarLink icon={<Link />} />
-						<ToolbarImage icon={<ImageAdd />} />
-						<ToolbarMedia icon={<VideoAdd />} />
-					</HeadingToolbar>
-				</Center>
+				<DndProvider backend={HTML5Backend}>
+					<Plate
+						id="main-editor"
+						plugins={pluginsMemo}
+						editor={slateEditor}
+						components={components}
+						options={options}
+						editableProps={CONFIG.editableProps}
+					>
+						<ToolbarBalloons />
+					</Plate>
+					<Center>
+						<HeadingToolbar className="toolbar">
+							<ToolbarHeaderMenu />
+							<ToolbarLists />
+							<ToolbarIndents />
+							<ToolbarMarks />
+							<ToolbarAligns />
+							<ToolbarHeaders />
+							<ToolbarLink icon={<Link />} />
+							<ToolbarImage icon={<ImageAdd />} />
+							<ToolbarMedia icon={<VideoAdd />} />
+						</HeadingToolbar>
+					</Center>
+				</DndProvider>
 			</Box>
 		);
 	};
