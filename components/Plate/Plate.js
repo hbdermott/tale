@@ -1,4 +1,4 @@
-import { createPlateComponents, createPlateOptions, selectEditor } from "@udecode/plate";
+import { createPlateComponents, createPlateOptions, selectEditor, StyledLeaf, withStyledProps } from "@udecode/plate";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { createAlignPlugin } from "@udecode/plate-alignment";
@@ -10,7 +10,7 @@ import { createExitBreakPlugin, createSoftBreakPlugin } from "@udecode/plate-bre
 import { createComboboxPlugin } from "@udecode/plate-combobox";
 import { createHistoryPlugin, createReactPlugin, Plate} from "@udecode/plate-core";
 import { createDeserializeCSVPlugin } from "@udecode/plate-csv-serializer";
-import { createFontFamilyPlugin, createFontSizePlugin, createFontWeightPlugin} from "@udecode/plate-font";
+import { createFontColorPlugin, createFontFamilyPlugin, createFontSizePlugin, createFontWeightPlugin, MARK_COLOR} from "@udecode/plate-font";
 import { createHeadingPlugin } from "@udecode/plate-heading";
 import { createHighlightPlugin } from "@udecode/plate-highlight";
 import { createHorizontalRulePlugin } from "@udecode/plate-horizontal-rule";
@@ -49,11 +49,13 @@ import { withStyledDraggables } from "./withStyledDraggables";
 import ToolbarImportCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarImportCompact";
 import ToolbarLayoutCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarLayoutCompact";
 import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarMarkupCompact";
+import { ToolbarColorPicker } from "./components/Toolbar/Buttons/ToolbarColorPicker";
+import { createColorPlugin } from "./createColorPlugin";
 
 
 const PlateEditor = () => {
 	let components = createPlateComponents({
-		...CONFIG.components
+		...CONFIG.components,
 	});
 	components = withStyledPlaceHolders(components);
 	components = withStyledDraggables(components);
@@ -86,6 +88,7 @@ const PlateEditor = () => {
 				createFontFamilyPlugin(),
 				createFontSizePlugin(),
 				createFontWeightPlugin(),
+				createFontColorPlugin(),
 				createKbdPlugin(),
 				createNodeIdPlugin(),
 				createIndentPlugin(CONFIG.indent),
@@ -144,9 +147,10 @@ const PlateEditor = () => {
 							<ToolbarLists />
 							{/* <ToolbarIndents /> */}
 							{/* <ToolbarMarks /> */}
-							<ToolbarMarkupCompact/>
-							<ToolbarImportCompact/>
-							<ToolbarLayoutCompact/>
+							<ToolbarColorPicker pluginKey={MARK_COLOR} />
+							<ToolbarMarkupCompact />
+							<ToolbarImportCompact />
+							<ToolbarLayoutCompact />
 						</HeadingToolbar>
 					</Center>
 				</DndProvider>
