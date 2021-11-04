@@ -13,11 +13,6 @@ export const withStyledPlaceHolders = (components) =>
 			placeholder: "A new paragraph...",
 			hideOnBlur: true,
 		},
-		// {
-		// 	key: ELEMENT_DEFAULT,
-		// 	placeholder: "A new paragraph...",
-		// 	hideOnBlur: false,
-		// },
 		{
 			key: ELEMENT_H1,
 			placeholder: "A bold title...",

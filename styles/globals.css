@@ -119,3 +119,13 @@ body::-webkit-scrollbar-thumb {
 .rightAlign {
   text-align: right !important;
 }
+
+.leftAlign::placeholder {
+  text-align: left !important;
+}
+.rightAlign::placeholder {
+  text-align: right !important;
+}
+[class*="rightAlign"]::-webkit-input-placeholder {
+  text-align: right !important;
+}

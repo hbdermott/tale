@@ -35,6 +35,7 @@ export const CONFIG = {
 
 	align: {
 		types: [ELEMENT_PARAGRAPH, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_BLOCKQUOTE],
+		alignments: ['left', 'center', 'right'], 
 	},
 	indent: {
 		types: [

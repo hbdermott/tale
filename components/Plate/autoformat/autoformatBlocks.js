@@ -47,6 +47,12 @@ export const autoformatBlocks = [
   },
   {
     mode: 'block',
+    type: ELEMENT_BLOCKQUOTE,
+    match: '| ',
+    preFormat: clearBlockFormat,
+  },
+  {
+    mode: 'block',
     type: ELEMENT_HR,
     match: ['---', '—-'],
     preFormat: clearBlockFormat,
