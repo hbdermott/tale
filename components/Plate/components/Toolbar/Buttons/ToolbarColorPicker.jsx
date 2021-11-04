@@ -14,7 +14,7 @@ import { TwitterPicker } from 'react-color';
 import ToolbarButton from './ToolbarButton';
 import { Color } from '@styled-icons/fluentui-system-filled';
 
-export const ToolbarColorPicker = ({
+const ToolbarColorPicker = ({
     editorID = 'main-editor',
     pluginKey,
 }) => {
@@ -47,3 +47,5 @@ export const ToolbarColorPicker = ({
     </>
   );
 };
+
+export default ToolbarColorPicker;

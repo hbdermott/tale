@@ -1,46 +1,29 @@
 import React from "react";
 import { Drag } from "@styled-icons/fluentui-system-filled";
 import Tippy from "@tippyjs/react";
-import {
-	ELEMENT_BLOCKQUOTE,
-	// ELEMENT_CODE_BLOCK,
-	ELEMENT_H1,
-	ELEMENT_H2,
-	ELEMENT_H3,
-	ELEMENT_IMAGE,
-	ELEMENT_MEDIA_EMBED,
-	ELEMENT_OL,
-	ELEMENT_PARAGRAPH,
-	ELEMENT_TABLE,
-	ELEMENT_TODO_LI,
-	ELEMENT_UL,
-	grabberTooltipProps,
-	withDraggables,
-} from "@udecode/plate";
 import { css } from "styled-components";
 // import tw from "twin.macro";
 import { DragControls } from "framer-motion";
+import { grabberTooltipProps, withDraggables } from "@udecode/plate-dnd";
+import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
+import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3 } from "@udecode/plate-heading";
+import { ELEMENT_MEDIA_EMBED } from "@udecode/plate-media-embed";
 
 export const withStyledDraggables = (components) => {
 	return withDraggables(components, [
 		{
-			keys: [ELEMENT_PARAGRAPH, ELEMENT_UL, ELEMENT_OL],
+			keys: [ELEMENT_PARAGRAPH],
 			level: 0,
 		},
 		{
 			keys: [
 				ELEMENT_PARAGRAPH,
 				ELEMENT_BLOCKQUOTE,
-				ELEMENT_TODO_LI,
 				ELEMENT_H1,
 				ELEMENT_H2,
 				ELEMENT_H3,
 				ELEMENT_IMAGE,
-				ELEMENT_OL,
-				ELEMENT_UL,
-				ELEMENT_TABLE,
 				ELEMENT_MEDIA_EMBED,
-				// ELEMENT_CODE_BLOCK,
 			],
 			onRenderDragHandle: ({ styles, ...props }) => (
 				<Tippy {...grabberTooltipProps}>
@@ -87,7 +70,7 @@ export const withStyledDraggables = (components) => {
 			},
 		},
 		{
-			keys: [ELEMENT_PARAGRAPH, ELEMENT_UL, ELEMENT_OL],
+			keys: [ELEMENT_PARAGRAPH],
 			styles: {
 				// gutterLeft: tw`pt-1`,
 			},
@@ -98,12 +81,5 @@ export const withStyledDraggables = (components) => {
 				// gutterLeft: tw`paddingTop[18px]`,
 			},
 		},
-		// {
-		// 	key: ELEMENT_CODE_BLOCK,
-		// 	styles: {
-		// 		gutterLeft:
-		//  tw`pt-3`,
-		// 	},
-		// },
 	]);
 };

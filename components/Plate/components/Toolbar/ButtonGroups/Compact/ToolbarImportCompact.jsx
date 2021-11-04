@@ -6,7 +6,7 @@ import {
 } from "@styled-icons/fluentui-system-filled";
 import { Menu, MenuButton, MenuList } from "@chakra-ui/menu";
 import { Button } from "@chakra-ui/button";
-import {VStack } from "@chakra-ui/layout";
+import { VStack } from "@chakra-ui/layout";
 import ToolbarLink from "../../Buttons/ToolbarLink";
 import ToolbarImage from "../../Buttons/ToolbarImage";
 import ToolbarMedia from "../../Buttons/ToolbarMedia";

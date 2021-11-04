@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IconButton } from "@chakra-ui/button";
 import { TriangleDownIcon, TriangleUpIcon } from "@chakra-ui/icons";
-import { HStack, Text, VStack } from "@chakra-ui/layout";
+import { Text, VStack } from "@chakra-ui/layout";
 
 const Votes = (props) => {
 	const [vote, setVote] = useState(props.vote);

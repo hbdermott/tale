@@ -1,4 +1,4 @@
-import { createPlateComponents, createPlateOptions, selectEditor, StyledLeaf, withStyledProps } from "@udecode/plate";
+import { createPlateComponents, createPlateOptions, selectEditor } from "@udecode/plate";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { createAlignPlugin } from "@udecode/plate-alignment";
@@ -7,7 +7,6 @@ import { createAutoformatPlugin } from "@udecode/plate-autoformat";
 import { createBoldPlugin, createCodePlugin, createItalicPlugin, createStrikethroughPlugin, createSubscriptPlugin, createSuperscriptPlugin, createUnderlinePlugin } from "@udecode/plate-basic-marks";
 import { createBlockquotePlugin } from "@udecode/plate-block-quote";
 import { createExitBreakPlugin, createSoftBreakPlugin } from "@udecode/plate-break";
-import { createComboboxPlugin } from "@udecode/plate-combobox";
 import { createHistoryPlugin, createReactPlugin, Plate} from "@udecode/plate-core";
 import { createDeserializeCSVPlugin } from "@udecode/plate-csv-serializer";
 import { createFontBackgroundColorPlugin, createFontColorPlugin, createFontFamilyPlugin, createFontSizePlugin, createFontWeightPlugin, MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
@@ -17,9 +16,7 @@ import { createHorizontalRulePlugin } from "@udecode/plate-horizontal-rule";
 import { createDeserializeHTMLPlugin } from "@udecode/plate-html-serializer";
 import { createImagePlugin } from "@udecode/plate-image";
 import { createIndentPlugin } from "@udecode/plate-indent";
-import { createKbdPlugin } from "@udecode/plate-kbd";
 import { createLinkPlugin } from "@udecode/plate-link";
-import { createListPlugin, createTodoListPlugin } from "@udecode/plate-list";
 import { createDeserializeMDPlugin } from "@udecode/plate-md-serializer";
 import { createMediaEmbedPlugin } from "@udecode/plate-media-embed";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
@@ -34,7 +31,6 @@ import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
 import { useMemo } from "react";
 import { Box, Center } from "@chakra-ui/layout";
 import ToolbarHeaders from "./components/Toolbar/ButtonGroups/Full/ToolbarHeaders"
-import ToolbarLists from "./components/Toolbar/ButtonGroups/Full/ToolbarLists";
 import ToolbarIndents from "./components/Toolbar/ButtonGroups/Full/ToolbarIndents";
 import ToolbarMarks from './components/Toolbar/ButtonGroups/Full/ToolbarMarks'
 import ToolbarAligns from "./components/Toolbar/ButtonGroups/Full/ToolbarAligns";
@@ -49,7 +45,7 @@ import { createDndPlugin } from "@udecode/plate-dnd";
 import ToolbarImportCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarImportCompact";
 import ToolbarLayoutCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarLayoutCompact";
 import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarMarkupCompact";
-import { ToolbarColorPicker } from "./components/Toolbar/Buttons/ToolbarColorPicker";
+import ToolbarColorPicker from "./components/Toolbar/Buttons/ToolbarColorPicker";
 
 const PlateEditor = () => {
 	let components = createPlateComponents({
@@ -67,12 +63,10 @@ const PlateEditor = () => {
 				createHistoryPlugin(),
 				createParagraphPlugin(),
 				createBlockquotePlugin(),
-				createTodoListPlugin(),
 				createHeadingPlugin(),
 				createImagePlugin(),
 				createHorizontalRulePlugin(),
 				createLinkPlugin(),
-				createListPlugin(),
 				createMediaEmbedPlugin(),
 				createAlignPlugin(CONFIG.align),
 				createBoldPlugin(),
@@ -88,7 +82,6 @@ const PlateEditor = () => {
 				createFontWeightPlugin(),
 				createFontColorPlugin(),
 				createFontBackgroundColorPlugin(),
-				createKbdPlugin(),
 				createNodeIdPlugin(),
 				createIndentPlugin(CONFIG.indent),
 				createAutoformatPlugin(CONFIG.autoformat),
@@ -97,7 +90,6 @@ const PlateEditor = () => {
 				createExitBreakPlugin(CONFIG.exitBreak),
 				createTrailingBlockPlugin(CONFIG.trailingBlock),
 				createSelectOnBackspacePlugin(CONFIG.selectOnBackspace),
-				createComboboxPlugin(),
 				createDndPlugin(),
 			];
 
@@ -147,7 +139,6 @@ const PlateEditor = () => {
 					<Center>
 						<HeadingToolbar className="toolbar">
 							<ToolbarHeaderMenu />
-							<ToolbarLists />
 							{/* <ToolbarIndents /> */}
 							{/* <ToolbarMarks /> */}
 							<ToolbarColorPicker pluginKey={MARK_COLOR} />

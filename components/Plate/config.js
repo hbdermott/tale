@@ -1,24 +1,16 @@
+import { createPlateComponents, createPlateOptions } from "@udecode/plate";
+import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
+import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, KEYS_HEADING } from "@udecode/plate-heading";
+import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
+import { autoformatRules } from "./autoformat/autoformatRules";
 import {
-	createPlateComponents,
-	createPlateOptions,
-	ELEMENT_BLOCKQUOTE,
-	ELEMENT_CODE_BLOCK,
-	ELEMENT_H1,
-	ELEMENT_H2,
-	ELEMENT_H3,
-	ELEMENT_HR,
-	ELEMENT_IMAGE,
-	ELEMENT_PARAGRAPH,
-	ELEMENT_TD,
-	ELEMENT_TODO_LI,
 	isBlockAboveEmpty,
 	isSelectionAtBlockStart,
-	KEYS_HEADING,
-} from "@udecode/plate";
-import { autoformatRules } from "./autoformat/autoformatRules";
-
+} from "@udecode/plate-common";
+import { ELEMENT_HR } from "@udecode/plate-horizontal-rule";
+import { ELEMENT_IMAGE } from "@udecode/plate-image";
 const resetBlockTypesCommonRule = {
-	types: [ELEMENT_BLOCKQUOTE, ELEMENT_TODO_LI, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
+	types: [ELEMENT_BLOCKQUOTE, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
 	defaultType: ELEMENT_PARAGRAPH,
 };
 
@@ -44,7 +36,6 @@ export const CONFIG = {
 			ELEMENT_H2,
 			ELEMENT_H3,
 			ELEMENT_BLOCKQUOTE,
-			ELEMENT_CODE_BLOCK,
 		],
 	},
 	lineHeight: {
@@ -73,7 +64,7 @@ export const CONFIG = {
 			{
 				hotkey: "enter",
 				query: {
-					allow: [ELEMENT_CODE_BLOCK, ELEMENT_BLOCKQUOTE, ELEMENT_TD],
+					allow: [ELEMENT_BLOCKQUOTE],
 				},
 			},
 		],

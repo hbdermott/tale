@@ -4,8 +4,6 @@ import {
   MARK_HIGHLIGHT,
   MARK_ITALIC,
   MARK_STRIKETHROUGH,
-  MARK_SUBSCRIPT,
-  MARK_SUPERSCRIPT,
   MARK_UNDERLINE,
 } from '@udecode/plate';
 
@@ -54,16 +52,6 @@ export const autoformatMarks = [
     mode: 'mark',
     type: MARK_STRIKETHROUGH,
     match: '~~',
-  },
-  {
-    mode: 'mark',
-    type: MARK_SUPERSCRIPT,
-    match: '^',
-  },
-  {
-    mode: 'mark',
-    type: MARK_SUBSCRIPT,
-    match: '~',
   },
   {
     mode: 'mark',
