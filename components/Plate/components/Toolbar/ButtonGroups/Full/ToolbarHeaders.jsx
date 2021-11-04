@@ -6,7 +6,7 @@ import {
 	useStoreEditorRef,
 } from "@udecode/plate";
 import {TextHeader1, TextHeader2, TextHeader3} from "@styled-icons/fluentui-system-filled"
-import ToolbarElement from "../Custom/ToolbarElement";
+import ToolbarElement from "../../Buttons/ToolbarElement";
 
 const ToolbarHeaders = () => {
 	return (

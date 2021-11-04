@@ -5,8 +5,8 @@ import { useDisclosure } from "@chakra-ui/hooks";
 import ToolbarButton from "./ToolbarButton";
 import ModalLink from "./ModalLink";
 
-const ToolbarMedia = ({ children, editorID, ...props }) => {
-	const editor = useStoreEditorRef(editorID || "main-editor");
+const ToolbarMedia = ({ children, editorID = "main-editor" , ...props }) => {
+	const editor = useStoreEditorRef(editorID);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [loading, setLoading] = useState(false);
 

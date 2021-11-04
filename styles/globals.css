@@ -112,3 +112,10 @@ body::-webkit-scrollbar-thumb {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+.leftAlign {
+  text-align: left !important;
+}
+.rightAlign {
+  text-align: right !important;
+}

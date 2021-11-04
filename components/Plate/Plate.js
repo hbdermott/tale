@@ -1,4 +1,4 @@
-import { createPlateComponents, createPlateOptions } from "@udecode/plate";
+import { createPlateComponents, createPlateOptions, selectEditor } from "@udecode/plate";
 import { createAlignPlugin } from "@udecode/plate-alignment";
 import { createDeserializeAstPlugin } from "@udecode/plate-ast-serializer";
 import { createAutoformatPlugin } from "@udecode/plate-autoformat";
@@ -30,21 +30,21 @@ import { Link, VideoAdd, ImageAdd } from "@styled-icons/fluentui-system-filled";
 import { CONFIG } from "./config";
 import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
 import { useMemo } from "react";
-import { Box, Center, Divider, Flex } from "@chakra-ui/layout";
-import LinkButton from "./ToolbarButtons/LinkButton";
-import MediaButton from "./ToolbarButtons/MediaButton";
-import ImageButton from "./ToolbarButtons/ImageButton";
-import ToolbarHeaders from "./ToolbarGroups/ToolbarHeaders"
-import ToolbarLists from "./ToolbarGroups/ToolbarLists";
-import ToolbarIndents from "./ToolbarGroups/ToolbarIndents";
-import ToolbarMarks from './ToolbarGroups/ToolbarMarks'
-import ToolbarAligns from "./ToolbarGroups/ToolbarAligns";
-import ToolbarBalloons from "./ToolbarGroups/ToolbarBalloons";
-import ToolbarHeaderMenu from "./Compact/ToolbarHeaderMenu";
-import ToolbarImage from "./Custom/ToolbarImage";
-import ToolbarMedia from "./Custom/ToolbarMedia";
+import { Box, Center } from "@chakra-ui/layout";
+import ToolbarHeaders from "./components/Toolbar/ButtonGroups/Full/ToolbarHeaders"
+import ToolbarLists from "./components/Toolbar/ButtonGroups/Full/ToolbarLists";
+import ToolbarIndents from "./components/Toolbar/ButtonGroups/Full/ToolbarIndents";
+import ToolbarMarks from './components/Toolbar/ButtonGroups/Full/ToolbarMarks'
+import ToolbarAligns from "./components/Toolbar/ButtonGroups/Full/ToolbarAligns";
+import ToolbarBalloons from "./components/Toolbar/ButtonGroups/Full/ToolbarBalloons";
+import ToolbarHeaderMenu from "./components/Toolbar/ButtonGroups/Compact/ToolbarHeaderMenu";
+import ToolbarImage from "./components/Toolbar/Buttons/ToolbarImage";
+import ToolbarMedia from "./components/Toolbar/Buttons/ToolbarMedia";
+import ToolbarLink from "./components/Toolbar/Buttons/ToolbarLink";
 import { createEditor } from "slate";
-import { ReactEditor } from "slate-react";
+
+
+
 const PlateEditor = () => {
 	let components = createPlateComponents({
 		...CONFIG.components
@@ -55,7 +55,6 @@ const PlateEditor = () => {
 
 	const Editor = () => {
 		const slateEditor = createEditor()
-		
 		const pluginsMemo = useMemo(() => {
 			const plugins = [
 				createReactPlugin(),
@@ -119,11 +118,10 @@ const PlateEditor = () => {
 				pt={10}
 				px={10}
 				overflow="auto"
-				onClick={() => ReactEditor.focus(slateEditor)}
+				onClick={() => selectEditor(slateEditor, {focus: true})}
 			>
 				<Plate
 					id="main-editor"
-					onblur={() => console.log('hello')}
 					plugins={pluginsMemo}
 					editor={slateEditor}
 					components={components}
@@ -140,7 +138,7 @@ const PlateEditor = () => {
 						<ToolbarMarks />
 						<ToolbarAligns />
 						<ToolbarHeaders />
-						<LinkButton icon={<Link />} />
+						<ToolbarLink icon={<Link />} />
 						<ToolbarImage icon={<ImageAdd />} />
 						<ToolbarMedia icon={<VideoAdd />} />
 					</HeadingToolbar>

@@ -8,7 +8,7 @@ import {
 	MARK_SUPERSCRIPT,
 	MARK_UNDERLINE,
 } from "@udecode/plate";
-import ToolbarMark from "../Custom/ToolbarMark";
+import ToolbarMark from "../../Buttons/ToolbarMark";
 
 const ToolbarMarks = () => {
 	return (

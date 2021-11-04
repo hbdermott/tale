@@ -12,15 +12,15 @@ import ToolbarButton from "./ToolbarButton";
  */
 const ToolbarElement = ({
 	typeName,
-    editorID,
+    editorID  = 'main-editor',
 	inactiveType,
 	active,
     children,
 	...props
 }) => {
-    const id = editorID || 'main-editor'
-    const editorRef = useStoreEditorRef(id);
-    const editor = useStoreEditorState(id);
+
+    const editorRef = useStoreEditorRef(editorID);
+    const editor = useStoreEditorState(editorID);
     const type = getPlatePluginType(editorRef, typeName);
 	return (
 		<ToolbarButton

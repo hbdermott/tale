@@ -10,10 +10,9 @@ import ToolbarButton from "./ToolbarButton";
 /**
  * Toolbar button to toggle the mark of the leaves in selection.
  */
-const ToolbarMark = ({ editorID, typeName, clearName, children, ...props }) => {
-	const id = editorID || "main-editor";
-	const editorRef = useStoreEditorRef(id);
-	const editor = useStoreEditorState(id);
+const ToolbarMark = ({ editorID = "main-editor", typeName, clearName, children, ...props }) => {
+	const editorRef = useStoreEditorRef(editorID);
+	const editor = useStoreEditorState(editorID);
 	const type = getPlatePluginType(editorRef, typeName);
     const clear = getPlatePluginType(editorRef, clearName);
 	return (

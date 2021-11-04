@@ -9,8 +9,8 @@ import { useStoreEditorState } from '@udecode/plate-core';
 import ToolbarButton from './ToolbarButton';
 
 
-const ToolbarAlign = ({ align, editorID, children, ...props }) => {
-  const editor = useStoreEditorState(editorID || 'main-editor');
+const ToolbarAlign = ({ align, editorID = 'main-editor', children, ...props }) => {
+  const editor = useStoreEditorState(editorID);
 
   return (
 		<ToolbarButton
@@ -19,6 +19,7 @@ const ToolbarAlign = ({ align, editorID, children, ...props }) => {
 			}
 			onMouseDown={(e) => {
                 e.preventDefault();
+                // e.stopPropagation();
                 setAlign(editor, {align: align});
             }}
 			{...props}

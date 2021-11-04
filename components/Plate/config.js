@@ -6,7 +6,6 @@ import {
 	ELEMENT_H1,
 	ELEMENT_H2,
 	ELEMENT_H3,
-	ELEMENT_H4,
 	ELEMENT_HR,
 	ELEMENT_IMAGE,
 	ELEMENT_PARAGRAPH,
@@ -19,7 +18,7 @@ import {
 import { autoformatRules } from "./autoformat/autoformatRules";
 
 const resetBlockTypesCommonRule = {
-	types: [ELEMENT_BLOCKQUOTE, ELEMENT_TODO_LI, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_CODE_BLOCK],
+	types: [ELEMENT_BLOCKQUOTE, ELEMENT_TODO_LI, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
 	defaultType: ELEMENT_PARAGRAPH,
 };
 
@@ -34,29 +33,8 @@ export const CONFIG = {
 	options: createPlateOptions(),
 	components: createPlateComponents(),
 
-	// {
-	// 	[ELEMENT_CODE_BLOCK]: withProps(CodeBlockElement, {
-	// 		styles: {
-	// 			root: [
-	// 				css`
-	// 					background-color: #111827;
-	// 					code {
-	// 						color: white;
-	// 					}
-	// 				`,
-	// 			],
-	// 		},
-	// 	}),
-	// }
-
 	align: {
-		types: [
-			ELEMENT_PARAGRAPH,
-			ELEMENT_H1,
-			ELEMENT_H2,
-			ELEMENT_H3,
-			ELEMENT_H4,
-		],
+		types: [ELEMENT_PARAGRAPH, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_BLOCKQUOTE],
 	},
 	indent: {
 		types: [
@@ -64,7 +42,6 @@ export const CONFIG = {
 			ELEMENT_H1,
 			ELEMENT_H2,
 			ELEMENT_H3,
-			ELEMENT_H4,
 			ELEMENT_BLOCKQUOTE,
 			ELEMENT_CODE_BLOCK,
 		],
@@ -102,14 +79,14 @@ export const CONFIG = {
 	exitBreak: {
 		rules: [
 			{
-				hotkey: "mod+enter",
+				hotkey: "enter",
 			},
 			{
 				hotkey: "mod+shift+enter",
 				before: true,
 			},
 			{
-				hotkey: "enter",                                               
+				hotkey: "mod+enter",
 				query: {
 					start: true,
 					end: true,
@@ -121,5 +98,5 @@ export const CONFIG = {
 	selectOnBackspace: { allow: [ELEMENT_IMAGE, ELEMENT_HR] },
 	autoformat: {
 		rules: autoformatRules,
-	}
+	},
 };

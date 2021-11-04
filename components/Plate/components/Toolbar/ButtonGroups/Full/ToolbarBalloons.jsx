@@ -9,7 +9,7 @@ import {
 	useEventEditorId,
 	useStoreEditorRef,
 } from "@udecode/plate";
-import ToolbarMark from "../Custom/ToolbarMark";
+import ToolbarMark from "../../Buttons/ToolbarMark";
 
 const ToolbarBalloons = () => {
 	const editor = useStoreEditorRef(useEventEditorId('focus'));

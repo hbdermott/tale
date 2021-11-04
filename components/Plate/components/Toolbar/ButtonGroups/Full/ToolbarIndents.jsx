@@ -6,7 +6,7 @@ import {
 	useEventEditorId,
 	useStoreEditorRef,
 } from "@udecode/plate";
-import ToolbarButton from "../Custom/ToolbarButton";
+import ToolbarButton from "../../Buttons/ToolbarButton";
 
 export const ToolbarIndents = () => {
 	const editor = useStoreEditorRef(useEventEditorId("focus"));

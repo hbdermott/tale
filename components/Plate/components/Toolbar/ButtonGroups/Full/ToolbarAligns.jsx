@@ -1,5 +1,5 @@
 import { TextAlignLeft, TextAlignCenter, TextAlignRight, TextAlignJustify } from "@styled-icons/fluentui-system-filled";
-import ToolbarAlign from "../Custom/ToolbarAlign";
+import ToolbarAlign from "../../Buttons/ToolbarAlign";
 const ToolbarAligns = () => {
 	return (
 		<>
