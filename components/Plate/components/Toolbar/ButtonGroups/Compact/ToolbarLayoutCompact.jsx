@@ -1,5 +1,4 @@
 import {
-	ChevronUp,
     TextAlignCenter,
     TextAlignDistributed,
     TextAlignLeft,

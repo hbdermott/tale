@@ -1,5 +1,4 @@
 import {
-	ChevronUp,
     VideoAdd,
     ImageAdd,
     Link,

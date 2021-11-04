@@ -1,17 +1,13 @@
 import { TextBulletListLtr, TextNumberListLtr } from "@styled-icons/fluentui-system-filled";
+import { useStoreEditorRef } from "@udecode/plate-core";
 import {
 	ELEMENT_OL,
-	ELEMENT_UL,
-	useEventEditorId,
-	useStoreEditorRef,
-} from "@udecode/plate";
-import {
-	ELEMENT_TODO_LI
+	ELEMENT_TODO_LI, ELEMENT_UL
 } from "@udecode/plate-list"
 import ListButton from "../../../../ToolbarButtons/ListButton";
 
-export const ToolbarLists = () => {
-	const editor = useStoreEditorRef(useEventEditorId("focus"));
+export const ToolbarLists = ({ editorID = "main-editor" }) => {
+	const editor = useStoreEditorRef(editorID);
 	return (
 		<>
 			<ListButton

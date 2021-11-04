@@ -1,11 +1,5 @@
-import {
-	ELEMENT_H1,
-	ELEMENT_H2,
-	ELEMENT_H3,
-	useEventEditorId,
-	useStoreEditorRef,
-} from "@udecode/plate";
 import {TextHeader1, TextHeader2, TextHeader3} from "@styled-icons/fluentui-system-filled"
+import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3 } from "@udecode/plate-heading";
 import ToolbarElement from "../../Buttons/ToolbarElement";
 
 const ToolbarHeaders = () => {

@@ -1,15 +1,11 @@
 import { TextIndentDecrease, TextIndentIncrease } from "@styled-icons/fluentui-system-filled";
-import {
-	indent,
-	outdent,
-	getPreventDefaultHandler,
-	useEventEditorId,
-	useStoreEditorRef,
-} from "@udecode/plate";
+import { getPreventDefaultHandler } from "@udecode/plate-common";
+import { useStoreEditorRef } from "@udecode/plate-core";
+import { indent, outdent } from "@udecode/plate-indent";
 import ToolbarButton from "../../Buttons/ToolbarButton";
 
-export const ToolbarIndents = () => {
-	const editor = useStoreEditorRef(useEventEditorId("focus"));
+export const ToolbarIndents = ({ editorID = "main-editor" }) => {
+	const editor = useStoreEditorRef(editorID);
 	return (
 		<>
 			<ToolbarButton

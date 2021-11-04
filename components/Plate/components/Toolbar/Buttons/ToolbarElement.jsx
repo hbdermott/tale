@@ -4,7 +4,7 @@ import {
 	someNode,
 	toggleNodeType,
 } from "@udecode/plate-common";
-import { getPlatePluginType, useEventEditorId, useStoreEditorRef, useStoreEditorState } from "@udecode/plate-core";
+import { getPlatePluginType, useStoreEditorRef, useStoreEditorState } from "@udecode/plate-core";
 import ToolbarButton from "./ToolbarButton";
 
 /**

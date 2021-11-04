@@ -1,13 +1,10 @@
-import {
-	MARK_HIGHLIGHT,
-	useEventEditorId,
-	useStoreEditorRef,
-} from "@udecode/plate";
 import { Highlight } from "@styled-icons/fluentui-system-filled";
+import { useStoreEditorRef } from "@udecode/plate-core";
+import { MARK_HIGHLIGHT } from "@udecode/plate-highlight";
 import MarkButton from "../../Buttons/ToolbarMark";
 
-const ToolbarHighlight = () => {
-	const editor = useStoreEditorRef(useEventEditorId("focus"));
+const ToolbarHighlight = ({ editorID = "main-editor" }) => {
+	const editor = useStoreEditorRef(editorID);
 
 	return (
 		<MarkButton

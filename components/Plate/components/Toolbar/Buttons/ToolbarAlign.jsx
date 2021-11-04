@@ -1,7 +1,6 @@
 import React from 'react';
 import { setAlign } from '@udecode/plate-alignment';
 import {
-  getPreventDefaultHandler,
   isCollapsed,
   someNode,
 } from '@udecode/plate-common';

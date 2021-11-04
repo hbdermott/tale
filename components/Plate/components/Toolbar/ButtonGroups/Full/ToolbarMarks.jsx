@@ -1,13 +1,5 @@
 import { TextStrikethrough, TextSubscript, TextSuperscript, Code, TextBold, TextItalic, TextUnderline } from "@styled-icons/fluentui-system-filled";
-import {
-	MARK_BOLD,
-	MARK_CODE,
-	MARK_ITALIC,
-	MARK_STRIKETHROUGH,
-	MARK_SUBSCRIPT,
-	MARK_SUPERSCRIPT,
-	MARK_UNDERLINE,
-} from "@udecode/plate";
+import { MARK_BOLD, MARK_CODE, MARK_ITALIC, MARK_STRIKETHROUGH, MARK_SUBSCRIPT, MARK_SUPERSCRIPT, MARK_UNDERLINE } from "@udecode/plate-basic-marks";
 import ToolbarMark from "../../Buttons/ToolbarMark";
 
 const ToolbarMarks = () => {

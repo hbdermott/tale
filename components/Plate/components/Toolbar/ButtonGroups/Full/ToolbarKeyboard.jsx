@@ -1,9 +1,10 @@
 import { Keyboard } from "@styled-icons/fluentui-system-filled";
-import { MARK_KBD, useEventEditorId, useStoreEditorRef } from "@udecode/plate";
+import { getPlatePluginType, useStoreEditorRef } from "@udecode/plate-core";
+import { MARK_KBD } from "@udecode/plate-kbd";
 import MarkButton from "../../Buttons/MarkButton";
 
-const ToolbarKeyboard = () => {
-	const editor = useStoreEditorRef(useEventEditorId("focus"));
+const ToolbarKeyboard = ({ editorID = "main-editor" }) => {
+	const editor = useStoreEditorRef(editorID);
 
 	return (
 		<MarkButton

@@ -1,6 +1,5 @@
 
-import React, { useEffect, useState } from "react";
-import { insertImage } from "@udecode/plate-image";
+import React from "react";
 import {
 	Modal,
 	ModalBody,
@@ -10,12 +9,12 @@ import {
 	ModalHeader,
 	ModalOverlay,
 } from "@chakra-ui/modal";
-import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control";
+import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { Button } from "@chakra-ui/button";
-import { useStoreEditorRef, useStoreEditorState } from "@udecode/plate-core";
+import { useStoreEditorState } from "@udecode/plate-core";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Flex, Text } from "@chakra-ui/layout";
+import { Flex } from "@chakra-ui/layout";
 import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/alert";
 import { Link } from "@styled-icons/fluentui-system-filled";
 
