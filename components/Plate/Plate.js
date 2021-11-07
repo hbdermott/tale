@@ -29,7 +29,7 @@ import { Link, VideoAdd, ImageAdd } from "@styled-icons/fluentui-system-filled";
 import { CONFIG } from "./config";
 import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
 import { useMemo } from "react";
-import { Box, Center } from "@chakra-ui/layout";
+import { Box, Center, Flex } from "@chakra-ui/layout";
 import ToolbarHeaders from "./components/Toolbar/ButtonGroups/Full/ToolbarHeaders"
 import ToolbarIndents from "./components/Toolbar/ButtonGroups/Full/ToolbarIndents";
 import ToolbarMarks from './components/Toolbar/ButtonGroups/Full/ToolbarMarks'
@@ -108,7 +108,7 @@ const PlateEditor = () => {
 
 		return (
 			<Box
-				width="1200px"
+				width="80%"
 				h="100%"
 				borderX="1px solid gray"
 				borderTop="1px solid gray"
@@ -128,28 +128,40 @@ const PlateEditor = () => {
 						editor={slateEditor}
 						components={components}
 						options={options}
-						initialValue={[{
-      type: 'p',
-      children: [{ text: '' }],
-    }]}
+						initialValue={[
+							{
+								type: "p",
+								children: [{ text: "" }],
+							},
+						]}
 						editableProps={CONFIG.editableProps}
 					>
 						<ToolbarBalloons />
 					</Plate>
-					<Center>
-						<HeadingToolbar className="toolbar">
-							<ToolbarHeaderMenu />
-							{/* <ToolbarIndents /> */}
-							{/* <ToolbarMarks /> */}
-							<ToolbarColorPicker pluginKey={MARK_COLOR} />
-							<ToolbarColorPicker pluginKey={MARK_BG_COLOR} />
-
-							<ToolbarMarkupCompact />
-							<ToolbarImportCompact />
-							<ToolbarLayoutCompact />
-						</HeadingToolbar>
-					</Center>
 				</DndProvider>
+				<Center w="100%">
+					<Flex
+						p={3}
+						justify="space-around"
+						borderRadius={6}
+						position="fixed"
+						bottom={6}
+						zIndex={100}
+						backgroundColor="#33333333"
+						w="75%"
+						backdropFilter="blur(5px)"
+					>
+						<ToolbarHeaderMenu />
+						{/* <ToolbarIndents /> */}
+						{/* <ToolbarMarks /> */}
+						<ToolbarColorPicker pluginKey={MARK_COLOR} />
+						<ToolbarColorPicker pluginKey={MARK_BG_COLOR} />
+
+						<ToolbarMarkupCompact />
+						<ToolbarImportCompact />
+						<ToolbarLayoutCompact />
+					</Flex>
+				</Center>
 			</Box>
 		);
 	};

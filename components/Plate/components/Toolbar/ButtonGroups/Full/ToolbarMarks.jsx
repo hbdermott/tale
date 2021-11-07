@@ -1,5 +1,5 @@
-import { TextStrikethrough, TextSubscript, TextSuperscript, Code, TextBold, TextItalic, TextUnderline } from "@styled-icons/fluentui-system-filled";
-import { MARK_BOLD, MARK_CODE, MARK_ITALIC, MARK_STRIKETHROUGH, MARK_SUBSCRIPT, MARK_SUPERSCRIPT, MARK_UNDERLINE } from "@udecode/plate-basic-marks";
+import { TextStrikethrough, Code, TextBold, TextItalic, TextUnderline } from "@styled-icons/fluentui-system-filled";
+import { MARK_BOLD, MARK_CODE, MARK_ITALIC, MARK_STRIKETHROUGH, MARK_UNDERLINE } from "@udecode/plate-basic-marks";
 import ToolbarMark from "../../Buttons/ToolbarMark";
 
 const ToolbarMarks = () => {
@@ -12,18 +12,6 @@ const ToolbarMarks = () => {
 				
 				typeName={MARK_STRIKETHROUGH}
 				icon={<TextStrikethrough />}
-			/>
-			<ToolbarMark
-				
-				typeName={MARK_SUPERSCRIPT}
-				clear={MARK_SUBSCRIPT}
-				icon={<TextSuperscript />}
-			/>
-			<ToolbarMark
-				
-				typeName={MARK_SUBSCRIPT}
-				clear={MARK_SUPERSCRIPT}
-				icon={<TextSubscript />}
 			/>
 			<ToolbarMark  typeName={MARK_CODE} icon={<Code />} />
 		</>

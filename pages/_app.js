@@ -1,8 +1,8 @@
 import '../styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
 import theme from '../components/theme';
-import ToggleTheme from '../components/ToggleTheme';
 import { UserProvider } from '../context/User';
+import Layout from '../components/Layout';
 
 
 
@@ -12,7 +12,9 @@ function MyApp({ Component, pageProps }) {
   return (
 		<UserProvider>
 			<ChakraProvider theme={theme}>
-				<Component {...pageProps} />
+				<Layout>
+					<Component {...pageProps} />
+				</Layout>
 			</ChakraProvider>
 		</UserProvider>
 	);
