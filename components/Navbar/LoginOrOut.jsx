@@ -1,9 +1,11 @@
 import { Button } from "@chakra-ui/button"
+import { useRouter } from "next/dist/client/router"
 import { useEffect, useState } from "react"
 import { useAuth } from "../../context/User"
 
 const LoginOrOut = (props) => {
-    const {user, loading, logout,...rest} = useAuth()
+    const {user, loading, logout} = useAuth()
+    const router = useRouter();
     const [loggedIn, setLoggedIn] = useState(false)
     useEffect(() => {
         if(user && !loading){
@@ -15,7 +17,7 @@ const LoginOrOut = (props) => {
     }, [user, loading])
 
     return (
-        <Button onClick={() => loggedIn ? logout() : login()}>{loggedIn ? "Logout" : "Login"}</Button>
+        <Button onClick={() => loggedIn ? logout() : router.push('/login')}>{loggedIn ? "Logout" : "Login"}</Button>
     )
 }
 

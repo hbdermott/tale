@@ -10,12 +10,11 @@ const Home = () => {
   const {user, loading, ...rest} = useAuth()
   const router = useRouter();
 
-	useEffect(() => {
-		if (!loading && !user) router.push("/login");
-	}, [user, loading, router]);
+	// useEffect(() => {
+	// 	if (!loading && !user) router.push("/login");
+	// }, [user, loading, router]);
   return (
-    <>
-    </>
+    <></>
 	);
 }
 
