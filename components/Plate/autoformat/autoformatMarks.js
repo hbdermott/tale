@@ -60,11 +60,6 @@ export const autoformatMarks = [
   },
   {
     mode: 'mark',
-    type: MARK_HIGHLIGHT,
-    match: '≡',
-  },
-  {
-    mode: 'mark',
     type: MARK_CODE,
     match: '`',
   },

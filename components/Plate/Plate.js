@@ -46,6 +46,8 @@ import ToolbarImportCompact from "./components/Toolbar/ButtonGroups/Compact/Tool
 import ToolbarLayoutCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarLayoutCompact";
 import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarMarkupCompact";
 import ToolbarColorPicker from "./components/Toolbar/Buttons/ToolbarColorPicker";
+import ToolbarHighlight from "./components/Toolbar/ButtonGroups/Full/ToolbarHighlight";
+import ToolbarBlockquote from "./components/Toolbar/ButtonGroups/Full/ToolbarBlockquote";
 
 const PlateEditor = () => {
 	let components = createPlateComponents({
@@ -152,15 +154,14 @@ const PlateEditor = () => {
 						w="75%"
 						backdropFilter="blur(5px)"
 					>
+						<ToolbarMarkupCompact />
 						<ToolbarHeaderMenu />
+						<ToolbarLayoutCompact />
 						{/* <ToolbarIndents /> */}
 						{/* <ToolbarMarks /> */}
-						<ToolbarColorPicker pluginKey={MARK_COLOR} />
-						<ToolbarColorPicker pluginKey={MARK_BG_COLOR} />
-
-						<ToolbarMarkupCompact />
+						<ToolbarColorPicker isDisabled={true} pluginKey={MARK_COLOR} />
+						<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} />
 						<ToolbarImportCompact />
-						<ToolbarLayoutCompact />
 					</Flex>
 				</Center>
 			</Box>

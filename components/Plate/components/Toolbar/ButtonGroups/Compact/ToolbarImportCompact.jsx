@@ -13,7 +13,7 @@ import ToolbarMedia from "../../Buttons/ToolbarMedia";
 
 const ToolbarImportCompact = () => {
 	return (
-		<Menu offset={[-8, 8]}>
+		<Menu offset={[-8, 15]}>
 			<MenuButton
 				as={Button}
 				size="sm"

@@ -8,7 +8,7 @@ import {
 } from "@styled-icons/fluentui-system-filled";
 import { Menu, MenuButton, MenuList } from "@chakra-ui/menu";
 import { Button } from "@chakra-ui/button";
-import { VStack } from "@chakra-ui/layout";
+import { HStack, VStack } from "@chakra-ui/layout";
 import ToolbarButton from "../../Buttons/ToolbarButton";
 import { indent, outdent } from "@udecode/plate-indent";
 import ToolbarAlign from "../../Buttons/ToolbarAlign";
@@ -18,7 +18,7 @@ import { useStoreEditorRef } from "@udecode/plate-core";
 const ToolbarLayoutCompact = () => {
 	const editor = useStoreEditorRef('main-editor');
 	return (
-		<Menu offset={[-8, 8]}>
+		<Menu offset={[-45, 15]}>
 			<MenuButton
 				as={Button}
 				size="sm"
@@ -29,17 +29,21 @@ const ToolbarLayoutCompact = () => {
 			></MenuButton>
 			<MenuList flexDirection="row" minWidth="none" p={2} m={0}>
 				<VStack width="fit-content">
-					<ToolbarButton
-						onMouseDown={editor && getPreventDefaultHandler(outdent, editor)}
-						icon={<TextIndentDecrease />}
-					/>
-					<ToolbarButton
-						onMouseDown={editor && getPreventDefaultHandler(indent, editor)}
-						icon={<TextIndentIncrease />}
-					/>
-					<ToolbarAlign align="left" icon={<TextAlignLeft />} />
-					<ToolbarAlign align="center" icon={<TextAlignCenter />} />
-					<ToolbarAlign align="right" icon={<TextAlignRight />} />
+					<HStack>
+						<ToolbarAlign align="left" icon={<TextAlignLeft />} />
+						<ToolbarAlign align="center" icon={<TextAlignCenter />} />
+						<ToolbarAlign align="right" icon={<TextAlignRight />} />
+					</HStack>
+					<HStack>
+						<ToolbarButton
+							onMouseDown={editor && getPreventDefaultHandler(indent, editor)}
+							icon={<TextIndentIncrease />}
+						/>
+						<ToolbarButton
+							onMouseDown={editor && getPreventDefaultHandler(outdent, editor)}
+							icon={<TextIndentDecrease />}
+						/>
+					</HStack>
 				</VStack>
 			</MenuList>
 		</Menu>

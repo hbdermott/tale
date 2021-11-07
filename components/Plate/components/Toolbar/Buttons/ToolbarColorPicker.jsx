@@ -17,6 +17,7 @@ import { Color } from '@styled-icons/fluentui-system-filled';
 const ToolbarColorPicker = ({
     editorID = 'main-editor',
     pluginKey,
+    ...rest
 }) => {
   const editor = useStoreEditorState(editorID);
   const editorRef = useStoreEditorRef(editorID);
@@ -36,7 +37,7 @@ const ToolbarColorPicker = ({
 
   return (
       <>
-        <ToolbarButton icon={<Color/>} onMouseDown={(e) => {
+        <ToolbarButton icon={<Color/>} {...rest} onMouseDown={(e) => {
 					e.preventDefault();
 					setVisible(!visible);
 				}} />
