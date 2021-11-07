@@ -1,18 +1,18 @@
 import '../styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
-import theme from '../components/theme';
-import ToggleTheme from '../components/ToggleTheme';
+import theme from '../theme/index'
 import { UserProvider } from '../context/User';
+import Layout from '../components/Layout';
 
 
 
 
 function MyApp({ Component, pageProps }) {
-  
+  const getLayout = Component.getLayout || ((page) => <Layout>{page}</Layout>)
   return (
 		<UserProvider>
 			<ChakraProvider theme={theme}>
-				<Component {...pageProps} />
+					{getLayout(<Component {...pageProps} />)}
 			</ChakraProvider>
 		</UserProvider>
 	);

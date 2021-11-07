@@ -10,18 +10,11 @@ const Home = () => {
   const {user, loading, ...rest} = useAuth()
   const router = useRouter();
 
-	useEffect(() => {
-		if (!loading && !user) router.push("/login");
-	}, [user, loading]);
+	// useEffect(() => {
+	// 	if (!loading && !user) router.push("/login");
+	// }, [user, loading, router]);
   return (
-    <>
-		<div className="bg-image">
-		</div>
-    <div className="top">
-				<div>Hello {user?.name}</div>
-				<Logout></Logout>
-		</div>
-    </>
+    <></>
 	);
 }
 

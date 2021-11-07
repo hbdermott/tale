@@ -1,9 +1,8 @@
-import {
-	ELEMENT_H1,
-	ELEMENT_PARAGRAPH,
-	ELEMENT_BLOCKQUOTE,
-	withPlaceholders,
-} from "@udecode/plate";
+import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
+import { ELEMENT_H1 } from "@udecode/plate-heading";
+import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
+import { withPlaceholders } from "@udecode/plate-placeholder";
+
 
 export const withStyledPlaceHolders = (components) =>
 	withPlaceholders(components, [

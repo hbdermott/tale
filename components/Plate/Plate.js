@@ -1,72 +1,74 @@
-import { createPlateComponents, createPlateOptions } from "@udecode/plate";
+import { createPlateComponents, createPlateOptions, selectEditor } from "@udecode/plate";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 import { createAlignPlugin } from "@udecode/plate-alignment";
 import { createDeserializeAstPlugin } from "@udecode/plate-ast-serializer";
 import { createAutoformatPlugin } from "@udecode/plate-autoformat";
 import { createBoldPlugin, createCodePlugin, createItalicPlugin, createStrikethroughPlugin, createSubscriptPlugin, createSuperscriptPlugin, createUnderlinePlugin } from "@udecode/plate-basic-marks";
 import { createBlockquotePlugin } from "@udecode/plate-block-quote";
 import { createExitBreakPlugin, createSoftBreakPlugin } from "@udecode/plate-break";
-import { createComboboxPlugin } from "@udecode/plate-combobox";
 import { createHistoryPlugin, createReactPlugin, Plate} from "@udecode/plate-core";
 import { createDeserializeCSVPlugin } from "@udecode/plate-csv-serializer";
-import { createFontFamilyPlugin, createFontSizePlugin, createFontWeightPlugin} from "@udecode/plate-font";
+import { createFontBackgroundColorPlugin, createFontColorPlugin, createFontFamilyPlugin, createFontSizePlugin, createFontWeightPlugin, MARK_BG_COLOR, MARK_COLOR} from "@udecode/plate-font";
 import { createHeadingPlugin } from "@udecode/plate-heading";
 import { createHighlightPlugin } from "@udecode/plate-highlight";
 import { createHorizontalRulePlugin } from "@udecode/plate-horizontal-rule";
 import { createDeserializeHTMLPlugin } from "@udecode/plate-html-serializer";
 import { createImagePlugin } from "@udecode/plate-image";
 import { createIndentPlugin } from "@udecode/plate-indent";
-import { createKbdPlugin } from "@udecode/plate-kbd";
 import { createLinkPlugin } from "@udecode/plate-link";
-import { createListPlugin, createTodoListPlugin } from "@udecode/plate-list";
 import { createDeserializeMDPlugin } from "@udecode/plate-md-serializer";
 import { createMediaEmbedPlugin } from "@udecode/plate-media-embed";
 import { createNodeIdPlugin } from "@udecode/plate-node-id";
 import { createParagraphPlugin } from "@udecode/plate-paragraph";
 import { createResetNodePlugin } from "@udecode/plate-reset-node";
 import { createSelectOnBackspacePlugin } from "@udecode/plate-select";
-import { createTablePlugin } from "@udecode/plate-table";
 import { HeadingToolbar } from "@udecode/plate-toolbar";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
-import { OndemandVideo } from "@styled-icons/material";
-import { Link } from "@styled-icons/bootstrap";
-import { Image } from "@styled-icons/boxicons-solid";
+import { Link, VideoAdd, ImageAdd } from "@styled-icons/fluentui-system-filled";
 import { CONFIG } from "./config";
 import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
 import { useMemo } from "react";
-import { Box, Divider } from "@chakra-ui/layout";
-import LinkButton from "./ToolbarButtons/LinkButton";
-import MediaButton from "./ToolbarButtons/MediaButton";
-import ImageButton from "./ToolbarButtons/ImageButton";
-import ToolbarHeaders from "./ToolbarGroups/ToolbarHeaders"
-import ToolbarLists from "./ToolbarGroups/ToolbarLists";
-import ToolbarIndents from "./ToolbarGroups/ToolbarIndents";
-import ToolbarMarks from './ToolbarGroups/ToolbarMarks'
-import ToolbarAligns from "./ToolbarGroups/ToolbarAligns";
-import ToolbarTables from "./ToolbarGroups/ToolbarTables";
-import ToolbarBalloons from "./ToolbarGroups/ToolbarBalloons";
+import { Box, Center, Flex } from "@chakra-ui/layout";
+import ToolbarHeaders from "./components/Toolbar/ButtonGroups/Full/ToolbarHeaders"
+import ToolbarIndents from "./components/Toolbar/ButtonGroups/Full/ToolbarIndents";
+import ToolbarMarks from './components/Toolbar/ButtonGroups/Full/ToolbarMarks'
+import ToolbarAligns from "./components/Toolbar/ButtonGroups/Full/ToolbarAligns";
+import ToolbarBalloons from "./components/Toolbar/ButtonGroups/Full/ToolbarBalloons";
+import ToolbarHeaderMenu from "./components/Toolbar/ButtonGroups/Compact/ToolbarHeaderMenu";
+import ToolbarImage from "./components/Toolbar/Buttons/ToolbarImage";
+import ToolbarMedia from "./components/Toolbar/Buttons/ToolbarMedia";
+import ToolbarLink from "./components/Toolbar/Buttons/ToolbarLink";
+import { createEditor } from "slate";
+import { createDndPlugin } from "@udecode/plate-dnd";
+// import { withStyledDraggables } from "./withStyledDraggables";
+import ToolbarImportCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarImportCompact";
+import ToolbarLayoutCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarLayoutCompact";
+import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarMarkupCompact";
+import ToolbarColorPicker from "./components/Toolbar/Buttons/ToolbarColorPicker";
+import ToolbarHighlight from "./components/Toolbar/ButtonGroups/Full/ToolbarHighlight";
+import ToolbarBlockquote from "./components/Toolbar/ButtonGroups/Full/ToolbarBlockquote";
+
 const PlateEditor = () => {
 	let components = createPlateComponents({
-		...CONFIG.components
+		...CONFIG.components,
 	});
 	components = withStyledPlaceHolders(components);
-
+	// components = withStyledDraggables(components);
 	const options = createPlateOptions();
 
 	const Editor = () => {
-
+		const slateEditor = createEditor()
 		const pluginsMemo = useMemo(() => {
 			const plugins = [
 				createReactPlugin(),
 				createHistoryPlugin(),
 				createParagraphPlugin(),
 				createBlockquotePlugin(),
-				createTodoListPlugin(),
 				createHeadingPlugin(),
 				createImagePlugin(),
 				createHorizontalRulePlugin(),
 				createLinkPlugin(),
-				createListPlugin(),
-				createTablePlugin(),
 				createMediaEmbedPlugin(),
 				createAlignPlugin(CONFIG.align),
 				createBoldPlugin(),
@@ -80,7 +82,8 @@ const PlateEditor = () => {
 				createFontFamilyPlugin(),
 				createFontSizePlugin(),
 				createFontWeightPlugin(),
-				createKbdPlugin(),
+				createFontColorPlugin(),
+				createFontBackgroundColorPlugin(),
 				createNodeIdPlugin(),
 				createIndentPlugin(CONFIG.indent),
 				createAutoformatPlugin(CONFIG.autoformat),
@@ -89,7 +92,7 @@ const PlateEditor = () => {
 				createExitBreakPlugin(CONFIG.exitBreak),
 				createTrailingBlockPlugin(CONFIG.trailingBlock),
 				createSelectOnBackspacePlugin(CONFIG.selectOnBackspace),
-				createComboboxPlugin(),
+				createDndPlugin(),
 			];
 
 			plugins.push(
@@ -106,28 +109,61 @@ const PlateEditor = () => {
 
 
 		return (
-			<Box width="1200px" pb={20} pt={10}>
-				<Divider />
-				<Plate
-					id="focus"
-					plugins={pluginsMemo}
-					components={components}
-					options={options}
-					editableProps={CONFIG.editableProps}
-				>
-					<ToolbarBalloons />
-				</Plate>
-				<HeadingToolbar className="toolbar">
-					<ToolbarLists />
-					<ToolbarIndents />
-					<ToolbarMarks />
-					<ToolbarAligns />
-					<ToolbarTables />
-					<ToolbarHeaders />
-					<LinkButton icon={<Link />} />
-					<ImageButton icon={<Image />} />
-					<MediaButton icon={<OndemandVideo />} />
-				</HeadingToolbar>
+			<Box
+				width="80%"
+				boxShadow="dark-lg"
+				h="100%"
+				borderX="2px solid gray"
+				borderTop="2px solid gray"
+				borderTopRadius={20}
+				className="editor-container"
+				mt={10}
+				pb={20}
+				pt={10}
+				px={10}
+				overflow="auto"
+				onClick={() => selectEditor(slateEditor, { focus: true })}
+			>
+				<DndProvider backend={HTML5Backend}>
+					<Plate
+						id="main-editor"
+						plugins={pluginsMemo}
+						editor={slateEditor}
+						components={components}
+						options={options}
+						initialValue={[
+							{
+								type: "p",
+								children: [{ text: "" }],
+							},
+						]}
+						editableProps={CONFIG.editableProps}
+					>
+						<ToolbarBalloons />
+					</Plate>
+				</DndProvider>
+				<Center w="100%">
+					<Flex
+						p={3}
+						justify="space-around"
+						borderRadius={6}
+						position="fixed"
+						bottom={6}
+						zIndex={100}
+						backgroundColor="#33333333"
+						w="75%"
+						backdropFilter="blur(5px)"
+					>
+						<ToolbarMarkupCompact />
+						<ToolbarHeaderMenu />
+						<ToolbarLayoutCompact />
+						{/* <ToolbarIndents /> */}
+						{/* <ToolbarMarks /> */}
+						<ToolbarColorPicker isDisabled={true} pluginKey={MARK_COLOR} />
+						<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} />
+						<ToolbarImportCompact />
+					</Flex>
+				</Center>
 			</Box>
 		);
 	};

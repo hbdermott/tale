@@ -63,22 +63,8 @@ a {
   border: 2px solid #68D39166;
 
 }
-
+  
 .toolbar{
-  border: none !important;
-  color: inherit !important;
-  margin-bottom: 0 !important;
-  margin-top: 0 !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  padding: 10px !important;
-  justify-content: space-around;
-  width: inherit !important;
-  position: fixed !important;
-  bottom: 2% !important;
-  z-index: 100 !important;
-  border-radius: 20px !important;
-  background-color: #33333333 !important;
   backdrop-filter: blur(5px);
 }
 
@@ -102,3 +88,30 @@ body::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
 } */
+
+.editor-container::-webkit-scrollbar {
+  display: none;
+  overflow: auto;
+}
+
+.editor-container {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.leftAlign {
+  text-align: left !important;
+}
+.rightAlign {
+  text-align: right !important;
+}
+
+.leftAlign::placeholder {
+  text-align: left !important;
+}
+.rightAlign::placeholder {
+  text-align: right !important;
+}
+[class*="rightAlign"]::-webkit-input-placeholder {
+  text-align: right !important;
+}

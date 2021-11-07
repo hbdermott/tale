@@ -1,27 +1,16 @@
+import { createPlateComponents, createPlateOptions } from "@udecode/plate";
+import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
+import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, KEYS_HEADING } from "@udecode/plate-heading";
+import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
+import { autoformatRules } from "./autoformat/autoformatRules";
 import {
-	CodeBlockElement,
-	createPlateComponents,
-	createPlateOptions,
-	ELEMENT_BLOCKQUOTE,
-	ELEMENT_CODE_BLOCK,
-	ELEMENT_H1,
-	ELEMENT_H2,
-	ELEMENT_H3,
-	ELEMENT_H4,
-	ELEMENT_HR,
-	ELEMENT_IMAGE,
-	ELEMENT_PARAGRAPH,
-	ELEMENT_TD,
-	ELEMENT_TODO_LI,
 	isBlockAboveEmpty,
 	isSelectionAtBlockStart,
-	KEYS_HEADING,
-	withProps,
-} from "@udecode/plate";
-import { autoformatRules } from "./autoformat/autoformatRules";
-
+} from "@udecode/plate-common";
+import { ELEMENT_HR } from "@udecode/plate-horizontal-rule";
+import { ELEMENT_IMAGE } from "@udecode/plate-image";
 const resetBlockTypesCommonRule = {
-	types: [ELEMENT_BLOCKQUOTE, ELEMENT_TODO_LI, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_H4, ELEMENT_CODE_BLOCK],
+	types: [ELEMENT_BLOCKQUOTE, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
 	defaultType: ELEMENT_PARAGRAPH,
 };
 
@@ -30,35 +19,15 @@ export const CONFIG = {
 		spellCheck: true,
 		autoFocus: true,
 		style: {
-			padding: "15px",
+			fontSize: "1.4rem",
 		},
 	},
 	options: createPlateOptions(),
 	components: createPlateComponents(),
 
-	// {
-	// 	[ELEMENT_CODE_BLOCK]: withProps(CodeBlockElement, {
-	// 		styles: {
-	// 			root: [
-	// 				css`
-	// 					background-color: #111827;
-	// 					code {
-	// 						color: white;
-	// 					}
-	// 				`,
-	// 			],
-	// 		},
-	// 	}),
-	// }
-
 	align: {
-		types: [
-			ELEMENT_PARAGRAPH,
-			ELEMENT_H1,
-			ELEMENT_H2,
-			ELEMENT_H3,
-			ELEMENT_H4,
-		],
+		types: [ELEMENT_PARAGRAPH, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_BLOCKQUOTE],
+		alignments: ['left', 'center', 'right'], 
 	},
 	indent: {
 		types: [
@@ -66,15 +35,14 @@ export const CONFIG = {
 			ELEMENT_H1,
 			ELEMENT_H2,
 			ELEMENT_H3,
-			ELEMENT_H4,
 			ELEMENT_BLOCKQUOTE,
-			ELEMENT_CODE_BLOCK,
 		],
 	},
 	lineHeight: {
 		defaultLineHeight: 1.65,
 		// lineHeights: [1, 1.2, 1.65, 2, 3],
 	},
+	initalValue: [{ children: [{ text: 'Hello' }]}],
 	resetBlockType: {
 		rules: [
 			{
@@ -96,7 +64,7 @@ export const CONFIG = {
 			{
 				hotkey: "enter",
 				query: {
-					allow: [ELEMENT_CODE_BLOCK, ELEMENT_BLOCKQUOTE, ELEMENT_TD],
+					allow: [ELEMENT_BLOCKQUOTE],
 				},
 			},
 		],
@@ -104,14 +72,14 @@ export const CONFIG = {
 	exitBreak: {
 		rules: [
 			{
-				hotkey: "mod+enter",
+				hotkey: "enter",
 			},
 			{
 				hotkey: "mod+shift+enter",
 				before: true,
 			},
 			{
-				hotkey: "enter",                                               
+				hotkey: "mod+enter",
 				query: {
 					start: true,
 					end: true,
@@ -123,5 +91,5 @@ export const CONFIG = {
 	selectOnBackspace: { allow: [ELEMENT_IMAGE, ELEMENT_HR] },
 	autoformat: {
 		rules: autoformatRules,
-	}
+	},
 };

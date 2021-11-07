@@ -1,7 +1,7 @@
 const Read = () => {
     return (
     <>
-    Hello world!
+    {/* Hello world! */}
     </>)
 }
 
