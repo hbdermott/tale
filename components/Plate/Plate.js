@@ -109,9 +109,10 @@ const PlateEditor = () => {
 		return (
 			<Box
 				width="80%"
+				boxShadow="dark-lg"
 				h="100%"
-				borderX="1px solid gray"
-				borderTop="1px solid gray"
+				borderX="2px solid gray"
+				borderTop="2px solid gray"
 				borderTopRadius={20}
 				className="editor-container"
 				mt={10}
