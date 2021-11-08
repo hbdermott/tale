@@ -14,7 +14,7 @@ const Write = (props) => {
 	// }, [user, loading, router]);
 
 	return (
-		<Flex direction="column" align="center" w="100%" h="100%">
+		<Flex direction="column" overflow="hidden" align="center" w="100%" h="100%">
 			<PlateEditor/>
 		</Flex>
 	);
@@ -24,11 +24,9 @@ export default Write;
 
 Write.getLayout = function getLayout(write) {
 	return (
-		<>
-			<Box h="100vh" w="100%" overflow="hidden">
+			<Flex h="100vh" w="100%" flexDir="column" overflow="hidden" justify="space-between">
 				<Navbar/>
 				{write}
-			</Box>
-		</>
+			</Flex>
 	);
 };

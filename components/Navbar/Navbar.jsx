@@ -14,11 +14,12 @@ const Navbar = (props) => {
 				backdropFilter="blur(5px)"
 				w="100%"
 				zIndex={1000}
-				position="sticky"
-				top={0}
-				m={0}
-				p={0}
+				// position="sticky"
+				// top={0}
+				// m={0}
+				// p={0}
 				justify="space-between"
+                
                 align="center"
 			>
 				<PageLinks />

@@ -7,7 +7,7 @@ import {
 } from "@styled-icons/fluentui-system-filled";
 import { Menu, MenuButton, MenuList } from "@chakra-ui/menu";
 import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3 } from "@udecode/plate-heading";
-import { Button } from "@chakra-ui/button";
+import { Button, IconButton } from "@chakra-ui/button";
 import ToolbarElement from "../../Buttons/ToolbarElement";
 import { HStack, VStack } from "@chakra-ui/layout";
 import ToolbarBlockquote from "../Full/ToolbarBlockquote";
@@ -16,12 +16,11 @@ const ToolbarHeaderMenu = () => {
 	return (
 		<Menu offset={[-10, 15]}>
 			<MenuButton
-				as={Button}
-				size="sm"
+				as={IconButton}
+				size="lg"
 				p={2}
-				iconSpacing={0}
 				aria-label="Header Menu"
-				rightIcon={<ChevronUp style={{ width: "16px" }} />}
+				icon={<ChevronUp style={{ width: "16px" }} />}
 			>
 			</MenuButton>
 			<MenuList flexDirection="row" minWidth="none" p={2} m={0}>
