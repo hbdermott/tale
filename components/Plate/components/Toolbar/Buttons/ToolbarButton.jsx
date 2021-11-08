@@ -4,14 +4,14 @@ const defaultStyles = {
 	base: {
         p: 1,
 		borderRadius: "6px",
-		size: "sm",
+		size: "lg"
 	},
 	active: {
         p: 0,
 		borderRadius: "6px",
 		border: "2px solid #68D39166",
 		boxSizing: "border-box",
-		size: "sm",
+		size: "lg"
 	},
 };
 

@@ -7,7 +7,7 @@ import {
     TextUnderline,
 } from "@styled-icons/fluentui-system-filled";
 import { Menu, MenuButton, MenuList } from "@chakra-ui/menu";
-import { Button } from "@chakra-ui/button";
+import { Button, IconButton } from "@chakra-ui/button";
 import { HStack, VStack } from "@chakra-ui/layout";
 import ToolbarMark from "../../Buttons/ToolbarMark";
 import { MARK_BOLD, MARK_CODE, MARK_ITALIC, MARK_STRIKETHROUGH, MARK_UNDERLINE } from "@udecode/plate-basic-marks";
@@ -17,12 +17,11 @@ const ToolbarMarkupCompact = () => {
 	return (
 		<Menu offset={[-45, 15]}>
 			<MenuButton
-				as={Button}
-				size="sm"
+				as={IconButton}
+				size="lg"
 				p={2}
-				iconSpacing={0}
 				aria-label="Header Menu"
-				rightIcon={<TextEditStyle style={{ width: "20px" }} />}
+				icon={<TextEditStyle style={{ width: "20px" }} />}
 			></MenuButton>
 			<MenuList flexDirection="row" minWidth="none" p={2} m={0}>
 				<VStack width="fit-content">

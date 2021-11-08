@@ -48,6 +48,8 @@ import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/Tool
 import ToolbarColorPicker from "./components/Toolbar/Buttons/ToolbarColorPicker";
 import ToolbarHighlight from "./components/Toolbar/ButtonGroups/Full/ToolbarHighlight";
 import ToolbarBlockquote from "./components/Toolbar/ButtonGroups/Full/ToolbarBlockquote";
+import ToolbarContainer from "./components/Toolbar/ToolbarContainer";
+import EditorContainer from "./components/EditorContainer";
 
 const PlateEditor = () => {
 	let components = createPlateComponents({
@@ -109,62 +111,38 @@ const PlateEditor = () => {
 
 
 		return (
-			<Box
-				width="80%"
-				boxShadow="dark-lg"
-				h="100%"
-				borderX="2px solid gray"
-				borderTop="2px solid gray"
-				borderTopRadius={20}
-				className="editor-container"
-				mt={10}
-				pb={20}
-				pt={10}
-				px={10}
-				overflow="auto"
-				onClick={() => selectEditor(slateEditor, { focus: true })}
-			>
-				<DndProvider backend={HTML5Backend}>
-					<Plate
-						id="main-editor"
-						plugins={pluginsMemo}
-						editor={slateEditor}
-						components={components}
-						options={options}
-						initialValue={[
-							{
-								type: "p",
-								children: [{ text: "" }],
-							},
-						]}
-						editableProps={CONFIG.editableProps}
-					>
-						<ToolbarBalloons />
-					</Plate>
-				</DndProvider>
-				<Center w="100%">
-					<Flex
-						p={3}
-						justify="space-around"
-						borderRadius={6}
-						position="fixed"
-						bottom={6}
-						zIndex={100}
-						backgroundColor="#33333333"
-						w="75%"
-						backdropFilter="blur(5px)"
-					>
-						<ToolbarMarkupCompact />
-						<ToolbarHeaderMenu />
-						<ToolbarLayoutCompact />
-						{/* <ToolbarIndents /> */}
-						{/* <ToolbarMarks /> */}
-						<ToolbarColorPicker isDisabled={true} pluginKey={MARK_COLOR} />
-						<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} />
-						<ToolbarImportCompact />
-					</Flex>
-				</Center>
-			</Box>
+			<Flex w="100%" h="100%" flexDir="column" justify={{base: "space-between", lg: "space-around"}} align="center">
+				<EditorContainer>
+					<DndProvider backend={HTML5Backend}>
+						<Plate
+							id="main-editor"
+							plugins={pluginsMemo}
+							editor={slateEditor}
+							components={components}
+							options={options}
+							initialValue={[
+								{
+									type: "p",
+									children: [{ text: "" }],
+								},
+							]}
+							editableProps={CONFIG.editableProps}
+						>
+							<ToolbarBalloons />
+						</Plate>
+					</DndProvider>
+				</EditorContainer>
+			<ToolbarContainer>
+					<ToolbarMarkupCompact />
+					<ToolbarHeaderMenu />
+					<ToolbarLayoutCompact />
+					{/* <ToolbarIndents /> */}
+					{/* <ToolbarMarks /> */}
+					<ToolbarColorPicker isDisabled={true} pluginKey={MARK_COLOR} />
+					<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} />
+					<ToolbarImportCompact />
+				</ToolbarContainer>
+			</Flex>
 		);
 	};
 
