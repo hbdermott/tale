@@ -6,7 +6,7 @@ import Button from './components/Button'
 import components from "./components";
 
 export const theme = {
-	components,
+	// components,
 	config,
 };
 

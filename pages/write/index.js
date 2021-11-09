@@ -24,9 +24,16 @@ export default Write;
 
 Write.getLayout = function getLayout(write) {
 	return (
-			<Flex h="100vh" w="100%" flexDir="column" overflow="hidden" justify="space-between">
-				<Navbar/>
-				{write}
-			</Flex>
+		<Flex
+			minH="-webkit-fill-available"
+			w="100%"
+			h="100vh"
+			flexDir="column"
+			overflow="hidden"
+			justify="space-between"
+		>
+			<Navbar />
+			{write}
+		</Flex>
 	);
 };
