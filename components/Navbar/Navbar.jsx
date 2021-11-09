@@ -1,9 +1,9 @@
 import { ButtonGroup } from '@chakra-ui/button';
 import { Box, Flex, HStack } from '@chakra-ui/layout';
 import ModalLogin from '../Login/Modal';
-import AvatarMenu from './Avatar';
 import GithubButton from './GithubButton';
 import LoginOrOut from './LoginOrOut';
+import NavbarMenu from './NavbarMenu';
 import PageLinks from './PageLinks';
 import ThemeButton from './ThemeButton';
 
@@ -13,21 +13,22 @@ const Navbar = (props) => {
 				backgroundColor="#33333333"
 				backdropFilter="blur(5px)"
 				w="100%"
+				p={3}
 				zIndex={1000}
 				// position="sticky"
 				// top={0}
 				// m={0}
 				// p={0}
-				justify="space-between"
+				justify="flex-end"
                 
                 align="center"
 			>
-				<PageLinks />
+				{/* <PageLinks /> */}
                 <ButtonGroup spacing={4}>
                     <ThemeButton />
                     <GithubButton />
                     <LoginOrOut />
-                    <AvatarMenu />
+                    <NavbarMenu />
                 </ButtonGroup>
 			</Flex>
 		);

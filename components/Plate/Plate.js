@@ -23,31 +23,19 @@ import { createNodeIdPlugin } from "@udecode/plate-node-id";
 import { createParagraphPlugin } from "@udecode/plate-paragraph";
 import { createResetNodePlugin } from "@udecode/plate-reset-node";
 import { createSelectOnBackspacePlugin } from "@udecode/plate-select";
-import { HeadingToolbar } from "@udecode/plate-toolbar";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
-import { Link, VideoAdd, ImageAdd } from "@styled-icons/fluentui-system-filled";
 import { CONFIG } from "./config";
 import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
 import { useMemo } from "react";
-import { Box, Center, Flex } from "@chakra-ui/layout";
-import ToolbarHeaders from "./components/Toolbar/ButtonGroups/Full/ToolbarHeaders"
-import ToolbarIndents from "./components/Toolbar/ButtonGroups/Full/ToolbarIndents";
-import ToolbarMarks from './components/Toolbar/ButtonGroups/Full/ToolbarMarks'
-import ToolbarAligns from "./components/Toolbar/ButtonGroups/Full/ToolbarAligns";
+import { Flex } from "@chakra-ui/layout";
 import ToolbarBalloons from "./components/Toolbar/ButtonGroups/Full/ToolbarBalloons";
 import ToolbarHeaderMenu from "./components/Toolbar/ButtonGroups/Compact/ToolbarHeaderMenu";
-import ToolbarImage from "./components/Toolbar/Buttons/ToolbarImage";
-import ToolbarMedia from "./components/Toolbar/Buttons/ToolbarMedia";
-import ToolbarLink from "./components/Toolbar/Buttons/ToolbarLink";
 import { createEditor } from "slate";
 import { createDndPlugin } from "@udecode/plate-dnd";
-// import { withStyledDraggables } from "./withStyledDraggables";
 import ToolbarImportCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarImportCompact";
 import ToolbarLayoutCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarLayoutCompact";
 import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarMarkupCompact";
 import ToolbarColorPicker from "./components/Toolbar/Buttons/ToolbarColorPicker";
-import ToolbarHighlight from "./components/Toolbar/ButtonGroups/Full/ToolbarHighlight";
-import ToolbarBlockquote from "./components/Toolbar/ButtonGroups/Full/ToolbarBlockquote";
 import ToolbarContainer from "./components/Toolbar/ToolbarContainer";
 import EditorContainer from "./components/EditorContainer";
 
