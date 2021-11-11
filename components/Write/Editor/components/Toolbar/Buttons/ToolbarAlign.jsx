@@ -5,7 +5,7 @@ import {
   someNode,
 } from '@udecode/plate-common';
 import { useStoreEditorState } from '@udecode/plate-core';
-import ToolbarButton from './ToolbarButton';
+import ToolbarButton from './Base/ToolbarButton';
 
 
 const ToolbarAlign = ({ align, editorID = 'main-editor', children, ...props }) => {

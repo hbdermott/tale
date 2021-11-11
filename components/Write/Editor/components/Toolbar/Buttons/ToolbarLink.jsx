@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getPlatePluginType, useStoreEditorRef } from "@udecode/plate-core";
 import { useDisclosure } from "@chakra-ui/hooks";
-import ToolbarButton from "./ToolbarButton";
-import ModalLink from "./ModalLink";
+import ToolbarButton from "./Base/ToolbarButton";
+import ModalLink from "./Base/ModalLink";
 import { ELEMENT_LINK, upsertLinkAtSelection } from "@udecode/plate-link";
 import { getAbove, isCollapsed } from "@udecode/plate-common";
 

@@ -11,7 +11,7 @@ import {
 import {  Editor, Transforms } from 'slate';
 import { ReactEditor } from 'slate-react';
 import { TwitterPicker } from 'react-color';
-import ToolbarButton from './ToolbarButton';
+import ToolbarButton from './Base/ToolbarButton';
 import { Color } from '@styled-icons/fluentui-system-filled';
 
 const ToolbarColorPicker = ({

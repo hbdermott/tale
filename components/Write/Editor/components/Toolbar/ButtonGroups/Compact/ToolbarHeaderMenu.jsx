@@ -8,9 +8,9 @@ import {
 import { Menu, MenuButton, MenuList } from "@chakra-ui/menu";
 import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3 } from "@udecode/plate-heading";
 import { Button, IconButton } from "@chakra-ui/button";
-import ToolbarElement from "../../Buttons/ToolbarElement";
+import ToolbarElement from "../../Buttons/Base/ToolbarElement"
 import { HStack, VStack } from "@chakra-ui/layout";
-import ToolbarBlockquote from "../Full/ToolbarBlockquote";
+import ToolbarBlockquote from "../../Buttons/ToolbarBlockquote";
 
 const ToolbarHeaderMenu = () => {
 	return (

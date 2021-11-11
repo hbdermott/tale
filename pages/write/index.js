@@ -3,7 +3,7 @@ import { useRouter } from "next/dist/client/router";
 import { Box, Flex } from "@chakra-ui/layout";
 import { db } from "../../app/firebase/Firebase";
 import { collection, addDoc } from "firebase/firestore"; 
-import PlateEditor from '../../components/Plate/Plate'
+import Editor from "../../components/Write/Editor/Editor";
 import Navbar from "../../components/Navbar/Navbar";
 
 const Write = (props) => {
@@ -15,7 +15,7 @@ const Write = (props) => {
 
 	return (
 		<Flex direction="column" overflow="hidden" align="center" w="100%" h="100%">
-			<PlateEditor/>
+			<Editor/>
 		</Flex>
 	);
 };

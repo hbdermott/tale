@@ -2,7 +2,7 @@ import { createPlateComponents, createPlateOptions } from "@udecode/plate";
 import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
 import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, KEYS_HEADING } from "@udecode/plate-heading";
 import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
-import { autoformatRules } from "./autoformat/autoformatRules";
+import { autoformatRules } from "./autoformat/autoformatRules"
 import {
 	isBlockAboveEmpty,
 	isSelectionAtBlockStart,

@@ -24,20 +24,12 @@ import { createParagraphPlugin } from "@udecode/plate-paragraph";
 import { createResetNodePlugin } from "@udecode/plate-reset-node";
 import { createSelectOnBackspacePlugin } from "@udecode/plate-select";
 import { createTrailingBlockPlugin } from "@udecode/plate-trailing-block";
-import { CONFIG } from "./config";
-import { withStyledPlaceHolders } from "./withStyledPlaceHolders";
+import { CONFIG } from "./config/config";
+import { withStyledPlaceHolders } from "./plugins/withStyledPlaceHolders";
 import { useMemo } from "react";
-import { Flex } from "@chakra-ui/layout";
 import ToolbarBalloons from "./components/Toolbar/ButtonGroups/Full/ToolbarBalloons";
-import ToolbarHeaderMenu from "./components/Toolbar/ButtonGroups/Compact/ToolbarHeaderMenu";
 import { createEditor } from "slate";
 import { createDndPlugin } from "@udecode/plate-dnd";
-import ToolbarImportCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarImportCompact";
-import ToolbarLayoutCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarLayoutCompact";
-import ToolbarMarkupCompact from "./components/Toolbar/ButtonGroups/Compact/ToolbarMarkupCompact";
-import ToolbarColorPicker from "./components/Toolbar/Buttons/ToolbarColorPicker";
-import ToolbarContainer from "./components/Toolbar/ToolbarContainer";
-import EditorContainer from "./components/EditorContainer";
 
 const PlateEditor = () => {
 	let components = createPlateComponents({
@@ -99,8 +91,6 @@ const PlateEditor = () => {
 
 
 		return (
-			<Flex w="100%" h="100%" flexDir="column" justify={{base: "space-between", lg: "space-around"}} align="center">
-				<EditorContainer>
 					<DndProvider backend={HTML5Backend}>
 						<Plate
 							id="main-editor"
@@ -119,18 +109,6 @@ const PlateEditor = () => {
 							<ToolbarBalloons />
 						</Plate>
 					</DndProvider>
-				</EditorContainer>
-			<ToolbarContainer>
-					<ToolbarMarkupCompact />
-					<ToolbarHeaderMenu />
-					<ToolbarLayoutCompact />
-					{/* <ToolbarIndents /> */}
-					{/* <ToolbarMarks /> */}
-					<ToolbarColorPicker isDisabled={true} pluginKey={MARK_COLOR} />
-					<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} />
-					<ToolbarImportCompact />
-				</ToolbarContainer>
-			</Flex>
 		);
 	};
 

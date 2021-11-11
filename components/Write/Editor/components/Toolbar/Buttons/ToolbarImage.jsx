@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useStoreEditorRef } from "@udecode/plate-core";
 import { insertImage } from "@udecode/plate-image";
 import { useDisclosure } from "@chakra-ui/hooks";
-import ToolbarButton from "./ToolbarButton";
-import ModalLink from "./ModalLink";
+import ToolbarButton from "./Base/ToolbarButton";
+import ModalLink from "./Base/ModalLink";
 
 const ToolbarImage = ({ children,  editorID = "main-editor", ...props }) => {
 	const editor = useStoreEditorRef(editorID);

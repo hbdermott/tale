@@ -1,7 +1,7 @@
 import { collection, getDocs } from "@firebase/firestore";
 import { useEffect } from "react";
 import { db } from "../../app/firebase/Firebase";
-import Card from "../../components/Feed/Card/Card";
+import Card from "../../components/Read/Feed/Card/Card";
 
 const tempCard = {
     id: 123123123123,

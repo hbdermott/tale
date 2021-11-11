@@ -9,7 +9,7 @@ import {
 import { Menu, MenuButton, MenuList } from "@chakra-ui/menu";
 import { Button, IconButton } from "@chakra-ui/button";
 import { HStack, VStack } from "@chakra-ui/layout";
-import ToolbarButton from "../../Buttons/ToolbarButton";
+import ToolbarButton from "../../Buttons/Base/ToolbarButton";
 import { indent, outdent } from "@udecode/plate-indent";
 import ToolbarAlign from "../../Buttons/ToolbarAlign";
 import { getPreventDefaultHandler } from "@udecode/plate-common";

@@ -4,7 +4,7 @@ import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE } from "@udecode/plate-basic-mar
 import { useStoreEditorRef } from "@udecode/plate-core";
 import { BalloonToolbar } from "@udecode/plate-toolbar";
 
-import ToolbarMark from "../../Buttons/ToolbarMark";
+import ToolbarMark from "../../Buttons/Base/ToolbarMark";
 
 const ToolbarBalloons = ({editorID = 'main-editor'}) => {
 	const editor = useStoreEditorRef(editorID);
