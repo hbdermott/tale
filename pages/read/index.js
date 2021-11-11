@@ -25,7 +25,7 @@ const Read = ({books}) => {
 
 export async function getServerSideProps() {
 	// Fetch data from external API
-	const query = await getDocs(collection(db, "books"));
+	const query = await getDocs(collection(db, "bookDetails"));
     const books = []
    query.forEach((doc) => {
             books.push({id: doc.id,  ...doc.data()})

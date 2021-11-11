@@ -22,6 +22,12 @@ export const CONFIG = {
 			fontSize: "1.4rem",
 		},
 	},
+	readOnly: {
+		readOnly: true,
+		style: {
+			fontSize: "1.4rem",
+		},
+	},
 	options: createPlateOptions(),
 	components: createPlateComponents(),
 

@@ -14,6 +14,9 @@ import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "../../app/firebase/Firebase";
 import { useAuth } from "../../context/User";
 import { useRouter } from "next/router";
+import { serializeHTMLFromNodes } from "@udecode/plate-html-serializer";
+import { getNodePlugins } from "./Editor/config/plugins";
+import { serialize } from "remark-slate";
 const BookDrawer = ({isOpen, onClose}) => {
     const value = useStoreEditorValue('main-editor')
     const { user } = useAuth();
@@ -45,9 +48,8 @@ const BookDrawer = ({isOpen, onClose}) => {
 								return errors;
 							}}
 							onSubmit={async (values, { setSubmitting }) => {
-								console.log("here")
                                 const bookRef = await addDoc(collection(db, "books"), {
-                                    content: value,
+                                    content: JSON.stringify(value),
                                 })
                                 const bookDetailsRef = await setDoc(doc(db, "bookDetails", bookRef.id), {
                                     title: values.title,
