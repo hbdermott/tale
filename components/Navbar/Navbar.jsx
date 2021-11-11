@@ -28,7 +28,7 @@ const Navbar = (props) => {
                     <ThemeButton />
                     <GithubButton />
                     <LoginOrOut />
-                    <NavbarMenu />
+                    {/* <NavbarMenu /> */}
                 </ButtonGroup>
 			</Flex>
 		);

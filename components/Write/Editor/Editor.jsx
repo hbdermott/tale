@@ -1,11 +1,14 @@
+import { Button } from "@chakra-ui/button";
+import { useDisclosure } from "@chakra-ui/hooks";
 import { Flex } from "@chakra-ui/layout";
+import BookDrawer from "../BookDrawer";
 import EditorContainer from "./components/EditorContainer";
 import Toolbar from "./components/Toolbar/Toolbar";
 import PlateEditor from "./PlateEditor";
 
 const Editor = () => {
     return (
-			<Flex
+		<Flex
 				w="100%"
 				h="100%"
 				flexDir="column"
