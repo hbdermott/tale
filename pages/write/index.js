@@ -7,6 +7,7 @@ import Editor from "../../components/Write/Editor/Editor";
 import Navbar from "../../components/Navbar";
 import { useMediaQuery } from "@chakra-ui/react";
 import NavbarCompact from "../../components/Navbar/Compact";
+import useWindowDimensions from "../../lib/useWindowDimensions";
 
 const Write = (props) => {
 	// const { user, loading } = useAuth();
@@ -23,19 +24,27 @@ const Write = (props) => {
 
 export default Write;
 
-Write.getLayout = function getLayout(write) {
-	return (
+const WriteLayout = ({children}) => {
+	const { height, width } = useWindowDimensions();
+	return(
 		<Flex
 			minH="-webkit-fill-available"
 			w="100%"
-			h="100vh"
+			h={height}
 			flexDir="column"
 			overflow="hidden"
 			justify="space-between"
 		>
 			<Navbar
 			/>
+			{children}
+		</Flex>)
+}
+
+Write.getLayout = function getLayout(write) {
+	return (
+		<WriteLayout>
 			{write}
-		</Flex>
+		</WriteLayout>
 	);
 };
