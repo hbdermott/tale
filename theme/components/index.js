@@ -1,6 +1,6 @@
 import Button from "./Button";
-
+import Popover from "./Popover";
 const components = {
-    Button
+    Popover
 }
 export default components

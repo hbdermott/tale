@@ -1,7 +1,7 @@
 import { mode } from "@chakra-ui/theme-tools"
 
 const baseStyle = {
-	backgroundColor: "white",
+	// backgroundColor: "white",
 	fontWeight: "bold",
 }
 
