@@ -27,7 +27,6 @@ const PlateEditor = ({readonly = false, value}) => {
 					<DndProvider backend={HTML5Backend}>
 						<Plate
 							id="main-editor"
-							
 							plugins={pluginsMemo}
 							editor={slateEditor}
 							components={components}

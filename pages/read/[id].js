@@ -1,7 +1,6 @@
 import { Box } from "@chakra-ui/layout";
-import { doc, getDoc } from "@firebase/firestore";
-import { db } from "../../app/firebase/Firebase";
 import PlateEditor from "../../components/Write/Editor/PlateEditor";
+import { fetchBook } from "../../lib/firebase/fetchBook";
 
 const Book = ({book}) => {
     return (
@@ -14,12 +13,8 @@ const Book = ({book}) => {
 }
 
 export async function getServerSideProps(context) {
-	// Fetch data from external API
-	const query = await getDoc(doc(db, "books", context.params.id));
-    console.log(query)
-    const data = JSON.parse(query.data().content)
-	console.log(data);
-	return { props: { book: data } };
+    const bookContent = (await fetchBook(context.params.id)).content;
+	return { props: { book: bookContent } };
 }
 
 export default Book;

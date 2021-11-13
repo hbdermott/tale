@@ -20,12 +20,14 @@ export const CONFIG = {
 		autoFocus: true,
 		style: {
 			fontSize: "1.4rem",
+			zIndex: "-1"
 		},
 	},
 	readOnly: {
 		readOnly: true,
 		style: {
 			fontSize: "1.4rem",
+			zIndex: "-1"
 		},
 	},
 	options: createPlateOptions(),

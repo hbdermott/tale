@@ -5,7 +5,7 @@ import { Tab, TabList, Tabs } from "@chakra-ui/tabs";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";  
 import { useEffect, useState } from "react";
-const PageLinks = () => {
+const PageLinks = ({currentTab}) => {
     const router = useRouter();
 	const [active, setActive] = useState(
 		router.pathname.includes("write") ? 1 : 0
@@ -15,7 +15,7 @@ const PageLinks = () => {
 
 	}, [router.pathname])
     return (
-			<Tabs isLazy={true} pl={3} size="lg" defaultIndex={active}>
+			<Tabs isLazy pl={3} size="lg" defaultIndex={active}>
 				<TabList>
 					<Tab p={0} w="50%">
 							<Link href="/read">

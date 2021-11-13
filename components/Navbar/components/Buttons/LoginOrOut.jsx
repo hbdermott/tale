@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/button"
 import { useRouter } from "next/dist/client/router"
 import { useEffect, useState } from "react"
-import { useAuth } from "../../context/User"
+import { useAuth } from "../../../../context/User"
 
 const LoginOrOut = (props) => {
     const {user, loading, logout} = useAuth()

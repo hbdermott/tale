@@ -1,37 +1,29 @@
-import { collection, getDocs } from "@firebase/firestore";
-import { useEffect } from "react";
-import { db } from "../../app/firebase/Firebase";
+import { Center, SimpleGrid } from "@chakra-ui/layout";
 import Card from "../../components/Read/Feed/Card/Card";
+import {fetchBookDetails} from "../../lib/firebase/fetchBook";
 
-const tempCard = {
-    id: 123123123123,
-    title: "the joys of programming",
-    postdate: "Yesterday",
-    genres: ["programming", "fun"],
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    likes: 933,
-    author: "hunter",
-    authorID: 123123123
-
-}
-
-const Read = ({books}) => {
+const Read = ({bookDetails}) => {
     return (
-    <>
-        <Card {...tempCard} />
-        {books.map(book => <Card key={book.id} {...book}/>)}
-    </>)
+			<>
+					<SimpleGrid
+						m={5}
+						minChildWidth="300px"
+						spacingX="40px"
+						spacingY="20px"
+						// zIndex={-1}
+					>
+						{bookDetails.map((book) => (
+							<Card key={book.id} {...book} />
+						))}
+					</SimpleGrid>
+			</>
+		);
 }
 
 export async function getServerSideProps() {
 	// Fetch data from external API
-	const query = await getDocs(collection(db, "bookDetails"));
-    const books = []
-   query.forEach((doc) => {
-            books.push({id: doc.id,  ...doc.data()})
-	});
-    console.log(books);
-	return { props: {books: books}};
+	const bookDetails = await fetchBookDetails();
+	return { props: {bookDetails: bookDetails}};
 }
 
 export default Read;

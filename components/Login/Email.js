@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/button";
 import { FormControl } from "@chakra-ui/form-control";
 import { Input, InputRightElement } from "@chakra-ui/input";
-import { HStack } from "@chakra-ui/layout";
+import { HStack, VStack } from "@chakra-ui/layout";
 import { InputGroup } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
@@ -34,7 +34,7 @@ const EmailLogin = () => {
 			>
 				{({ isSubmitting }) => (
 					<Form>
-						<HStack spacing={3} m={3}>
+						<VStack spacing={3} m={3}>
 							<Field type="email" name="email">
 								{({ field, form }) => (
 									<FormControl
@@ -67,7 +67,7 @@ const EmailLogin = () => {
 												variant="filled"
 												placeholder="Enter password"
 											/>
-											<InputRightElement h="100%" w="25%">
+											<InputRightElement h="100%" w="max-content">
 												<Button h="100%" onClick={() => setShow(!show)}>
 													{show ? "Hide" : "Show"}
 												</Button>
@@ -81,7 +81,7 @@ const EmailLogin = () => {
 							<Button px={10} type="submit" size="lg" isLoading={isSubmitting}>
 								Submit
 							</Button>
-						</HStack>
+						</VStack>
 					</Form>
 				)}
 			</Formik>
