@@ -10,14 +10,13 @@ const Card = ({id, title, postdate, genres, description, likes, author, authorID
 	const [loading, setLoading] = useState(false);
     return (
 			<LinkBox
-				maxW="md"
+				height="300px"
 				border="1px solid gray"
 				p={6}
 				borderRadius={10}
-				zIndex="inherit"
+				// zIndex="inherit"
 				onClick={() => setLoading(true)}
 			>
-				{/* {loading && <Spinner size="lg" position="absolute" left="50%" top="50%"/>} */}
 				<Heading py={2}>
 					<Link href={`/read/${id}`}>
 						<LinkOverlay>{title}</LinkOverlay>

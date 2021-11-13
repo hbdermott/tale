@@ -1,6 +1,7 @@
 
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
+import { Flex, HStack } from "@chakra-ui/layout";
 import { ArrowRight } from "@styled-icons/fluentui-system-filled";
 import BookDrawer from "../../../BookDrawer";
 import ToolbarHeaderMenu from "./ButtonGroups/Compact/ToolbarHeaderMenu";
@@ -13,17 +14,18 @@ const Toolbar = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	return (
 		<ToolbarContainer>
-			<ToolbarMarkupCompact />
-			<ToolbarHeaderMenu />
-			<ToolbarLayoutCompact />
-			{/* <ToolbarIndents /> */}
-			{/* <ToolbarMarks /> */}
-			{/* <ToolbarColorPicker isDisabled={true} pluginKey={MARK_COLOR} />
+			<Flex w="80%" justify="space-around" pr={10}>
+				<ToolbarMarkupCompact />
+				<ToolbarHeaderMenu />
+				<ToolbarLayoutCompact />
+				{/* <ToolbarIndents /> */}
+				{/* <ToolbarMarks /> */}
+				{/* <ToolbarColorPicker isDisabled={true} pluginKey={MARK_COLOR} />
 			<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} /> */}
-			<ToolbarImportCompact />
+				<ToolbarImportCompact />
+			</Flex>
+
 			<Button
-				size="lg"
-				bgColor="green"
 				p={2}
 				m={0}
 				onMouseDown={async (e) => {

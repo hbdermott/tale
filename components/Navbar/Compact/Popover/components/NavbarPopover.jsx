@@ -8,12 +8,13 @@ import Link from "next/link";
 import { Popover, PopoverTrigger, PopoverContent, PopoverCloseButton, PopoverHeader, PopoverArrow, PopoverBody, PopoverFooter } from "@chakra-ui/popover";
 import ThemeButton from "../../../components/Buttons/ThemeButton";
 import GithubButton from "../../../components/Buttons/GithubButton";
-import { Center, Flex, HStack, VStack } from "@chakra-ui/layout";
+import { Center, Divider, Flex, HStack, VStack } from "@chakra-ui/layout";
 import ProviderLogins from "../../../../Login/ProviderLogins";
 import { Text, Heading } from "@chakra-ui/layout";
 import PageLinks from "../../../components/PageLinks";
 import MenuButton from "./MenuButton";
 import LoginOrOut from "../../../components/Buttons/LoginOrOut";
+import EmailLogin from "../../../../Login/Login";
 const NavbarPopover = () => {
 	const { loading, user } = useAuth();
 	const [loggedIN, setLoggedIN] = useState(false);
@@ -39,25 +40,26 @@ const NavbarPopover = () => {
 				p={0}
 				style={{ zIndex: 100 }}
 			>
-				<PopoverCloseButton />
-				<PopoverHeader>Menu</PopoverHeader>
+				<PopoverCloseButton size="md" />
+				<PopoverHeader>
+					<Heading size="md">Menu</Heading>
+				</PopoverHeader>
 				<PopoverBody m={0} p={0}>
-					<MenuButton href="/read">Read</MenuButton>
-					<MenuButton href="/write">Write</MenuButton>
-					{loggedIN && (
-						<MenuButton href="/profile">Profile</MenuButton>
-					)}
-					{/* {!loggedIN && <ProviderLogins />} */}
+					<HStack height="50px" spacing={0}>
+						<MenuButton href="/read">Read</MenuButton>
+						<Divider orientation="vertical" size="lg" />
+						<MenuButton href="/write">Write</MenuButton>
+					</HStack>
+					<PopoverFooter>
+						{loggedIN && (
+							<HStack>
+								{loggedIN && <Link href="/profile" ><Button>Profile</Button></Link>}
+								{loggedIN && <LoginOrOut />}
+							</HStack>
+						)}
+						{!loggedIN && <EmailLogin></EmailLogin>}
+					</PopoverFooter>
 				</PopoverBody>
-				<PopoverFooter>
-					<Center>
-						<HStack spacing={2}>
-							<ThemeButton />
-							<GithubButton />
-                            <LoginOrOut/>
-						</HStack>
-					</Center>
-				</PopoverFooter>
 			</PopoverContent>
 		</Popover>
 	);

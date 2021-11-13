@@ -6,9 +6,11 @@ import { autoformatRules } from "./autoformat/autoformatRules"
 import {
 	isBlockAboveEmpty,
 	isSelectionAtBlockStart,
+	withProps,
 } from "@udecode/plate-common";
 import { ELEMENT_HR } from "@udecode/plate-horizontal-rule";
 import { ELEMENT_IMAGE } from "@udecode/plate-image";
+import { StyledElement } from "@udecode/plate-styled-components";
 const resetBlockTypesCommonRule = {
 	types: [ELEMENT_BLOCKQUOTE, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
 	defaultType: ELEMENT_PARAGRAPH,
@@ -20,14 +22,14 @@ export const CONFIG = {
 		autoFocus: true,
 		style: {
 			fontSize: "1.4rem",
-			zIndex: "-1"
+			// zIndex: "-1",
 		},
 	},
 	readOnly: {
 		readOnly: true,
 		style: {
 			fontSize: "1.4rem",
-			zIndex: "-1"
+			// zIndex: "-1",
 		},
 	},
 	options: createPlateOptions(),

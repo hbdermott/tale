@@ -1,6 +1,8 @@
-import { Flex } from "@chakra-ui/layout";
+import { Flex, HStack } from "@chakra-ui/layout";
+import ThemeButton from "../components/Buttons/ThemeButton";
 import NavbarPopover from "./Popover/components/NavbarPopover";
-
+import LogoButton from "../components/Buttons/LogoButton";
+import GithubButton from "../components/Buttons/GithubButton";
 const NavbarCompact = (props) => {
     return (
 			<Flex
@@ -14,10 +16,15 @@ const NavbarCompact = (props) => {
 				// m={0}
 				// p={0}
 				justify="flex-end"
-                align="center"
-                {...props}
+				align="center"
+				{...props}
 			>
-					<NavbarPopover/>
+				{/* <LogoButton /> */}
+				<HStack>
+					<GithubButton/>
+					<ThemeButton />
+					<NavbarPopover />
+				</HStack>
 			</Flex>
 		);
 }

@@ -46,7 +46,7 @@ const getMarkPlugins = () => {
 			createUnderlinePlugin(),
 			createStrikethroughPlugin(),
 			createFontColorPlugin(),
-			createFontBackgroundColorPlugin(),
+			// createFontBackgroundColorPlugin(),
 		];
 }
 export const getNodePlugins = () => {

@@ -10,7 +10,6 @@ const Read = ({bookDetails}) => {
 						minChildWidth="300px"
 						spacingX="40px"
 						spacingY="20px"
-						// zIndex={-1}
 					>
 						{bookDetails.map((book) => (
 							<Card key={book.id} {...book} />

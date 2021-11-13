@@ -33,7 +33,7 @@ const BookDrawer = ({isOpen, onClose}) => {
 				>
 					<DrawerOverlay />
 					<DrawerContent>
-						<DrawerCloseButton />
+						<DrawerCloseButton mt={1.5} size="md" />
 						<DrawerHeader borderBottomWidth="1px">Book Details</DrawerHeader>
 						<Formik
 							initialValues={{ title: "", description: "", genres: [] }}
@@ -48,8 +48,21 @@ const BookDrawer = ({isOpen, onClose}) => {
 								return errors;
 							}}
 							onSubmit={async (values, { setSubmitting }) => {
+								let content = JSON.stringify(value)
+								// console.log(content)
+								content = content.replace(
+									/"[ ]*color\s*"\s*:\s*"\s*rgb\(\s*0\s*,\s*0\s*,\s*0\s*\)[^,}]*[,]*/g,
+									""
+								);
+								content = content.replace(/"font[^ "]*"[^,}]*[,]?/g, "");
+								content = content.replace(
+									/"color"[ ]*:[ ]*"[ ]*black[^,}]*[,]?/g,
+									""
+								);
+								content = content.replace(/,\s*}/g, "}");
+								// console.log(content)
                                 const bookRef = await addDoc(collection(db, "books"), {
-                                    content: JSON.stringify(value),
+                                    content: content,
                                 })
                                 const bookDetailsRef = await setDoc(doc(db, "bookDetails", bookRef.id), {
                                     title: values.title,

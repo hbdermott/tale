@@ -1,16 +1,12 @@
 import { mode } from "@chakra-ui/theme-tools"
 
-const baseStyle = {
-	// backgroundColor: "white",
-	fontWeight: "bold",
-}
-
-
-// const variants = {
-// 	"submit": {
-// 		bg: "green",
-// 	}
+// const baseStyle = {
+// 	size: "lg",
 // }
 
-const Button = {baseStyle}
+const defaultProps = {
+	size: "lg",
+}
+
+const Button = {defaultProps}
 export default Button;

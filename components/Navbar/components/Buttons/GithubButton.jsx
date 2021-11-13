@@ -4,7 +4,7 @@ import Link from "next/link";
 const GithubButton = (props) => {
     return (
 			<Link href="https://github.com/hbdermott/novel" passHref={true}>
-            	<IconButton aria-label="Github repo" icon={<Github style={{width: "24px"}}/>} {...props} />
+            	<IconButton aria-label="Github repo" size="lg" icon={<Github style={{width: "24px"}}/>} {...props} />
 			</Link>
 		);
 }

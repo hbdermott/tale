@@ -25,16 +25,17 @@ const Navbar = (props) => {
 						backgroundColor="#33333333"
 						backdropFilter="blur(5px)"
 						w="100%"
-						p={3}
+						// p={3}
+						pr={5}
 						zIndex={1000}
-						justify="flex-end"
+						justify="space-between"
 						align="center"
 						{...props}
 					>
-						{/* <PageLinks /> */}
+						<PageLinks />
 						<ButtonGroup spacing={4}>
-							<ThemeButton />
 							<GithubButton />
+							<ThemeButton />
 							<LoginOrOut />
 							{/* <NavbarMenu /> */}
 						</ButtonGroup>

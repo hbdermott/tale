@@ -6,10 +6,11 @@ import { InputGroup } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { useAuth } from "../../context/User";
+import PasswordLogin from "./Password";
+import ProviderLogins from "./ProviderLogins";
 
 const EmailLogin = () => {
     const {login} = useAuth();
-    const [show, setShow] = useState()
     return (
 			<Formik
 				initialValues={{ email: "", password: "" }}
@@ -34,7 +35,7 @@ const EmailLogin = () => {
 			>
 				{({ isSubmitting }) => (
 					<Form>
-						<VStack spacing={3} m={3}>
+						<VStack spacing={3}>
 							<Field type="email" name="email">
 								{({ field, form }) => (
 									<FormControl
@@ -45,6 +46,7 @@ const EmailLogin = () => {
 											{...field}
 											id="email"
 											size="lg"
+											width="100%"
 											variant="filled"
 											placeholder="Email"
 										/>
@@ -58,29 +60,23 @@ const EmailLogin = () => {
 										isInvalid={form.errors.password && form.touched.password}
 									>
 										{/* <FormLabel htmlFor="password">Password</FormLabel> */}
-										<InputGroup>
-											<Input
-												{...field}
-												id="password"
-                                                type={show ? "text" : "password"}
-												size="lg"
-												variant="filled"
-												placeholder="Enter password"
-											/>
-											<InputRightElement h="100%" w="max-content">
-												<Button h="100%" onClick={() => setShow(!show)}>
-													{show ? "Hide" : "Show"}
-												</Button>
-											</InputRightElement>
-										</InputGroup>
+										<PasswordLogin id="password" />
 
 										{/* <FormErrorMessage></FormErrorMessage> */}
 									</FormControl>
 								)}
 							</Field>
-							<Button px={10} type="submit" size="lg" isLoading={isSubmitting}>
-								Submit
-							</Button>
+							<HStack>
+								<ProviderLogins/>
+								<Button
+									px={6}
+									type="submit"
+									size="lg"
+									isLoading={isSubmitting}
+								>
+									Submit
+								</Button>
+							</HStack>
 						</VStack>
 					</Form>
 				)}

@@ -17,7 +17,7 @@ const LoginOrOut = (props) => {
     }, [user, loading])
 
     return (
-        <Button onClick={() => loggedIn ? logout() : router.push('/login')}>{loggedIn ? "Logout" : "Login"}</Button>
+        <Button size="lg" onClick={() => loggedIn ? logout() : router.push('/login')}>{loggedIn ? "Logout" : "Login"}</Button>
     )
 }
 

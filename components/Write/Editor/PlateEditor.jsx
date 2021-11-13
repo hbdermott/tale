@@ -40,8 +40,8 @@ const PlateEditor = ({readonly = false, value}) => {
 							editableProps={readonly ? CONFIG.readOnly : CONFIG.editableProps}
 							value={value}
 						>
-							{!readonly && <ToolbarBalloons />}
-							<Editable readOnly />
+							{/* {!readonly && <ToolbarBalloons />} */}
+							<Editable />
 						</Plate>
 					</DndProvider>
 		);
