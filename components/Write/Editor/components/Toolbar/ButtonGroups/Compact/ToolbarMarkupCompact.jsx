@@ -18,7 +18,6 @@ const ToolbarMarkupCompact = () => {
 		<Menu offset={[-45, 15]}>
 			<MenuButton
 				as={IconButton}
-				size="lg"
 				p={2}
 				aria-label="Header Menu"
 				icon={<TextEditStyle style={{ width: "20px" }} />}

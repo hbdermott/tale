@@ -10,8 +10,7 @@ import ToolbarLayoutCompact from "./ButtonGroups/Compact/ToolbarLayoutCompact";
 import ToolbarMarkupCompact from "./ButtonGroups/Compact/ToolbarMarkupCompact";
 // import ToolbarColorPicker from "./Toolbar/Buttons/ToolbarColorPicker";
 import ToolbarContainer from "./ToolbarContainer";
-const Toolbar = () => {
-	const { isOpen, onOpen, onClose } = useDisclosure();
+const Toolbar = ({children}) => {
 	return (
 		<ToolbarContainer>
 			<Flex w="80%" justify="space-around" pr={10}>
@@ -24,20 +23,7 @@ const Toolbar = () => {
 			<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} /> */}
 				<ToolbarImportCompact />
 			</Flex>
-
-			<Button
-				p={2}
-				m={0}
-				onMouseDown={async (e) => {
-					e.preventDefault();
-					// if (!editor) return;
-					onOpen();
-				}}
-				rightIcon={<ArrowRight width="24px" />}
-			>
-				Next
-			</Button>
-			<BookDrawer isOpen={isOpen} onClose={onClose} />
+			{children}
 		</ToolbarContainer>
 	);
 };

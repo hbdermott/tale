@@ -14,7 +14,7 @@ import { useAuth } from "../../context/User";
 import { useRouter } from "next/router";
 import { postBook, postBookDetails } from "../../lib/firebase/postBook";
 import { parseContent } from "../../lib/parseContent";
-const BookDrawer = ({isOpen, onClose}) => {
+const BookDrawer = ({isOpen, onClose, title = "", description = ""}) => {
     const contentValue = useStoreEditorValue('main-editor')
     const { user } = useAuth();
     const router = useRouter();
@@ -33,7 +33,7 @@ const BookDrawer = ({isOpen, onClose}) => {
 						<DrawerCloseButton mt={1.5} size="md" />
 						<DrawerHeader borderBottomWidth="1px">Book Details</DrawerHeader>
 						<Formik
-							initialValues={{ title: "", description: "", genres: [] }}
+							initialValues={{ title: title, description: description, genres: [] }}
 							validate={(values) => {
 								const errors = {};
 								for (const value in values) {

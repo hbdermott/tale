@@ -22,7 +22,7 @@ const Edit = ({book}) => {
 	}, [user, loading, router]);
 	return (
 		<Flex direction="column" overflow="hidden" align="center" w="100%" h="100%">
-			{user && user.uid === book.authorID && <Editor value={book.content} />}
+			{user && user.uid === book.authorID && <Editor value={book} />}
 		</Flex>
 	);
 };

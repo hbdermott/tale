@@ -17,7 +17,6 @@ const ToolbarHeaderMenu = () => {
 		<Menu offset={[-10, 15]}>
 			<MenuButton
 				as={IconButton}
-				size="lg"
 				p={2}
 				aria-label="Header Menu"
 				icon={<ChevronUp style={{ width: "16px" }} />}

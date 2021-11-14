@@ -11,13 +11,16 @@ const Card = ({id, title, postdate, genres, description, likes, author, authorID
     return (
 			<LinkBox
 				height="300px"
-				border="1px solid gray"
+				width="450px"
+				// border="1px solid gray"
+				boxShadow="2xl"
+				bg="gray.900"
 				p={6}
-				borderRadius={10}
+				borderRadius={15}
 				// zIndex="inherit"
 				onClick={() => setLoading(true)}
 			>
-				<Heading py={2}>
+				<Heading size="lg" py={2}>
 					<Link href={`/read/${id}`}>
 						<LinkOverlay>{title}</LinkOverlay>
 					</Link>

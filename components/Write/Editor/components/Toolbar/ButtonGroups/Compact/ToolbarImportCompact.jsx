@@ -16,7 +16,6 @@ const ToolbarImportCompact = () => {
 		<Menu offset={[-8, 15]}>
 			<MenuButton
 				as={IconButton}
-				size="lg"
 				p={2}
 				aria-label="Header Menu"
 				icon={<DocumentAdd style={{ width: "20px" }} />}

@@ -7,7 +7,7 @@ const Read = ({bookDetails}) => {
 			<>
 					<SimpleGrid
 						m={5}
-						minChildWidth="300px"
+						minChildWidth="400px"
 						spacingX="40px"
 						spacingY="20px"
 					>
