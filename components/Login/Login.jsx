@@ -6,10 +6,11 @@ import { InputGroup } from "@chakra-ui/react";
 import { Field, Form, Formik } from "formik";
 import { useState } from "react";
 import { useAuth } from "../../context/User";
+import Email from "./Email";
 import PasswordLogin from "./Password";
 import ProviderLogins from "./ProviderLogins";
 
-const EmailLogin = () => {
+const Login = () => {
     const {login} = useAuth();
     return (
 			<Formik
@@ -42,14 +43,7 @@ const EmailLogin = () => {
 										isInvalid={form.errors.email && form.touched.email}
 									>
 										{/* <FormLabel htmlFor="email">Email</FormLabel> */}
-										<Input
-											{...field}
-											id="email"
-											size="lg"
-											width="100%"
-											variant="filled"
-											placeholder="Email"
-										/>
+										<Email id="email" {...field}/>
 										{/* <FormErrorMessage></FormErrorMessage> */}
 									</FormControl>
 								)}
@@ -84,4 +78,4 @@ const EmailLogin = () => {
 		);
 }
 
-export default EmailLogin;
+export default Login;

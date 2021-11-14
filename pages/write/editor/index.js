@@ -1,13 +1,13 @@
-import { useAuth } from "../../context/User";
+import { useAuth } from "../../../context/User";
 import { useRouter } from "next/dist/client/router";
 import { Box, Flex } from "@chakra-ui/layout";
-import { db } from "../../app/firebase/Firebase";
-import { collection, addDoc } from "firebase/firestore";
-import Editor from "../../components/Write/Editor/Editor";
-import Navbar from "../../components/Navbar";
+import { db } from "../../../app/firebase/Firebase";
+import { collection, addDoc } from "firebase/firestore"; 
+import Editor from "../../../components/Write/Editor/Editor";
+import Navbar from "../../../components/Navbar";
 import { useMediaQuery } from "@chakra-ui/react";
-import NavbarCompact from "../../components/Navbar/Compact";
-import useWindowDimensions from "../../lib/useWindowDimensions";
+import NavbarCompact from "../../../components/Navbar/Compact";
+import useWindowDimensions from "../../../lib/useWindowDimensions";
 
 const Write = (props) => {
 	// const { user, loading } = useAuth();
@@ -17,16 +17,16 @@ const Write = (props) => {
 	// }, [user, loading, router]);
 	return (
 		<Flex direction="column" overflow="hidden" align="center" w="100%" h="100%">
-			<Editor />
+			<Editor/>
 		</Flex>
 	);
 };
 
 export default Write;
 
-const WriteLayout = ({ children }) => {
+const WriteLayout = ({children}) => {
 	const { height, width } = useWindowDimensions();
-	return (
+	return(
 		<Flex
 			minH="-webkit-fill-available"
 			w="100%"
@@ -37,10 +37,13 @@ const WriteLayout = ({ children }) => {
 		>
 			<Navbar />
 			{children}
-		</Flex>
-	);
-};
+		</Flex>)
+}
 
 Write.getLayout = function getLayout(write) {
-	return <WriteLayout>{write}</WriteLayout>;
+	return (
+		<WriteLayout>
+			{write}
+		</WriteLayout>
+	);
 };

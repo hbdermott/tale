@@ -19,7 +19,7 @@ const PlateEditor = ({readonly = false, value}) => {
 	const options = createPlateOptions();
 
 	const Editor = () => {
-		const slateEditor = createEditor()
+		// const slateEditor = createEditor()
 		const pluginsMemo = useMemo(getPlugins, []);
 
 
@@ -28,7 +28,7 @@ const PlateEditor = ({readonly = false, value}) => {
 						<Plate
 							id="main-editor"
 							plugins={pluginsMemo}
-							editor={slateEditor}
+							// editor={slateEditor}
 							components={components}
 							options={options}
 							initialValue={[
@@ -40,8 +40,6 @@ const PlateEditor = ({readonly = false, value}) => {
 							editableProps={readonly ? CONFIG.readOnly : CONFIG.editableProps}
 							value={value}
 						>
-							{/* {!readonly && <ToolbarBalloons />} */}
-							<Editable />
 						</Plate>
 					</DndProvider>
 		);

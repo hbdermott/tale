@@ -6,7 +6,7 @@ import NavbarCompact from "./Navbar/Compact";
 export default function Layout({ children }) {
 	return (
 		<>
-			 <Navbar position="sticky" top={0} />
+			 <Navbar sticky/>
 			<main>{children}</main>
 		</>
 	);

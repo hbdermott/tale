@@ -1,26 +1,29 @@
 import { Button } from "@chakra-ui/button";
-import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
+import { HStack } from "@chakra-ui/layout";
+import { Password } from "@styled-icons/fluentui-system-filled";
 import { useState } from "react";
 
 const PasswordLogin = (props) => {
     const [show, setShow] = useState(false);
     return (
-			<InputGroup>
+		<HStack spacing={0}>
+			<InputGroup size="lg">
 				<Input
 					{...props}
 					type={show ? "text" : "password"}
-					size="lg"
-					pr="90px"
 					variant="filled"
 					placeholder="Enter password"
+					pr="20px"
+					borderRightRadius={0}
 				/>
-				<InputRightElement h="100%" w="max-content">
-					<Button w="80px" size="lg" onClick={() => setShow(!show)}>
-						{show ? "Hide" : "Show"}
-					</Button>
-				</InputRightElement>
+				<InputLeftElement><Password width="24px"/></InputLeftElement>
 			</InputGroup>
-		);
+			<Button borderLeftRadius={0} width="60px" onClick={() => setShow(!show)}>
+						{show ? "Hide " : "Show"}
+			</Button>
+		</HStack>
+	);
 }
 
 export default PasswordLogin

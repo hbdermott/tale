@@ -14,7 +14,7 @@ import { Text, Heading } from "@chakra-ui/layout";
 import PageLinks from "../../../components/PageLinks";
 import MenuButton from "./MenuButton";
 import LoginOrOut from "../../../components/Buttons/LoginOrOut";
-import EmailLogin from "../../../../Login/Login";
+import Login from "../../../../Login/Login";
 const NavbarPopover = () => {
 	const { loading, user } = useAuth();
 	const [loggedIN, setLoggedIN] = useState(false);
@@ -57,7 +57,7 @@ const NavbarPopover = () => {
 								{loggedIN && <LoginOrOut />}
 							</HStack>
 						)}
-						{!loggedIN && <EmailLogin></EmailLogin>}
+						{!loggedIN && <Login></Login>}
 					</PopoverFooter>
 				</PopoverBody>
 			</PopoverContent>

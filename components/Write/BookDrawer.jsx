@@ -1,24 +1,21 @@
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control";
-import { Input, InputGroup, InputLeftAddon, InputRightAddon } from "@chakra-ui/input";
+import { Input, InputGroup } from "@chakra-ui/input";
 import { Box, Flex, HStack, Stack, VStack } from "@chakra-ui/layout";
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay } from "@chakra-ui/modal";
 import { CheckboxGroup } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/select";
 import { Textarea } from "@chakra-ui/textarea";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { forwardRef, useEffect, useRef, useState } from "react";
+import { Field, Form, Formik } from "formik";
+import React, {useRef} from "react";
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Button } from "@chakra-ui/button";
-import { getPlateState, useStoreEditorRef, useStoreEditorState, useStoreEditorValue } from "@udecode/plate-core";
-import { collection, addDoc, setDoc, doc } from "firebase/firestore"; 
-import { db } from "../../app/firebase/Firebase";
+import { useStoreEditorValue } from "@udecode/plate-core";
 import { useAuth } from "../../context/User";
 import { useRouter } from "next/router";
-import { serializeHTMLFromNodes } from "@udecode/plate-html-serializer";
-import { getNodePlugins } from "./Editor/config/plugins";
-import { serialize } from "remark-slate";
+import { postBook, postBookDetails } from "../../lib/firebase/postBook";
+import { parseContent } from "../../lib/parseContent";
 const BookDrawer = ({isOpen, onClose}) => {
-    const value = useStoreEditorValue('main-editor')
+    const contentValue = useStoreEditorValue('main-editor')
     const { user } = useAuth();
     const router = useRouter();
 	const firstField = useRef();
@@ -48,29 +45,9 @@ const BookDrawer = ({isOpen, onClose}) => {
 								return errors;
 							}}
 							onSubmit={async (values, { setSubmitting }) => {
-								let content = JSON.stringify(value)
-								// console.log(content)
-								content = content.replace(
-									/"[ ]*color\s*"\s*:\s*"\s*rgb\(\s*0\s*,\s*0\s*,\s*0\s*\)[^,}]*[,]*/g,
-									""
-								);
-								content = content.replace(/"font[^ "]*"[^,}]*[,]?/g, "");
-								content = content.replace(
-									/"color"[ ]*:[ ]*"[ ]*black[^,}]*[,]?/g,
-									""
-								);
-								content = content.replace(/,\s*}/g, "}");
-								// console.log(content)
-                                const bookRef = await addDoc(collection(db, "books"), {
-                                    content: content,
-                                })
-                                const bookDetailsRef = await setDoc(doc(db, "bookDetails", bookRef.id), {
-                                    title: values.title,
-                                    description: values.description,
-                                    genres: values.genres,
-                                    authorID: user.uid,
-                                    likes: 0,
-                                })
+								const parsedContent = parseContent(contentValue);
+                                const bookID = await postBook(parsedContent)
+                                await postBookDetails(values, user, bookID);
                                 setSubmitting(false);
                                 router.push('/read');
                             }}

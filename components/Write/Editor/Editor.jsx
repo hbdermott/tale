@@ -6,7 +6,7 @@ import EditorContainer from "./components/EditorContainer";
 import Toolbar from "./components/Toolbar/Toolbar";
 import PlateEditor from "./PlateEditor";
 
-const Editor = () => {
+const Editor = ({value}) => {
     return (
 		<Flex
 				w="100%"
@@ -16,7 +16,7 @@ const Editor = () => {
 				align="center"
 			>
 				<EditorContainer>
-                    <PlateEditor/>
+                    <PlateEditor value={value}/>
                 </EditorContainer>
                 <Toolbar/>
 			</Flex>

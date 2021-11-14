@@ -3,7 +3,7 @@ import ThemeButton from "../components/Buttons/ThemeButton";
 import NavbarPopover from "./Popover/components/NavbarPopover";
 import LogoButton from "../components/Buttons/LogoButton";
 import GithubButton from "../components/Buttons/GithubButton";
-const NavbarCompact = (props) => {
+const NavbarCompact = ({sticky, children, ...rest}) => {
     return (
 			<Flex
 				backgroundColor="#33333333"
@@ -11,15 +11,13 @@ const NavbarCompact = (props) => {
 				w="100%"
 				p={3}
 				zIndex={1000}
-				// position="sticky"
-				// top={0}
-				// m={0}
-				// p={0}
-				justify="flex-end"
+				position={sticky ? "sticky" : "static"}
+				top={0}
+				justify={children ? "space-between" : "flex-end"}
 				align="center"
-				{...props}
+				{...rest}
 			>
-				{/* <LogoButton /> */}
+				{children}
 				<HStack>
 					<GithubButton/>
 					<ThemeButton />

@@ -1,16 +1,22 @@
-import { Input } from "@chakra-ui/input";
+import { Input, InputGroup, InputLeftAddon, InputLeftElement } from "@chakra-ui/input";
+import { Mail } from "@styled-icons/fluentui-system-filled";
 
-export const EmailLogin = (props) => {
+export const Email = (props) => {
     return (
-        <Input
-            {...props}
-            id="email"
-            size="lg"
-            width="100%"
-            variant="filled"
-            placeholder="Email"
-		/>
-    )
+			<InputGroup size="lg">
+				<InputLeftElement>
+					<Mail width="24px" />
+				</InputLeftElement>
+				<Input
+					{...props}
+					id="email"
+					size="lg"
+					width="100%"
+					variant="filled"
+					placeholder="Email"
+				/>
+			</InputGroup>
+		);
 }
 
-export default EmailLogin;
+export default Email;
