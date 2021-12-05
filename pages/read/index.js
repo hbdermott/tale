@@ -5,9 +5,10 @@ import {fetchBookDetails} from "../../lib/firebase/fetchBook";
 const Read = ({bookDetails}) => {
     return (
 			<>
+			
 					<SimpleGrid
 						m={5}
-						minChildWidth="400px"
+						minChildWidth="350px"
 						spacingX="40px"
 						spacingY="20px"
 					>

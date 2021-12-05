@@ -11,7 +11,7 @@ const Card = ({id, title, postdate, genres, description, likes, author, authorID
     return (
 			<LinkBox
 				height="300px"
-				width="450px"
+				// width="450px"
 				// border="1px solid gray"
 				boxShadow="2xl"
 				bg="gray.900"
@@ -20,25 +20,27 @@ const Card = ({id, title, postdate, genres, description, likes, author, authorID
 				// zIndex="inherit"
 				onClick={() => setLoading(true)}
 			>
-				<Heading size="lg" py={2}>
-					<Link href={`/read/${id}`}>
-						<LinkOverlay>{title}</LinkOverlay>
-					</Link>
-				</Heading>
-				{genres && (
-					<HStack py={2}>
-						{genres.map((genre) => (
-							<Badge key={genre}>{genre}</Badge>
-						))}
-					</HStack>
-				)}
-				{description && <Text py={3}>{description}</Text>}
-				<Flex align="center" justify="space-between">
-					<Likes likes={likes} />
-					<Text>{postdate}</Text>
-					<ChakraLink href={`/author/${authorID}`}>
-						<Text>{author}</Text>
-					</ChakraLink>
+					<Heading h="10%" size="lg" py={2}>
+						<Link href={`/read/${id}`}>
+							<LinkOverlay>{title}</LinkOverlay>
+						</Link>
+					</Heading>
+				<Flex h="90%" flexDirection="column" justify="space-between">
+					{genres && (
+						<HStack py={2}>
+							{genres.map((genre) => (
+								<Badge key={genre}>{genre}</Badge>
+							))}
+						</HStack>
+					)}
+					{description && <Text py={3}>{description}</Text>}
+					<Flex align="center" justify="space-between">
+						<Likes likes={likes} />
+						<Text>{postdate}</Text>
+						<ChakraLink href={`/author/${authorID}`}>
+							<Text>{author}</Text>
+						</ChakraLink>
+					</Flex>
 				</Flex>
 			</LinkBox>
 		);
