@@ -63,9 +63,8 @@ const Login = () => {
 							<HStack>
 								<ProviderLogins/>
 								<Button
-									px={6}
 									type="submit"
-									backgroundColor="green.400"
+									variant="submit"
 									isLoading={isSubmitting}
 								>
 									Submit

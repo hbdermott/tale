@@ -1,20 +1,31 @@
-import { mode } from "@chakra-ui/theme-tools";
 
-const baseStyle = {
-	// backgroundColor: "white",
-	fontWeight: "bold",
+
+const variants = {
+	solid: (props) => ({
+		popper: {
+			mr: "4"
+		},
+		content: {
+			mr: "4",
+			bg: props.colorMode === "dark" ? "gray.800" : "gray.50",
+			boxShadow: "dark-lg",
+			border: "2px",
+			borderRadius: "xl",
+			borderColor: props.colorMode === "dark" ? "gray.700" : "gray.200",
+		},
+		header: {
+			border: "none"
+		},
+		footer: {
+			border: "none",
+			pt: "none"
+		},
+	}),
 };
 
-const sizes = {
-	xs: {
-		w: "100px",
-		h: "200px",
-	},
-	lg: {
-		w: "200px",
-		h: "400px",
-	},
+const defaultProps = {
+	variant: "solid",
 };
 
-const Popover = { sizes };
+const Popover = { defaultProps, variants };
 export default Popover;

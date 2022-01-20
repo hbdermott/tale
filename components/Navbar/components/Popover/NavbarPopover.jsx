@@ -9,9 +9,11 @@ import { Popover, PopoverTrigger, PopoverContent, PopoverCloseButton, PopoverHea
 import { HStack } from "@chakra-ui/layout";
 import { Heading } from "@chakra-ui/layout";
 import Login from "../../../Login/Login";
+import { useStyleConfig } from "@chakra-ui/system";
 const NavbarPopover = () => {
 	const { loading, user, logout } = useAuth();
 	const [loggedIN, setLoggedIN] = useState(false);
+	// const popoverStyle = useStyleConfig("PopoverMenu", {});
 	useEffect(() => {
 		if (!loading && user) {
 			setLoggedIN(true);
@@ -26,13 +28,6 @@ const NavbarPopover = () => {
 				<IconButton icon={<Navigation width="24px" />} />
 			</PopoverTrigger>
 			<PopoverContent
-				w="min-content"
-				border="none"
-				boxShadow="dark-lg"
-				right="10px"
-				top="10px"
-				p={0}
-				style={{ zIndex: 100 }}
 			>
 				<PopoverCloseButton size="md" />
 				<PopoverHeader>

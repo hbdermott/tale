@@ -5,7 +5,6 @@ const MenuButton = ({href, children, ...rest}) => {
 			<Link href={href}>
 				<Button
                     bgColor="inherit"
-					w="100%"
 					borderRadius={0}
 					{...rest}
 				 >

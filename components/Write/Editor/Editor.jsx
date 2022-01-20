@@ -25,8 +25,7 @@ const Editor = ({value}) => {
 				>
 					<Toolbar>
 						<IconButton
-							m={0}
-							backgroundColor="green.400"
+							variant="submit"
 							onMouseDown={async (e) => {
 								e.preventDefault();
 								onOpen();

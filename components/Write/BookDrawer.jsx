@@ -122,7 +122,7 @@ const BookDrawer = ({isOpen, onClose, title = "", description = ""}) => {
 											</VStack>
 									</DrawerBody>
 									<DrawerFooter borderTopWidth="1px">
-										<Button type="submit" backgroundColor="green.400" disabled={isSubmitting} isLoading={isSubmitting}>Publish</Button>
+										<Button type="submit" disabled={isSubmitting} isLoading={isSubmitting}>Publish</Button>
 									</DrawerFooter>
 									</Form>
 								</>
