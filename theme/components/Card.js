@@ -1,29 +1,27 @@
 
-
-const sizes = {
-	lg: {
-		fontSize: "md",
-		borderRadius: "xl",
-		p: "3.5",
+const parts = ['base', 'body']
+const baseStyle = (props) => ({
+	base: {
+		maxW: "400px",
+		rounded: "xl",
+		overflow: "hidden",
 		m: "lg",
-		width: "full",
-		height: "2xs"
-	},
-};
-
-const variants = {
-	solid: (props) => ({
-		bg: props.colorMode === "dark" ? "gray.900" : "gray.50",
+		w: "full",
 		boxShadow: props.colorMode === "dark" ? "2xl" : "xl",
 		border: "4px",
 		borderColor: props.colorMode === "dark" ? "gray.800" : "gray.100",
-	}),
-};
+	},
+	body: {
+		p: "6",
+		fontSize: "md",
+		h: "2xs",
+		bg: props.colorMode === "dark" ? "gray.900" : "gray.50",
+	},
+});
+const sizes = {}
+const variants = {}
 
-const defaultProps = {
-	size: "lg",
-	variant: "solid",
-};
+const defaultProps = {}
 
-const Card = { defaultProps, sizes, variants };
+const Card = { parts, baseStyle, sizes, variants, defaultProps  };
 export default Card;

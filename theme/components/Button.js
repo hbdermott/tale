@@ -22,7 +22,7 @@ const variants = {
 	}),
 	submit: (props) => ({
 		bg: props.colorMode === "dark" ? "green.600" : "green.400",
-		// p: "6",
+		p: "6",
 		_hover: {
 			bg: props.colorMode === "dark" ? "green.400" : "green.500",
 		},

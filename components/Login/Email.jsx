@@ -10,6 +10,7 @@ export const Email = (props) => {
 				<Input
 					{...props}
 					id="email"
+					type="email"
 					size="lg"
 					width="100%"
 					variant="filled"

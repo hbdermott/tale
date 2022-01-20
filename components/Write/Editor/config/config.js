@@ -49,9 +49,8 @@ export const CONFIG = {
 		],
 	},
 	lineHeight: {
-		defaultLineHeight: 1.65,
+		defaultLineHeight: 1.5,
 	},
-	initalValue: [{ children: [{ text: 'Hello' }]}],
 	resetBlockType: {
 		rules: [
 			{

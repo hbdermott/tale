@@ -5,17 +5,21 @@ import {fetchBookDetails} from "../../lib/firebase/fetchBook";
 const Read = ({bookDetails}) => {
     return (
 			<>
-			
-					<SimpleGrid
-						m={5}
-						minChildWidth="350px"
-						spacingX="40px"
-						spacingY="20px"
-					>
-						{bookDetails.map((book) => (
+				{/* <Center> */}
+				<SimpleGrid
+					autoflow
+					m={5}
+					minChildWidth="400px"
+					spacingX="40px"
+					spacingY="20px"
+				>
+					{bookDetails.map((book) => (
+						<Center key={book.id}>
 							<Card key={book.id} {...book} />
-						))}
-					</SimpleGrid>
+						</Center>
+					))}
+				</SimpleGrid>
+				{/* </Center> */}
 			</>
 		);
 }
