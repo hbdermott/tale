@@ -1,15 +1,15 @@
-import { useAuth } from "../../../context/User";
+import { useAuth } from "../../context/User";
 import { useRouter } from "next/dist/client/router";
 import { Box, Flex } from "@chakra-ui/layout";
-import { db } from "../../../app/firebase/Firebase";
+import { db } from "../../app/firebase/Firebase";
 import { collection, addDoc } from "firebase/firestore";
-import Editor from "../../../components/Write/Editor/Editor";
-import Navbar from "../../../components/Navbar";
+import Editor from "../../components/Write/Editor/Editor";
+import Navbar from "../../components/Navbar";
 import { useMediaQuery } from "@chakra-ui/react";
-import NavbarCompact from "../../../components/Navbar/Compact";
-import useWindowDimensions from "../../../lib/useWindowDimensions";
+import NavbarCompact from "../../components/Navbar";
+import useWindowDimensions from "../../lib/useWindowDimensions";
 import { useEffect } from "react";
-import { fetchBook } from "../../../lib/firebase/fetchBook";
+import { fetchBook } from "../../lib/firebase/fetchBook";
 
 const Edit = ({book}) => {
 	const { user, loading } = useAuth();

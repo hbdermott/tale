@@ -3,20 +3,14 @@ import {
 	Navigation,
 } from "@styled-icons/fluentui-system-filled";
 import { useEffect, useState } from "react";
-import { useAuth } from "../../../../../context/User";
+import { useAuth } from "../../../../context/User";
 import Link from "next/link";
-import { Popover, PopoverTrigger, PopoverContent, PopoverCloseButton, PopoverHeader, PopoverArrow, PopoverBody, PopoverFooter } from "@chakra-ui/popover";
-import ThemeButton from "../../../components/Buttons/ThemeButton";
-import GithubButton from "../../../components/Buttons/GithubButton";
-import { Center, Divider, Flex, HStack, VStack } from "@chakra-ui/layout";
-import ProviderLogins from "../../../../Login/ProviderLogins";
-import { Text, Heading } from "@chakra-ui/layout";
-import PageLinks from "../../../components/PageLinks";
-import MenuButton from "./MenuButton";
-import LoginOrOut from "../../../components/Buttons/LoginOrOut";
-import Login from "../../../../Login/Login";
+import { Popover, PopoverTrigger, PopoverContent, PopoverCloseButton, PopoverHeader, PopoverBody, PopoverFooter } from "@chakra-ui/popover";
+import { HStack } from "@chakra-ui/layout";
+import { Heading } from "@chakra-ui/layout";
+import Login from "../../../Login/Login";
 const NavbarPopover = () => {
-	const { loading, user } = useAuth();
+	const { loading, user, logout } = useAuth();
 	const [loggedIN, setLoggedIN] = useState(false);
 	useEffect(() => {
 		if (!loading && user) {
@@ -54,10 +48,10 @@ const NavbarPopover = () => {
 						{loggedIN && (
 							<HStack>
 								{loggedIN && <Link href="/profile" ><Button>Profile</Button></Link>}
-								{loggedIN && <LoginOrOut />}
+								{loggedIN && <Button onClick={logout}>Logout</Button>}
 							</HStack>
 						)}
-						{!loggedIN && <Login></Login>}
+						{!loggedIN && <Login/>}
 					</PopoverFooter>
 				</PopoverBody>
 			</PopoverContent>

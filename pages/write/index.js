@@ -1,12 +1,8 @@
 import { useAuth } from "../../context/User";
 import { useRouter } from "next/dist/client/router";
-import { Box, Flex } from "@chakra-ui/layout";
-import { db } from "../../app/firebase/Firebase";
-import { collection, addDoc } from "firebase/firestore";
+import { Flex } from "@chakra-ui/layout";
 import Editor from "../../components/Write/Editor/Editor";
 import Navbar from "../../components/Navbar";
-import { useMediaQuery } from "@chakra-ui/react";
-import NavbarCompact from "../../components/Navbar/Compact";
 import useWindowDimensions from "../../lib/useWindowDimensions";
 
 const Write = (props) => {
