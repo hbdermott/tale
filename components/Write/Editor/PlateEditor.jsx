@@ -5,10 +5,10 @@ import {Plate} from "@udecode/plate-core";
 import { CONFIG } from "./config/config";
 import { withStyledPlaceHolders } from "./plugins/withStyledPlaceHolders";
 import React, { useMemo } from "react";
-import ToolbarBalloons from "./components/Toolbar/ButtonGroups/Full/ToolbarBalloons";
 import { createEditor } from "slate";
 import {getPlugins} from "./config/plugins";
 import { Editable } from "@chakra-ui/editable";
+import ToolbarBalloons from "./components/Toolbar/Buttons/ToolbarBalloons";
 
 const PlateEditor = ({readonly = false, value}) => {
 	let components = createPlateComponents({
@@ -24,24 +24,25 @@ const PlateEditor = ({readonly = false, value}) => {
 
 
 		return (
-					<DndProvider backend={HTML5Backend}>
-						<Plate
-							id="main-editor"
-							plugins={pluginsMemo}
-							// editor={slateEditor}
-							components={components}
-							options={options}
-							initialValue={[
-								{
-									type: "p",
-									children: [{ text: "" }],
-								},
-							]}
-							editableProps={readonly ? CONFIG.readOnly : CONFIG.editableProps}
-							value={value}
-						>
-						</Plate>
-					</DndProvider>
+			<DndProvider backend={HTML5Backend}>
+				<Plate
+					id="main-editor"
+					plugins={pluginsMemo}
+					// editor={slateEditor}
+					components={components}
+					options={options}
+					initialValue={[
+						{
+							type: "p",
+							children: [{ text: "" }],
+						},
+					]}
+					editableProps={readonly ? CONFIG.readOnly : CONFIG.editableProps}
+					value={value}
+				>
+					<ToolbarBalloons/>
+				</Plate>
+			</DndProvider>
 		);
 	};
 

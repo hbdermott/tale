@@ -4,9 +4,11 @@ import { mode } from "@chakra-ui/theme-tools"
 // 	size: "lg",
 // }
 
+
 const defaultProps = {
 	size: "lg",
-}
+	borderRadius: "6px",
+};
 
 const Button = {defaultProps}
 export default Button;

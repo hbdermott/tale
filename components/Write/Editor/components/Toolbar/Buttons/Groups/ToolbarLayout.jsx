@@ -6,40 +6,47 @@ import {
     TextIndentDecrease,
     TextIndentIncrease,
 } from "@styled-icons/fluentui-system-filled";
-import { Menu, MenuButton, MenuList } from "@chakra-ui/menu";
-import { Button, IconButton } from "@chakra-ui/button";
+import { Menu, MenuList } from "@chakra-ui/menu";
 import { HStack, VStack } from "@chakra-ui/layout";
 import ToolbarButton from "../../Buttons/Base/ToolbarButton";
 import { indent, outdent } from "@udecode/plate-indent";
 import ToolbarAlign from "../../Buttons/ToolbarAlign";
 import { getPreventDefaultHandler } from "@udecode/plate-common";
 import { useStoreEditorRef } from "@udecode/plate-core";
+import MenuIconButton from "../../Buttons/MenuIconButton";
 
-const ToolbarLayoutCompact = () => {
+const ToolbarLayout = () => {
 	const editor = useStoreEditorRef('main-editor');
 	return (
 		<Menu offset={[-45, 15]}>
-			<MenuButton
-				as={IconButton}
-				p={2}
-				aria-label="Header Menu"
-				icon={<TextAlignDistributed style={{ width: "20px" }} />}
-			></MenuButton>
+			<MenuIconButton
+				aria-label="Text Layout Menu"
+				icon={<TextAlignDistributed style={{ width: "24px" }} />}
+			></MenuIconButton>
 			<MenuList flexDirection="row" minWidth="none" p={2} m={0}>
 				<VStack width="fit-content">
 					<HStack>
-						<ToolbarAlign align="left" icon={<TextAlignLeft />} />
-						<ToolbarAlign align="center" icon={<TextAlignCenter />} />
-						<ToolbarAlign align="right" icon={<TextAlignRight />} />
+						<ToolbarAlign
+							align="left"
+							icon={<TextAlignLeft style={{ width: "24px" }} />}
+						/>
+						<ToolbarAlign
+							align="center"
+							icon={<TextAlignCenter style={{ width: "24px" }} />}
+						/>
+						<ToolbarAlign
+							align="right"
+							icon={<TextAlignRight style={{ width: "24px" }} />}
+						/>
 					</HStack>
 					<HStack>
 						<ToolbarButton
 							onMouseDown={editor && getPreventDefaultHandler(indent, editor)}
-							icon={<TextIndentIncrease />}
+							icon={<TextIndentIncrease style={{ width: "24px" }} />}
 						/>
 						<ToolbarButton
 							onMouseDown={editor && getPreventDefaultHandler(outdent, editor)}
-							icon={<TextIndentDecrease />}
+							icon={<TextIndentDecrease style={{ width: "24px" }} />}
 						/>
 					</HStack>
 				</VStack>
@@ -48,4 +55,4 @@ const ToolbarLayoutCompact = () => {
 	);
 };
 
-export default ToolbarLayoutCompact;
+export default ToolbarLayout;

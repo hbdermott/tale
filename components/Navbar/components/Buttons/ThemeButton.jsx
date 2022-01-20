@@ -5,7 +5,7 @@ import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 const ThemeButton = (props) => {
  const { colorMode, toggleColorMode } = useColorMode()
   return (
-      <IconButton size="lg" onClick={toggleColorMode} aria-label="Toggle Color Theme" icon={colorMode === "light" ? <MoonIcon/> : <SunIcon/>} {...props} />
+      <IconButton onClick={toggleColorMode} aria-label="Toggle Color Theme" icon={colorMode === "light" ? <MoonIcon/> : <SunIcon/>} {...props} />
     )
 }
 export default ThemeButton;

@@ -22,8 +22,9 @@ const Editor = ({value}) => {
 				</EditorContainer>
 				<Toolbar>
 					<Button
-						p={2}
+						p={3}
 						m={0}
+						backgroundColor="green.400"
 						onMouseDown={async (e) => {
 							e.preventDefault();
 							// if (!editor) return;

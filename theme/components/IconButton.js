@@ -1,12 +1,12 @@
-export default IconButton = {
-	baseStyle: {},
-	// styles for different sizes ("sm", "md", "lg")
-	sizes: {},
-	// styles for different visual variants ("outline", "solid")
-	variants: {},
-	// default values for `size` and `variant`
-	defaultProps: {
-		size: "lg",
-		variant: "",
-	},
+// const baseStyle = {
+// 	size: "lg",
+// }
+
+const defaultProps = {
+	size: "md",
+	fontSize: "20px",
+	borderRadius: "6px",
 };
+
+const IconButton = { defaultProps };
+export default IconButton;

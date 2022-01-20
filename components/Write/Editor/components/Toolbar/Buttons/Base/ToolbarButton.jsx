@@ -3,15 +3,11 @@ import {Button, IconButton } from "@chakra-ui/button";
 const defaultStyles = {
 	base: {
         p: 1,
-		borderRadius: "6px",
-		size: "lg"
 	},
 	active: {
         p: 0,
-		borderRadius: "6px",
 		border: "2px solid #68D39166",
 		boxSizing: "border-box",
-		size: "lg"
 	},
 };
 
@@ -33,6 +29,7 @@ const ToolbarButton = ({children, styles, active, onMouseDown, ...rest}) => {
 				<IconButton
 					onMouseDown={onMouseDown}
 					{...style}
+					fontSize="20px"
 					{...rest}
 				/>
 			)}
