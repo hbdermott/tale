@@ -20,7 +20,7 @@ const Editor = ({value}) => {
 
 				<Center
 					w="100%"
-					position="fixed"
+					position="sticky"
 					bottom="0"
 				>
 					<Toolbar>
