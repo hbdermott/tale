@@ -14,11 +14,9 @@ const Toolbar = ({children}) => {
 	return (
 		<ToolbarContainer>
 			<Flex w="80%" justify="space-around" pr={10}>
-				<ToolbarMarkup />
 				<ToolbarHeader />
+				<ToolbarMarkup />
 				<ToolbarLayout />
-				{/* <ToolbarIndents /> */}
-				{/* <ToolbarMarks /> */}
 				{/* <ToolbarColorPicker isDisabled={true} pluginKey={MARK_COLOR} />
 			<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} /> */}
 				<ToolbarImport />

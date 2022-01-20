@@ -6,6 +6,7 @@ import BookDrawer from "../BookDrawer";
 import EditorContainer from "./components/EditorContainer";
 import Toolbar from "./components/Toolbar/Toolbar";
 import PlateEditor from "./PlateEditor";
+import { IconButton } from "@chakra-ui/react";
 
 const Editor = ({value}) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -21,22 +22,19 @@ const Editor = ({value}) => {
 					<PlateEditor value={value ? value.content : null} />
 				</EditorContainer>
 				<Toolbar>
-					<Button
+					<IconButton
 						p={3}
 						m={0}
 						backgroundColor="green.400"
 						onMouseDown={async (e) => {
 							e.preventDefault();
-							// if (!editor) return;
 							onOpen();
 						}}
-						rightIcon={<ArrowRight width="24px" />}
-					>
-						Next
-					</Button>
+						icon={<ArrowRight style={{ width: "24px" }} />}
+					/>
 					<BookDrawer
 						title={value ? value.title : null}
-						description={value ? value.description: null}
+						description={value ? value.description : null}
 						genres={value ? value.genres : null}
 						isOpen={isOpen}
 						onClose={onClose}

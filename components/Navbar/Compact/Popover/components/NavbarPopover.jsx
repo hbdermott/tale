@@ -42,14 +42,14 @@ const NavbarPopover = () => {
 			>
 				<PopoverCloseButton size="md" />
 				<PopoverHeader>
-					<Heading size="md">Menu</Heading>
+					<Heading size="md" p={3}></Heading>
 				</PopoverHeader>
 				<PopoverBody m={0} p={0}>
-					<HStack height="50px" spacing={0}>
+					{/* <HStack height="50px" spacing={0}>
 						<MenuButton href="/read">Read</MenuButton>
 						<Divider orientation="vertical" size="lg" />
 						<MenuButton href="/write">Write</MenuButton>
-					</HStack>
+					</HStack> */}
 					<PopoverFooter>
 						{loggedIN && (
 							<HStack>

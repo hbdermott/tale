@@ -65,7 +65,7 @@ const Login = () => {
 								<Button
 									px={6}
 									type="submit"
-									size="lg"
+									backgroundColor="green.400"
 									isLoading={isSubmitting}
 								>
 									Submit
