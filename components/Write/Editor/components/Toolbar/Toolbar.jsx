@@ -8,9 +8,12 @@ import ToolbarHeader from "./Buttons/Groups/ToolbarHeader";
 import ToolbarImport from "./Buttons/Groups/ToolbarImport";
 import ToolbarLayout from "./Buttons/Groups/ToolbarLayout";
 import ToolbarMarkup from "./Buttons/Groups/ToolbarMarkup";
+import { IconButton } from "@chakra-ui/react";
 // import ToolbarColorPicker from "./Toolbar/Buttons/ToolbarColorPicker";
 import ToolbarContainer from "./ToolbarContainer";
-const Toolbar = ({children}) => {
+const Toolbar = ({value}) => {
+	const { isOpen, onOpen, onClose } = useDisclosure();
+
 	return (
 		<ToolbarContainer>
 			<Flex w="80%" justify="space-around" pr={10}>
@@ -21,7 +24,21 @@ const Toolbar = ({children}) => {
 			<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} /> */}
 				<ToolbarImport />
 			</Flex>
-			{children}
+			<IconButton
+				variant="submit"
+				onMouseDown={async (e) => {
+					e.preventDefault();
+					onOpen();
+				}}
+				icon={<ArrowRight style={{ width: "24px" }} />}
+			/>
+			<BookDrawer
+				title={value ? value.title : ""}
+				description={value ? value.description : ""}
+				genres={value ? value.genres : ""}
+				isOpen={isOpen}
+				onClose={onClose}
+			/>
 		</ToolbarContainer>
 	);
 };

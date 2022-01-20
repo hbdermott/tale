@@ -17,7 +17,7 @@ const Edit = ({book}) => {
 	useEffect(() => {
         if(!loading){
             if(!user || user.uid !== book.authorID)
-                router.push("/write/editor");
+                router.push("/write");
         }
 	}, [user, loading, router]);
 	return (

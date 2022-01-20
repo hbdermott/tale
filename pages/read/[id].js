@@ -10,7 +10,7 @@ const Book = ({book}) => {
 	
     return (
 			<>
-				<Navbar sticky>{user && user.uid === book.authorID && <Link href={`/write/editor/${book.id}`}><Button>Edit</Button></Link>}</Navbar>
+				<Navbar sticky>{user && user.uid === book.authorID && <Link href={`/write/${book.id}`}><Button>Edit</Button></Link>}</Navbar>
 				<Box p={10}>
 					<PlateEditor readonly={true} value={book.content}></PlateEditor>
 				</Box>

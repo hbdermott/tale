@@ -6,7 +6,7 @@ import { CheckboxGroup } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/select";
 import { Textarea } from "@chakra-ui/textarea";
 import { Field, Form, Formik } from "formik";
-import React, {useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Button } from "@chakra-ui/button";
 import { useStoreEditorValue } from "@udecode/plate-core";
@@ -16,6 +16,7 @@ import { postBook, postBookDetails } from "../../lib/firebase/postBook";
 import { parseContent } from "../../lib/parseContent";
 const BookDrawer = ({isOpen, onClose, title = "", description = ""}) => {
     const contentValue = useStoreEditorValue('main-editor')
+	// useEffect(() => {console.log(contentValue)},[contentValue])
     const { user } = useAuth();
     const router = useRouter();
 	const firstField = useRef();

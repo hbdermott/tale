@@ -7,7 +7,6 @@ const Read = ({bookDetails}) => {
 			<>
 				{/* <Center> */}
 				<SimpleGrid
-					autoflow
 					m={5}
 					minChildWidth="400px"
 					spacingX="40px"

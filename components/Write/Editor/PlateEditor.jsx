@@ -7,7 +7,6 @@ import { withStyledPlaceHolders } from "./plugins/withStyledPlaceHolders";
 import React, { useMemo } from "react";
 import { createEditor } from "slate";
 import {getPlugins} from "./config/plugins";
-import { Editable } from "@chakra-ui/editable";
 import ToolbarBalloons from "./components/Toolbar/Buttons/ToolbarBalloons";
 
 const PlateEditor = ({readonly = false, value}) => {

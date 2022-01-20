@@ -7,39 +7,20 @@ import EditorContainer from "./components/EditorContainer";
 import Toolbar from "./components/Toolbar/Toolbar";
 import PlateEditor from "./PlateEditor";
 import { IconButton } from "@chakra-ui/react";
+import { useState } from "react";
+import { useStoreEditorValue } from "@udecode/plate";
 
 const Editor = ({value}) => {
-	const { isOpen, onOpen, onClose } = useDisclosure();
     return (
 			<VStack w="100%" h="100%">
 				<Center w="100%" h="100%" pb="100px">
 					<EditorContainer>
-						<PlateEditor value={value ? value.content : null} />
+						<PlateEditor value={value?.content} />
 					</EditorContainer>
 				</Center>
 
-				<Center
-					w="100%"
-					position="sticky"
-					bottom="0"
-				>
-					<Toolbar>
-						<IconButton
-							variant="submit"
-							onMouseDown={async (e) => {
-								e.preventDefault();
-								onOpen();
-							}}
-							icon={<ArrowRight style={{ width: "24px" }} />}
-						/>
-						<BookDrawer
-							title={value ? value.title : null}
-							description={value ? value.description : null}
-							genres={value ? value.genres : null}
-							isOpen={isOpen}
-							onClose={onClose}
-						/>
-					</Toolbar>
+				<Center w="100%" position="sticky" bottom="0">
+					<Toolbar value={value}/>
 				</Center>
 			</VStack>
 		);
