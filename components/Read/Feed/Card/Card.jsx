@@ -36,7 +36,7 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 										<Text>{postdateString}</Text>
 									</VStack>
 								</HStack>
-								<Likes isLiked={false} likes={likes} />
+								{/* <Likes id={id} likes={likes} /> */}
 							</Flex>
 						</Flex>
 					</Box>

@@ -2,6 +2,7 @@ import { Flex, HStack } from "@chakra-ui/layout";
 import ThemeButton from "./components/Buttons/ThemeButton";
 import NavbarPopover from "./components/Popover/NavbarPopover";
 import GithubButton from "./components/Buttons/GithubButton";
+import NavMenu from "./components/Buttons/NavMenu";
 const Navbar = ({sticky, children, ...rest}) => {
     return (
 			<Flex
@@ -12,10 +13,11 @@ const Navbar = ({sticky, children, ...rest}) => {
 				zIndex={1000}
 				position={sticky ? "sticky" : "static"}
 				top={0}
-				justify={children ? "space-between" : "flex-end"}
+				justify={"space-between"}
 				align="center"
 				{...rest}
 			>
+				<NavMenu/>
 				{children}
 				<HStack>
 					<GithubButton/>

@@ -20,11 +20,24 @@ const variants = {
 			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
 		},
 	}),
+	outline: (props) => ({
+		bg: "transparent",
+		border: "2px",
+		borderColor: props.colorMode === "dark" ? "gray.700" : "gray.500",
+	}),
 	submit: (props) => ({
 		bg: props.colorMode === "dark" ? "green.600" : "green.400",
 		p: "6",
 		_hover: {
 			bg: props.colorMode === "dark" ? "green.400" : "green.500",
+		},
+	}),
+	edit: (props) => ({
+		bg: props.colorMode === "dark" ? "blue.600" : "blue.400",
+		p: "6",
+		fontSize: "lg",
+		_hover: {
+			bg: props.colorMode === "dark" ? "blue.400" : "blue.500",
 		},
 	}),
 };
