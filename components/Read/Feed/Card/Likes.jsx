@@ -29,7 +29,7 @@ const Likes = ({isLiked = false, likes = 0, ...rest }) => {
 				_focus={{
 					boxShadow: "none",
 				}}
-				icon={<Star color={like ? "gold" : "gray"} />}
+				icon={<Star width="36px" color={like ? "gold" : "gray"} />}
 				{...rest}
 			/>
 		</HStack>
