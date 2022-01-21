@@ -9,7 +9,7 @@ const Likes = ({isLiked = false, likes = 0, ...rest }) => {
 
 	return (
 		<HStack>
-			<Text fontSize="md" color="gray.400">
+			<Text fontSize="md" color="gray.400" fontWeight="bold">
 				{likesCount < 1000 ? likesCount : `${(likesCount / 1000).toFixed(1)}k`}
 			</Text>
 			<IconButton
@@ -20,6 +20,14 @@ const Likes = ({isLiked = false, likes = 0, ...rest }) => {
 					if (like) setLikesCount(likesCount - 1);
 					else setLikesCount(likesCount + 1);
 					setVote(!like);
+				}}
+				boxShadow="none"
+				bg="none"
+				_active={{
+					boxShadow: "none",
+				}}
+				_focus={{
+					boxShadow: "none",
 				}}
 				icon={<Star color={like ? "gold" : "gray"} />}
 				{...rest}

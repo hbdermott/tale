@@ -6,15 +6,18 @@ import { CheckboxGroup } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/select";
 import { Textarea } from "@chakra-ui/textarea";
 import { Field, Form, Formik } from "formik";
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { Checkbox } from "@chakra-ui/checkbox";
 import { Button } from "@chakra-ui/button";
 import { useStoreEditorValue } from "@udecode/plate-core";
 import { useAuth } from "../../context/User";
 import { useRouter } from "next/router";
-import { postBook, postBookDetails } from "../../lib/firebase/postBook";
+import { postBook, postBookDetails, updateBook } from "../../lib/firebase/postBook";
 import { parseContent } from "../../lib/parseContent";
-const BookDrawer = ({isOpen, onClose, title = "", description = ""}) => {
+import { InputLeftElement } from "@chakra-ui/react";
+import { Image } from "@styled-icons/fluentui-system-filled";
+import Card from "../Read/Feed/Card/Card";
+const BookDrawer = ({isOpen, onClose, title = "", description = "", id}) => {
     const contentValue = useStoreEditorValue('main-editor')
 	// useEffect(() => {console.log(contentValue)},[contentValue])
     const { user } = useAuth();
@@ -30,34 +33,46 @@ const BookDrawer = ({isOpen, onClose, title = "", description = ""}) => {
 					onClose={onClose}
 				>
 					<DrawerOverlay />
-					<DrawerContent>
+					<DrawerContent overflowY="scroll">
 						<DrawerCloseButton mt={1.5} size="md" />
 						<DrawerHeader borderBottomWidth="1px">Book Details</DrawerHeader>
 						<Formik
-							initialValues={{ title: title, description: description, genres: [] }}
+							initialValues={{
+								title: title,
+								description: description,
+								genres: [],
+							}}
 							validate={(values) => {
 								const errors = {};
 								for (const value in values) {
 									if (value === "genres") continue;
 									if (values[value] === "") {
 										errors[value] = "Required";
+									} else if (
+										value === "image" &&
+										!values[value].match(
+											/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+										)
+									) {
+										errors.image = "Invalid URL";
 									}
 								}
 								return errors;
 							}}
 							onSubmit={async (values, { setSubmitting }) => {
 								const parsedContent = parseContent(contentValue);
-                                const bookID = await postBook(parsedContent)
-                                await postBookDetails(values, user, bookID);
-                                setSubmitting(false);
-                                router.push('/read');
-                            }}
+								const bookID = id
+									? await updateBook(parsedContent, values, id)
+									: await postBook(parsedContent, values, user);
+								setSubmitting(false);
+								router.push(`/read/${bookID}`);
+							}}
 						>
-							{({ isSubmitting }) => (
+							{({ values, isSubmitting }) => (
 								<>
-										<Form>
-									<DrawerBody>
-											<VStack mt={5} spacing={10}>
+									<Form>
+										<DrawerBody>
+											<VStack mt={5} mb={10} spacing={10}>
 												<FormControl id="title">
 													<FormLabel htmlFor="title">Title</FormLabel>
 													<InputGroup>
@@ -99,6 +114,25 @@ const BookDrawer = ({isOpen, onClose, title = "", description = ""}) => {
 														</Field>
 													</InputGroup>
 												</FormControl>
+												<FormControl id="image">
+													<FormLabel htmlFor="image">Cover Image</FormLabel>
+													<InputGroup>
+														<Field type="text" name="image">
+															{({ field, form: { errors } }) => (
+																<Input
+																	isInvalid={errors.image}
+																	id="image"
+																	size="lg"
+																	variant="filled"
+																	isRequired={true}
+																	{...field}
+																	placeholder="A cover image..."
+																	type="text"
+																/>
+															)}
+														</Field>
+													</InputGroup>
+												</FormControl>
 												<FormControl id="genres">
 													<FormLabel htmlFor="genres">Genres</FormLabel>
 													<InputGroup>
@@ -116,15 +150,27 @@ const BookDrawer = ({isOpen, onClose, title = "", description = ""}) => {
 															</HStack>
 														</CheckboxGroup>
 													</InputGroup>
-													<FormHelperText>
-														Adding genres is optional.
-													</FormHelperText>
+													<FormHelperText>Soon to come!</FormHelperText>
 												</FormControl>
+
+												<Card
+													example
+													{...values}
+													likes={0}
+													author={user?.name || "Your Name"}
+												/>
 											</VStack>
-									</DrawerBody>
-									<DrawerFooter borderTopWidth="1px">
-										<Button variant="submit" type="submit" disabled={isSubmitting} isLoading={isSubmitting}>Publish</Button>
-									</DrawerFooter>
+										</DrawerBody>
+										<DrawerFooter borderTopWidth="1px">
+											<Button
+												variant="submit"
+												type="submit"
+												disabled={isSubmitting}
+												isLoading={isSubmitting}
+											>
+												Publish
+											</Button>
+										</DrawerFooter>
 									</Form>
 								</>
 							)}

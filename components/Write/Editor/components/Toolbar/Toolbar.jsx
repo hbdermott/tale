@@ -33,9 +33,10 @@ const Toolbar = ({value}) => {
 				icon={<ArrowRight style={{ width: "24px" }} />}
 			/>
 			<BookDrawer
-				title={value ? value.title : ""}
-				description={value ? value.description : ""}
-				genres={value ? value.genres : ""}
+				title={value?.title}
+				description={value?.description}
+				genres={value?.genres}
+				id={value?.id}
 				isOpen={isOpen}
 				onClose={onClose}
 			/>

@@ -7,10 +7,10 @@ import Link from "next/link";
 import { Button } from "@chakra-ui/button";
 const Book = ({book}) => {
 	const {user} = useAuth();
-	
     return (
+	
 			<>
-				<Navbar sticky>{user && user.uid === book.authorID && <Link href={`/write/${book.id}`}><Button>Edit</Button></Link>}</Navbar>
+				<Navbar sticky>{user && user.uid === book.authorID && <Link passHref href={`/write/${book.id}`}><Button>Edit</Button></Link>}</Navbar>
 				<Box p={10}>
 					<PlateEditor readonly={true} value={book.content}></PlateEditor>
 				</Box>
