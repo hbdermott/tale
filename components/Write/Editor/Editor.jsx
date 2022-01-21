@@ -25,7 +25,7 @@ const Editor = ({value}) => {
 						<PlateEditor value={value?.content} />
 					</EditorContainer>
 
-					<Toolbar value={value}/>
+					<Toolbar bottom="0" position="sticky" value={value}/>
 			</Flex>
 		);
 }
