@@ -9,20 +9,24 @@ import PlateEditor from "./PlateEditor";
 import { IconButton } from "@chakra-ui/react";
 import { useState } from "react";
 import { useStoreEditorValue } from "@udecode/plate";
+import useWindowDimensions from "../../../lib/useWindowDimensions";
 
 const Editor = ({value}) => {
+	const dimensions = useWindowDimensions();
     return (
-			<VStack w="100%" h="100%">
-				<Center w="100%" h="100%" pb="100px">
+			<Flex
+				w="100%"
+				h={dimensions.height}
+				flexDir="column"
+				justify={"space-between"}
+				align="center"
+			>
 					<EditorContainer>
 						<PlateEditor value={value?.content} />
 					</EditorContainer>
-				</Center>
 
-				<Center w="100%" position="sticky" bottom="0">
 					<Toolbar value={value}/>
-				</Center>
-			</VStack>
+			</Flex>
 		);
 }
 

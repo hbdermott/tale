@@ -2,8 +2,11 @@
 import { IconButton, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
 import { BookOpen, CalligraphyPen, Navigation } from "@styled-icons/fluentui-system-filled";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const NavMenu = () => {
+    const router = useRouter();
+	
     return (
 			<Menu>
 				<MenuButton
