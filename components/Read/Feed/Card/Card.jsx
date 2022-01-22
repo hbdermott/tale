@@ -1,5 +1,5 @@
 import { Avatar } from "@chakra-ui/avatar"
-import { Badge, Box, Center, Flex, Heading, HStack, LinkBox, LinkOverlay, Stack, Text, VStack } from "@chakra-ui/layout"
+import { Badge, Box, Center, Divider, Flex, Heading, HStack, LinkBox, LinkOverlay, Stack, Text, VStack } from "@chakra-ui/layout"
 import Likes from "./Likes"
 import Link from "next/link";
 import { IconButton, Image, Link as ChakraLink, Spinner, useMultiStyleConfig } from "@chakra-ui/react";
@@ -19,14 +19,9 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 							size="xl"
 							height="80px"
 							width="80px"
-							position="absolute"
+							variant="centered"
 							thickness="10px"
-							left="0"
-							right="0"
-							top="0"
-							bottom="0"
-							margin="auto"
-							zIndex="docked"
+							
 						/>
 					</Box>
 				)}

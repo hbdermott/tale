@@ -8,8 +8,8 @@ const baseStyle = (props) => ({
 		m: "lg",
 		w: "full",
 		boxShadow: props.colorMode === "dark" ? "2xl" : "xl",
-		border: "4px",
-		borderColor: props.colorMode === "dark" ? "gray.800" : "gray.100",
+		// border: "4px",
+		// borderColor: props.colorMode === "dark" ? "gray.800" : "gray.100",
 	},
 	body: {
 		p: "6",
@@ -36,6 +36,7 @@ const baseStyle = (props) => ({
 		border: "1px",
 		borderColor: props.colorMode === "dark" ? "gray.800" : "gray.100",
 	},
+	
 });
 const sizes = {}
 const variants = {
