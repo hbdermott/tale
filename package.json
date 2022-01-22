@@ -36,6 +36,7 @@
 		"slate-hyperscript": "^0.67.0",
 		"slate-react": "^0.68.1",
 		"styled-components": "^5.3.3",
+		"swr": "^1.1.2",
 		"tippy.js": "^6.3.2"
 	},
 	"devDependencies": {

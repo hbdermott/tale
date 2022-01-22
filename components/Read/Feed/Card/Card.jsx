@@ -30,13 +30,13 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 							</Stack>
 							<Flex justify="space-between">
 								<HStack>
-									<Avatar name={author} src={`/api/user/avatar/${authorID}`} />
+									<Avatar name={author} />
 									<VStack spacing={0} align={"left"} fontSize={"sm"}>
 										<Text fontWeight="bold">{author}</Text>
 										<Text>{postdateString}</Text>
 									</VStack>
 								</HStack>
-								{/* <Likes id={id} likes={likes} /> */}
+								<Likes id={id} likes={likes} />
 							</Flex>
 						</Flex>
 					</Box>

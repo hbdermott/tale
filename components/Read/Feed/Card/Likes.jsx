@@ -4,30 +4,40 @@ import { HStack, Text } from "@chakra-ui/layout";
 import { Star } from "@styled-icons/fluentui-system-filled";
 import { useAuth } from "../../../../context/User";
 import { getLikedBooks, likeBook, useLikedBooks } from "../../../../app/firebase/useLiked";
+import useSWR from "swr";
+
+// const getUserData = async (userID) => {
+// 	console.log(userID)
+// 	// if (!userID) return {};
+// 	const query = await getDoc(doc(db, "userData", userID));
+// 	if (query.exists()) {
+// 		console.log("here")
+// 		const data = query.data()
+// 		return data
+// 	}
+// 	else{
+// 		console.log("Create user data file!")
+// 		await setDoc(doc(db, "userData", userID), {
+// 			likedBooks: [],
+// 		});
+// 		return {};
+// 	}
+//}
 
 const Likes = ({id, likes = 0, ...rest }) => {
 	const {user, loading} = useAuth();
-	const [isLiked, setLiked] = useState(false);
+	const [isLiked, setLiked] = useState(true);
 	const [likeCount, setLikesCount] = useState(likes);
+	const {data, error} = useSWR(user?.uid, getLikedBooks);
 	useEffect(() => {
-		let isMounted = true; 
-		const getLiked = async () => {
-			const books = await getLikedBooks(user.uid);
-			const liked = books.includes(id);
-			if(isMounted)
-				setLiked(liked);
+		if(!loading && user){
+			console.log(data)
+			setLiked(data?.includes(id))
 		}
-		if(user && !loading){
-			getLiked()
+		else if(!loading && !user){
+			setLiked(false);
 		}
-		else if(!user && !loading){
-			if (isMounted) setLiked(false);
-		}
-		return () => {
-			isMounted = false;
-		};
-		
-	}, [id, user, loading]);
+	}, [data, loading, user, id])
 	return (
 		<HStack>
 			<Text fontSize="md" color="gray.400" fontWeight="bold">
@@ -39,10 +49,10 @@ const Likes = ({id, likes = 0, ...rest }) => {
 				onClick={async (e) => {
 					e.stopPropagation();
 					if(!loading && user){
+						setLiked(!isLiked);
 						if (isLiked) setLikesCount(likeCount - 1);
 						else setLikesCount(likeCount + 1);
 						await likeBook(id, user.uid);
-						setLiked(!isLiked);
 					}
 					
 				}}
