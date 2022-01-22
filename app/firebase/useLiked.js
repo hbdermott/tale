@@ -27,51 +27,48 @@ export const useLikedBooks = () => {
     return liked;
 }
 
-export const getLikedBooks = async (userID) => {
-	if (!userID) return [];
+export const getUserData = async (userID) => {
+	if (!userID) return {};
 	const query = await getDoc(doc(db, "userData", userID));
 	if (query.exists()) {
-		const likedBooks = query.data().likedBooks;
-		return likedBooks;
+		const data = query.data();
+		return data;
 	} else {
 		await setDoc(doc(db, "userData", userID), {
 			likedBooks: [],
 		});
-		return [];
+		return {};
 	}
 };
 
-export const likeBook = async (bookID, userID) => {
-    if(userID){
-        const likedBooks = await getLikedBooks(userID);
-        const bookRef = doc(db, "bookDetails", bookID);
-        const bookData =  await getDoc(bookRef)
-        const likes = bookData.data().likes;
-        if (likedBooks.includes(bookID)) {
-            await setDoc(
-                doc(db, "userData", userID),
-                {
-                    likedBooks: likedBooks.filter((book) => book !== bookID),
-                },
-                { merge: true }
-            );
-            await updateDoc(bookRef, {
-                likes: likes - 1
-            })
-        } else {
-            await setDoc(
-                doc(db, "userData", userID),
-                {
-                    likedBooks: [...likedBooks, bookID],
-                },
-                { merge: true }
-            );
-            await updateDoc(bookRef, {
-                likes: likes + 1
-            })
-        }
-    }
-	
-
-
-};
+// export const likeBook = async (bookID, userID) => {
+//     if(userID){
+//         const likedBooks = await getLikedBooks(userID);
+//         const bookRef = doc(db, "bookDetails", bookID);
+//         const bookData =  await getDoc(bookRef)
+//         const likes = bookData.data().likes;
+//         if (likedBooks.includes(bookID)) {
+//             await setDoc(
+//                 doc(db, "userData", userID),
+//                 {
+//                     likedBooks: likedBooks.filter((book) => book !== bookID),
+//                 },
+//                 { merge: true }
+//             );
+//             await updateDoc(bookRef, {
+//                 likes: likes - 1
+//             })
+//         } else {
+//             await setDoc(
+//                 doc(db, "userData", userID),
+//                 {
+//                     likedBooks: [...likedBooks, bookID],
+//                 },
+//                 { merge: true }
+//             );
+//             await updateDoc(bookRef, {
+//                 likes: likes + 1
+//             })
+//         }
+//     }
+//}
