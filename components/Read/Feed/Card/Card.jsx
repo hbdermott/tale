@@ -2,18 +2,60 @@ import { Avatar } from "@chakra-ui/avatar"
 import { Badge, Box, Flex, Heading, HStack, LinkBox, LinkOverlay, Stack, Text, VStack } from "@chakra-ui/layout"
 import Likes from "./Likes"
 import Link from "next/link";
-import { Image, Link as ChakraLink, useMultiStyleConfig } from "@chakra-ui/react";
+import { IconButton, Image, Link as ChakraLink, Spinner, useMultiStyleConfig } from "@chakra-ui/react";
 import { useState } from "react";
 import { getLocalTimeString } from "../../../../lib/time";
-const Card = ({id, example, title, postdate, genres, description, image, likes, author, authorID}) => {
+import { DocumentEdit, Edit } from "@styled-icons/fluentui-system-filled";
+import EditIconButton from "./EditIconButton";
+const Card = ({id, example, title, postdate, genres, description, image, likes, author, authorID, userData}) => {
 	const styles = useMultiStyleConfig('Card', {})
 	const postdateString = example ? "Today!" : getLocalTimeString(postdate);
+	const [isLoading, setLoading] = useState(false);
     return (
-			<Box __css={styles.base}>
-				<LinkBox h="full">
-					<Box h={"210px"} bg={"gray.100"} pos={"relative"}>
-						{image && <Image h="full" w="full" src={image} fit={"fill"} alt="Cover Image" />}
+			<Box __css={styles.base} position="relative">
+				{isLoading && (
+					<Box __css={styles.blur}>
+						<Spinner
+							size="xl"
+							height="80px"
+							width="80px"
+							position="absolute"
+							thickness="10px"
+							left="0"
+							right="0"
+							top="0"
+							bottom="0"
+							margin="auto"
+							zIndex="docked"
+						/>
 					</Box>
+				)}
+
+				<LinkBox
+					h="full"
+					filter={isLoading ? "blur(2px)" : "none"}
+					onClick={() => setLoading(true)}
+				>
+					<Box h={"210px"} bg={"gray.100"} pos={"relative"}>
+						{image && (
+							<Image
+								h="full"
+								w="full"
+								src={image}
+								fit={"fill"}
+								alt="Cover Image"
+							/>
+						)}
+					</Box>
+					{userData.userID === authorID && (
+						<EditIconButton
+							id={id}
+							position="absolute"
+							zIndex="2"
+							right="10px"
+							top="10px"
+						/>
+					)}
 					<Box __css={styles.body}>
 						<Flex h="full" direction="column" justify="space-between">
 							<Stack>
@@ -36,7 +78,7 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 										<Text>{postdateString}</Text>
 									</VStack>
 								</HStack>
-								<Likes id={id} likes={likes} />
+								<Likes bookID={id} likes={likes} {...userData} />
 							</Flex>
 						</Flex>
 					</Box>

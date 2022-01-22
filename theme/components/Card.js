@@ -1,5 +1,5 @@
 
-const parts = ['base', 'body']
+const parts = ['base', 'body', 'blur']
 const baseStyle = (props) => ({
 	base: {
 		maxW: "400px",
@@ -17,9 +17,20 @@ const baseStyle = (props) => ({
 		h: "2xs",
 		bg: props.colorMode === "dark" ? "gray.900" : "gray.50",
 	},
+	blur: {
+		h: "full",
+		w: "full",
+		bg: props.colorMode === "dark" ? "gray.900" : "gray.200",
+		opacity: 0.7,
+		position: "absolute",
+		top: 0,
+		left: 0,
+		zIndex: "docked",
+	},
 });
 const sizes = {}
-const variants = {}
+const variants = {
+}
 
 const defaultProps = {}
 

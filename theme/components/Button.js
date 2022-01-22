@@ -25,6 +25,20 @@ const variants = {
 		border: "2px",
 		borderColor: props.colorMode === "dark" ? "gray.700" : "gray.500",
 	}),
+	ghost: (props) => ({
+		backdropFilter: "blur(10px)",
+		bg: props.colorMode === "dark" ? "gray.900" : "gray.100",
+		opacity: 0.6,
+		_hover: {
+			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
+		},
+		_active: {
+			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
+		},
+		_focus: {
+			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
+		},
+	}),
 	submit: (props) => ({
 		bg: props.colorMode === "dark" ? "green.600" : "green.400",
 		p: "6",
