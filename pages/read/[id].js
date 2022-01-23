@@ -12,7 +12,7 @@ const Book = ({book}) => {
 			<>
 				<Navbar sticky>{user && user.uid === book.authorID && <Link passHref href={`/write/${book.id}`}><Button variant="edit">Edit</Button></Link>}</Navbar>
 				<Box p={10}>
-					<PlateEditor readonly={true} value={book.content}></PlateEditor>
+					<PlateEditor id="second" readonly={true} value={book.content}></PlateEditor>
 				</Box>
 			</>
 		);

@@ -15,7 +15,7 @@ import Card from "../Read/Feed/Card/Card";
 import { usePlateSelectors } from "@udecode/plate";
 
 
-const BookDrawer = ({isOpen, onClose, title = "", description = "", id}) => {
+const BookDrawer = ({isOpen, onClose, title = "", description = "", image= "", id}) => {
     const contentValue = usePlateSelectors('main-editor').value()
 	// useEffect(() => {console.log(contentValue)},[contentValue])
     const { user } = useAuth();
@@ -38,6 +38,7 @@ const BookDrawer = ({isOpen, onClose, title = "", description = "", id}) => {
 							initialValues={{
 								title: title,
 								description: description,
+								image: image,
 								genres: [],
 							}}
 							validate={(values) => {

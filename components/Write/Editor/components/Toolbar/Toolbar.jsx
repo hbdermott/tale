@@ -32,6 +32,7 @@ const Toolbar = ({value}) => {
 			<BookDrawer
 				title={value?.title}
 				description={value?.description}
+				image={value?.image}
 				genres={value?.genres}
 				id={value?.id}
 				isOpen={isOpen}

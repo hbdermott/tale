@@ -43,5 +43,8 @@
 	"devDependencies": {
 		"eslint": "7.32.0",
 		"eslint-config-next": "11.1.2"
+	},
+	"resolutions": {
+		"@udecode/zustood": "^0.4.3"
 	}
 }
