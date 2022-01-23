@@ -8,8 +8,8 @@ const sizes = {
 
 const variants = {
 	solid: (props) => ({
+		boxShadow: props.colorMode === "dark" ? "2xl" : "inner",
 		bg: props.colorMode === "dark" ? "gray.900" : "gray.100",
-		// boxShadow: props.colorMode === "dark" ? "2xl" : "inner",
 		_hover: {
 			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
 		},
@@ -23,21 +23,27 @@ const variants = {
 	outline: (props) => ({
 		bg: "transparent",
 		border: "2px",
-		borderColor: props.colorMode === "dark" ? "gray.700" : "gray.500",
-	}),
-	ghost: (props) => ({
-		backdropFilter: "blur(10px)",
-		bg: props.colorMode === "dark" ? "gray.900" : "gray.100",
-		opacity: 0.6,
+		borderColor: props.colorMode === "dark" ? "gray.700" : "gray.400",
 		_hover: {
-			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
-		},
-		_active: {
 			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
 		},
 		_focus: {
 			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
 		},
+		_active: {
+			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
+		},
+	}),
+	inset: (props) => ({
+		bg: props.colorMode === "dark" ? "#2D374855" : "#EDF2F7AA",
+		rounded: "xl",
+		// border: "1px",
+		// borderColor: props.colorMode === "dark" ? "gray.800" : "gray.100",
+		boxShadow: "inner",
+	}),
+	overlay: (props) => ({
+		backdropFilter: "blur(10px)",
+		opacity: 0.6,
 	}),
 	submit: (props) => ({
 		bg: props.colorMode === "dark" ? "green.600" : "green.400",
@@ -62,7 +68,17 @@ const defaultProps = {
 };
 
 const baseStyle = (props) => ({
-	boxShadow: props.colorMode === "dark" ? "2xl" : "inner"
+	boxShadow: props.colorMode === "dark" ? "2xl" : "inner",
+	bg: props.colorMode === "dark" ? "gray.900" : "gray.100",
+	_hover: {
+		bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
+	},
+	_focus: {
+		bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
+	},
+	_active: {
+		bg: props.colorMode === "dark" ? "gray.700" : "gray.300",
+	},
 });
 
 const Card = { defaultProps, sizes, variants, baseStyle };

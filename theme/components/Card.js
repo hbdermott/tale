@@ -1,5 +1,5 @@
 
-const parts = ['base', 'body', 'blur', 'like']
+const parts = ['base', 'body', 'blur']
 const baseStyle = (props) => ({
 	base: {
 		maxW: "400px",
@@ -26,15 +26,6 @@ const baseStyle = (props) => ({
 		top: 0,
 		left: 0,
 		zIndex: "docked",
-	},
-	like: {
-		bg: props.colorMode === "dark" ? "#2D374833" : "#EDF2F7AA",
-		boxShadow: "inner",
-		// px: "3",
-		// py: "1",
-		rounded: "xl",
-		border: "1px",
-		borderColor: props.colorMode === "dark" ? "gray.800" : "gray.100",
 	},
 	
 });

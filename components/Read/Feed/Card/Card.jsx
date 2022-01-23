@@ -1,11 +1,10 @@
 import { Avatar } from "@chakra-ui/avatar"
-import { Badge, Box, Center, Divider, Flex, Heading, HStack, LinkBox, LinkOverlay, Stack, Text, VStack } from "@chakra-ui/layout"
+import { Badge, Box, Flex, Heading, HStack, LinkBox, LinkOverlay, Stack, Text, VStack } from "@chakra-ui/layout"
 import Likes from "./Likes"
 import Link from "next/link";
-import { IconButton, Image, Link as ChakraLink, Spinner, useMultiStyleConfig } from "@chakra-ui/react";
+import {  Image, Spinner, useMultiStyleConfig } from "@chakra-ui/react";
 import { useState } from "react";
 import { getLocalTimeString } from "../../../../lib/time";
-import { DocumentEdit, Edit } from "@styled-icons/fluentui-system-filled";
 import EditIconButton from "./EditIconButton";
 const Card = ({id, example, title, postdate, genres, description, image, likes, author, authorID, userData}) => {
 	const styles = useMultiStyleConfig('Card', {})
@@ -73,9 +72,7 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 										<Text>{postdateString}</Text>
 									</VStack>
 								</HStack>
-								<Center __css={styles.like}>
-									<Likes bookID={id} likes={likes} {...userData} />
-								</Center>
+								<Likes bookID={id} likes={likes} {...userData} />
 							</Flex>
 						</Flex>
 					</Box>

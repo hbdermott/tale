@@ -9,7 +9,7 @@ const EditIconButton = ({ id, ...rest }) => {
 		<Link passHref href={`/write/${id}`}>
 			<IconButton
                 isLoading={isLoading}
-				variant={"ghost"}
+				variant="overlay"
 				icon={<Edit size="24px" />}
 				onClick={(e) => {
                     e.stopPropagation()
