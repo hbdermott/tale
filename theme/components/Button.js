@@ -21,8 +21,8 @@ const variants = {
 		},
 	}),
 	outline: (props) => ({
-		bg: "transparent",
-		border: "2px",
+		bg: "none",
+		border: "4px",
 		borderColor: props.colorMode === "dark" ? "gray.700" : "gray.400",
 		_hover: {
 			bg: props.colorMode === "dark" ? "gray.700" : "gray.300",

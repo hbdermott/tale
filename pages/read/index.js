@@ -1,6 +1,7 @@
 import { Center, SimpleGrid } from "@chakra-ui/layout";
 import useSWR from "swr";
 import Card from "../../components/Read/Feed/Card/Card";
+import CardCarousel from "../../components/Read/Feed/Card/CardCarousel";
 import { useAuth } from "../../context/User";
 import { fetchUserData } from "../../lib/fetchUser";
 import {fetchBookDetails} from "../../lib/firebase/fetchBook";
@@ -16,12 +17,28 @@ const Read = ({bookDetails}) => {
 						<Center key={book.id}>
 							<Card
 								key={book.id}
-								userData={{...data, userID: user?.uid}}
+								userData={{ ...data, userID: user?.uid }}
 								{...book}
 							/>
 						</Center>
 					))}
 				</SimpleGrid>
+				<CardCarousel>
+					{bookDetails.map((book) => (
+						<Card
+							key={book.id}
+							userData={{ ...data, userID: user?.uid }}
+							{...book}
+						/>
+					))}
+					{bookDetails.map((book) => (
+						<Card
+							key={book.id + 2}
+							userData={{ ...data, userID: user?.uid }}
+							{...book}
+						/>
+					))}
+				</CardCarousel>
 			</>
 		);
 }

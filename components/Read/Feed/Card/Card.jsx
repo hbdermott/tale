@@ -30,7 +30,7 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 					filter={isLoading ? "blur(2px)" : "none"}
 					onClick={() => setLoading(true)}
 				>
-					<Box h={"210px"} bg={"gray.100"} pos={"relative"}>
+					<Box h={"3xs"} bg={"gray.100"} pos={"relative"}>
 						{image && (
 							<Image
 								h="full"

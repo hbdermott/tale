@@ -3,6 +3,7 @@ const parts = ['base', 'body', 'blur']
 const baseStyle = (props) => ({
 	base: {
 		maxW: "400px",
+		minW: "400px",
 		rounded: "xl",
 		overflow: "hidden",
 		m: "lg",
