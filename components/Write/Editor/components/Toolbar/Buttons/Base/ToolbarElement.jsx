@@ -1,10 +1,12 @@
 
 import {
+	getPluginType,
+	usePlateEditorRef,
+	usePlateEditorState,
 	getPreventDefaultHandler,
 	someNode,
 	toggleNodeType,
-} from "@udecode/plate-common";
-import { getPlatePluginType, useStoreEditorRef, useStoreEditorState } from "@udecode/plate-core";
+} from "@udecode/plate-core";
 import ToolbarButton from "./ToolbarButton";
 
 /**
@@ -19,9 +21,9 @@ const ToolbarElement = ({
 	...props
 }) => {
 
-    const editorRef = useStoreEditorRef(editorID);
-    const editor = useStoreEditorState(editorID);
-    const type = getPlatePluginType(editorRef, typeName);
+    const editorRef = usePlateEditorRef(editorID);
+    const editor = usePlateEditorState(editorID);
+    const type = getPluginType(editorRef, typeName);
 	return (
 		<ToolbarButton
 			active={

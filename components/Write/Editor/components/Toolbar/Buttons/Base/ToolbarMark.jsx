@@ -1,27 +1,29 @@
 import React from "react";
 import {
+	getPluginType,
+	usePlateEditorRef,
+	usePlateEditorState,
 	getPreventDefaultHandler,
 	isMarkActive,
-	toggleMark,
-} from "@udecode/plate-common";
-import { getPlatePluginType, useStoreEditorRef, useStoreEditorState } from "@udecode/plate-core";
+	toggleMark
+} from "@udecode/plate-core";
 import ToolbarButton from "./ToolbarButton";
 
 /**
  * Toolbar button to toggle the mark of the leaves in selection.
  */
 const ToolbarMark = ({ editorID = "main-editor", typeName, clearName, children, ...props }) => {
-	const editorRef = useStoreEditorRef(editorID);
-	const editor = useStoreEditorState(editorID);
-	const type = getPlatePluginType(editorRef, typeName);
-    const clear = getPlatePluginType(editorRef, clearName);
+	const editorRef = usePlateEditorRef(editorID);
+	const editor = usePlateEditorState(editorID);
+	const type = getPluginType(editorRef, typeName);
+    const clear = getPluginType(editorRef, clearName);
 	return (
 		<ToolbarButton
-			active={!!editor?.selection && isMarkActive(editor, type)}
+			active={!!editor?.selection && isMarkActive(editor, !type)}
 			onMouseDown={
-				editor
-					? getPreventDefaultHandler(toggleMark, editor, type, clear)
-					: undefined
+			editor
+				? getPreventDefaultHandler(toggleMark, editor, { key: type, clear })
+				: undefined
 			}
 			{...props}
 		>

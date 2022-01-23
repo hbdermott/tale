@@ -1,15 +1,15 @@
 import React from 'react';
 import { setAlign } from '@udecode/plate-alignment';
 import {
-  isCollapsed,
-  someNode,
-} from '@udecode/plate-common';
-import { useStoreEditorState } from '@udecode/plate-core';
+	isCollapsed,
+	someNode,
+	usePlateEditorState,
+} from "@udecode/plate-core";
 import ToolbarButton from './Base/ToolbarButton';
 
 
 const ToolbarAlign = ({ align, editorID = 'main-editor', children, ...props }) => {
-  const editor = useStoreEditorState(editorID);
+  const editor = usePlateEditorState(editorID);
 
   return (
 		<ToolbarButton
@@ -19,7 +19,7 @@ const ToolbarAlign = ({ align, editorID = 'main-editor', children, ...props }) =
 			onMouseDown={(e) => {
                 e.preventDefault();
                 // e.stopPropagation();
-                setAlign(editor, {align: align});
+                setAlign(editor, {value: align});
             }}
 			{...props}
 		>

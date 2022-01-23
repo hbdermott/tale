@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { getPlatePluginType, useStoreEditorRef } from "@udecode/plate-core";
+import {
+	getPluginType,
+	usePlateEditorRef,
+	getAbove,
+	isCollapsed,
+} from "@udecode/plate-core";
 import { useDisclosure } from "@chakra-ui/hooks";
 import ToolbarButton from "./Base/ToolbarButton";
 import ModalLink from "./Base/ModalLink";
 import { ELEMENT_LINK, upsertLinkAtSelection } from "@udecode/plate-link";
-import { getAbove, isCollapsed } from "@udecode/plate-common";
 
 const ToolbarLink= ({ children, editorID = "main-editor", ...props }) => {
-	const editor = useStoreEditorRef(editorID);
+	const editor = usePlateEditorRef(editorID);
 	const { isOpen, onOpen, onClose } = useDisclosure();
 	const [loading, setLoading] = useState(false);
 
     const insertLink = async (editor, link) => {
-        const type = getPlatePluginType(editor, ELEMENT_LINK);
+        const type = getPluginType(editor, ELEMENT_LINK);
         const linkNode = getAbove(editor, {
             match: { type },
         });
         const shouldWrap = linkNode !== undefined && isCollapsed(editor.selection);
-        upsertLinkAtSelection(editor, { link, wrap: true });
+        upsertLinkAtSelection(editor, { link, wrap: shouldWrap });
     }
 
 	useEffect(() => {

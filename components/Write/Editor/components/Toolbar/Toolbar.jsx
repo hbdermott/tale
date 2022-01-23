@@ -9,7 +9,6 @@ import ToolbarImport from "./Buttons/Groups/ToolbarImport";
 import ToolbarLayout from "./Buttons/Groups/ToolbarLayout";
 import ToolbarMarkup from "./Buttons/Groups/ToolbarMarkup";
 import { IconButton } from "@chakra-ui/react";
-// import ToolbarColorPicker from "./Toolbar/Buttons/ToolbarColorPicker";
 import ToolbarContainer from "./ToolbarContainer";
 const Toolbar = ({value}) => {
 	const { isOpen, onOpen, onClose } = useDisclosure();
@@ -20,8 +19,6 @@ const Toolbar = ({value}) => {
 				<ToolbarHeader />
 				<ToolbarMarkup />
 				<ToolbarLayout />
-				{/* <ToolbarColorPicker isDisabled={true} pluginKey={MARK_COLOR} />
-			<ToolbarColorPicker isDisabled={true} pluginKey={MARK_BG_COLOR} /> */}
 				<ToolbarImport />
 			</Flex>
 			<IconButton

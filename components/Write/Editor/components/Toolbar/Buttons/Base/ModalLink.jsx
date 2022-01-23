@@ -12,7 +12,7 @@ import {
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { Button } from "@chakra-ui/button";
-import { useStoreEditorState } from "@udecode/plate-core";
+import { usePlateEditorState } from "@udecode/plate-core";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { Flex } from "@chakra-ui/layout";
 import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/alert";
@@ -31,7 +31,7 @@ const ModalLink = ({
 	...props
 }) => {
 	
-	const editor = useStoreEditorState(editorID);
+	const editor = usePlateEditorState(editorID);
 	return (
 		<Modal
 			// closeOnOverlayClick={false}

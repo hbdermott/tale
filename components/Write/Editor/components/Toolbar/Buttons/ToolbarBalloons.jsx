@@ -1,13 +1,13 @@
 import { HStack } from "@chakra-ui/layout";
 import { TextBold, TextItalic, TextUnderline, TextStrikethrough } from "@styled-icons/fluentui-system-filled";
 import { MARK_BOLD, MARK_ITALIC, MARK_UNDERLINE } from "@udecode/plate-basic-marks";
-import { useStoreEditorRef } from "@udecode/plate-core";
-import { BalloonToolbar } from "@udecode/plate-toolbar";
+import { usePlateEditorRef } from "@udecode/plate-core";
+import { BalloonToolbar } from "@udecode/plate-ui-toolbar";
 
 import ToolbarMark from "./Base/ToolbarMark";
 
 const ToolbarBalloons = ({editorID = 'main-editor'}) => {
-	const editor = useStoreEditorRef(editorID);
+	const editor = usePlateEditorRef(editorID);
 	const arrow = false;
 	const theme = "dark";
 	const tooltip = {

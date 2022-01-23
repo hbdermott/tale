@@ -1,24 +1,22 @@
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup } from "@chakra-ui/input";
-import { Box, Flex, HStack, Stack, VStack } from "@chakra-ui/layout";
+import {  HStack, VStack } from "@chakra-ui/layout";
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay } from "@chakra-ui/modal";
 import { CheckboxGroup } from "@chakra-ui/react";
-import { Select } from "@chakra-ui/select";
 import { Textarea } from "@chakra-ui/textarea";
 import { Field, Form, Formik } from "formik";
-import React, {useEffect, useRef, useState} from "react";
-import { Checkbox } from "@chakra-ui/checkbox";
+import React, {useRef} from "react";
 import { Button } from "@chakra-ui/button";
-import { useStoreEditorValue } from "@udecode/plate-core";
 import { useAuth } from "../../context/User";
 import { useRouter } from "next/router";
-import { postBook, postBookDetails, updateBook } from "../../lib/firebase/postBook";
+import { postBook, updateBook } from "../../lib/firebase/postBook";
 import { parseContent } from "../../lib/parseContent";
-import { InputLeftElement } from "@chakra-ui/react";
-import { Image } from "@styled-icons/fluentui-system-filled";
 import Card from "../Read/Feed/Card/Card";
+import { usePlateSelectors } from "@udecode/plate";
+
+
 const BookDrawer = ({isOpen, onClose, title = "", description = "", id}) => {
-    const contentValue = useStoreEditorValue('main-editor')
+    const contentValue = usePlateSelectors('main-editor').value()
 	// useEffect(() => {console.log(contentValue)},[contentValue])
     const { user } = useAuth();
     const router = useRouter();

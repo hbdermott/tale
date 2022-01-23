@@ -11,12 +11,11 @@ import { HStack, VStack } from "@chakra-ui/layout";
 import ToolbarButton from "../../Buttons/Base/ToolbarButton";
 import { indent, outdent } from "@udecode/plate-indent";
 import ToolbarAlign from "../../Buttons/ToolbarAlign";
-import { getPreventDefaultHandler } from "@udecode/plate-common";
-import { useStoreEditorRef } from "@udecode/plate-core";
+import { getPreventDefaultHandler, usePlateEditorRef } from "@udecode/plate-core";
 import MenuIconButton from "../../Buttons/MenuIconButton";
 
 const ToolbarLayout = () => {
-	const editor = useStoreEditorRef('main-editor');
+	const editor = usePlateEditorRef('main-editor');
 	return (
 		<Menu offset={[-45, 15]}>
 			<MenuIconButton

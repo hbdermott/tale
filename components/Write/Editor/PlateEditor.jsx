@@ -1,35 +1,90 @@
-import { createPlateComponents, createPlateOptions, selectEditor } from "@udecode/plate";
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import {Plate} from "@udecode/plate-core";
+import {
+	createAlignPlugin,
+	createAutoformatPlugin,
+	createBlockquotePlugin,
+	createBoldPlugin,
+	createCodePlugin,
+	createDeserializeMdPlugin,
+	createExitBreakPlugin,
+	createFontColorPlugin,
+	createFontFamilyPlugin,
+	createFontSizePlugin,
+	createFontWeightPlugin,
+	createHeadingPlugin,
+	createHighlightPlugin,
+	createHorizontalRulePlugin,
+	createImagePlugin,
+	createIndentPlugin,
+	createItalicPlugin,
+	createLinkPlugin,
+	createMediaEmbedPlugin,
+	createNodeIdPlugin,
+	createParagraphPlugin,
+	createPlateUI,
+	createPlugins,
+	createResetNodePlugin,
+	createSelectOnBackspacePlugin,
+	createSoftBreakPlugin,
+	createStrikethroughPlugin,
+	createTrailingBlockPlugin,
+	createUnderlinePlugin,
+	Plate,
+} from "@udecode/plate";
 import { CONFIG } from "./config/config";
 import { withStyledPlaceHolders } from "./plugins/withStyledPlaceHolders";
 import React, { useMemo } from "react";
-import { createEditor } from "slate";
-import {getPlugins} from "./config/plugins";
-import ToolbarBalloons from "./components/Toolbar/Buttons/ToolbarBalloons";
+// import ToolbarBalloons from "./components/Toolbar/Buttons/ToolbarBalloons";
 
-const PlateEditor = ({readonly = false, value}) => {
-	let components = createPlateComponents({
-		...CONFIG.components,
-	});
+const PlateEditor = ({ readonly = false, value }) => {
+	let components = createPlateUI();
 	components = withStyledPlaceHolders(components);
-	// components = withStyledDraggables(components);
-	const options = createPlateOptions();
 
 	const Editor = () => {
-		// const slateEditor = createEditor()
-		const pluginsMemo = useMemo(getPlugins, []);
-
+		// const pluginsMemo = useMemo(getPlugins, []);
+		const plugins = createPlugins(
+			[
+				createParagraphPlugin(),
+				createBlockquotePlugin(),
+				createHeadingPlugin(),
+				createImagePlugin(),
+				createHorizontalRulePlugin(),
+				// createLineHeightPlugin(CONFIG.lineHeight),
+				createLinkPlugin(),
+				// createListPlugin(),
+				createMediaEmbedPlugin(),
+				// createCodeBlockPlugin(),
+				createAlignPlugin(CONFIG.align),
+				createBoldPlugin(),
+				createCodePlugin(),
+				createItalicPlugin(),
+				createHighlightPlugin(),
+				createUnderlinePlugin(),
+				createStrikethroughPlugin(),
+				// createFontBackgroundColorPlugin(),
+				createFontFamilyPlugin(),
+				createFontColorPlugin(),
+				createFontSizePlugin(),
+				createFontWeightPlugin(),
+				createNodeIdPlugin(),
+				createIndentPlugin(CONFIG.indent),
+				createAutoformatPlugin(CONFIG.autoformat),
+				createResetNodePlugin(CONFIG.resetBlockType),
+				createSoftBreakPlugin(CONFIG.softBreak),
+				createExitBreakPlugin(CONFIG.exitBreak),
+				createTrailingBlockPlugin(CONFIG.trailingBlock),
+				createSelectOnBackspacePlugin(CONFIG.selectOnBackspace),
+				createDeserializeMdPlugin(),
+				// createJuicePlugin(),
+			],
+			{
+				components,
+			}
+		);
 
 		return (
-			<DndProvider backend={HTML5Backend}>
 				<Plate
 					id="main-editor"
-					plugins={pluginsMemo}
-					// editor={slateEditor}
-					components={components}
-					options={options}
+					plugins={plugins}
 					initialValue={[
 						{
 							type: "p",
@@ -39,9 +94,8 @@ const PlateEditor = ({readonly = false, value}) => {
 					editableProps={readonly ? CONFIG.readOnly : CONFIG.editableProps}
 					value={value}
 				>
-					{!readonly ? <ToolbarBalloons/> : <></>}
+					{/* {!readonly ? <ToolbarBalloons/> : <></>} */}
 				</Plate>
-			</DndProvider>
 		);
 	};
 

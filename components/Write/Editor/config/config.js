@@ -1,16 +1,17 @@
-import { createPlateComponents, createPlateOptions } from "@udecode/plate";
-import { ELEMENT_BLOCKQUOTE } from "@udecode/plate-block-quote";
-import { ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, KEYS_HEADING } from "@udecode/plate-heading";
-import { ELEMENT_PARAGRAPH } from "@udecode/plate-paragraph";
-import { autoformatRules } from "./autoformat/autoformatRules"
 import {
+	ELEMENT_BLOCKQUOTE,
+	ELEMENT_H1,
+	ELEMENT_H2,
+	ELEMENT_H3,
+	ELEMENT_HR,
+	ELEMENT_IMAGE,
+	ELEMENT_PARAGRAPH,
 	isBlockAboveEmpty,
 	isSelectionAtBlockStart,
-	withProps,
-} from "@udecode/plate-common";
-import { ELEMENT_HR } from "@udecode/plate-horizontal-rule";
-import { ELEMENT_IMAGE } from "@udecode/plate-image";
-import { StyledElement } from "@udecode/plate-styled-components";
+	KEYS_HEADING,
+} from "@udecode/plate";
+import { autoformatRules } from "./autoformat/autoformatRules";
+
 const resetBlockTypesCommonRule = {
 	types: [ELEMENT_BLOCKQUOTE, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
 	defaultType: ELEMENT_PARAGRAPH,
@@ -32,71 +33,94 @@ export const CONFIG = {
 			// zIndex: "-1",
 		},
 	},
-	options: createPlateOptions(),
-	components: createPlateComponents(),
 
 	align: {
-		types: [ELEMENT_PARAGRAPH, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3, ELEMENT_BLOCKQUOTE],
-		alignments: ['left', 'center', 'right'], 
+		inject: {
+			props: {
+				validTypes: [ELEMENT_PARAGRAPH, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
+			},
+		},
 	},
 	indent: {
-		types: [
-			ELEMENT_PARAGRAPH,
-			ELEMENT_H1,
-			ELEMENT_H2,
-			ELEMENT_H3,
-			ELEMENT_BLOCKQUOTE,
-		],
+		inject: {
+			props: {
+				validTypes: [
+					ELEMENT_PARAGRAPH,
+					ELEMENT_H1,
+					ELEMENT_H2,
+					ELEMENT_H3,
+					ELEMENT_BLOCKQUOTE,
+				],
+			},
+		},
 	},
 	lineHeight: {
-		defaultLineHeight: 1.5,
+		inject: {
+			props: {
+				defaultNodeValue: 1.5,
+				validNodeValues: [1, 1.2, 1.5, 2, 3],
+				validTypes: [ELEMENT_PARAGRAPH, ELEMENT_H1, ELEMENT_H2, ELEMENT_H3],
+			},
+		},
 	},
 	resetBlockType: {
-		rules: [
-			{
-				...resetBlockTypesCommonRule,
-				hotkey: "Enter",
-				predicate: isBlockAboveEmpty,
-			},
-			{
-				...resetBlockTypesCommonRule,
-				hotkey: "Backspace",
-				predicate: isSelectionAtBlockStart,
-			},
-		],
+		options: {
+			rules: [
+				{
+					...resetBlockTypesCommonRule,
+					hotkey: "Enter",
+					predicate: isBlockAboveEmpty,
+				},
+				{
+					...resetBlockTypesCommonRule,
+					hotkey: "Backspace",
+					predicate: isSelectionAtBlockStart,
+				},
+			],
+		},
 	},
 	trailingBlock: { type: ELEMENT_PARAGRAPH },
 	softBreak: {
-		rules: [
-			{ hotkey: "shift+enter" },
-			{
-				hotkey: "enter",
-				query: {
-					allow: [ELEMENT_BLOCKQUOTE],
+		options: {
+			rules: [
+				{ hotkey: "shift+enter" },
+				{
+					hotkey: "enter",
+					query: {
+						allow: [ELEMENT_BLOCKQUOTE],
+					},
 				},
-			},
-		],
+			],
+		},
 	},
 	exitBreak: {
-		rules: [
-			{
-				hotkey: "enter",
-			},
-			{
-				hotkey: "mod+shift+enter",
-				before: true,
-			},
-			{
-				hotkey: "mod+enter",
-				query: {
-					start: true,
-					end: true,
-					allow: KEYS_HEADING,
+		options: {
+			rules: [
+				{
+					hotkey: "enter",
 				},
-			},
-		],
+				{
+					hotkey: "mod+shift+enter",
+					before: true,
+				},
+				{
+					hotkey: "mod+enter",
+					query: {
+						start: true,
+						end: true,
+						allow: KEYS_HEADING,
+					},
+				},
+			],
+		},
 	},
-	selectOnBackspace: { allow: [ELEMENT_IMAGE, ELEMENT_HR] },
+	selectOnBackspace: {
+		options: {
+			query: {
+				allow: [ELEMENT_IMAGE, ELEMENT_HR],
+			},
+		},
+	},
 	autoformat: {
 		rules: autoformatRules,
 	},

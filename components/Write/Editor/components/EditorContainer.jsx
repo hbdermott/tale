@@ -1,10 +1,10 @@
 import { Box, Center } from "@chakra-ui/layout"
-import { useStoreEditorRef } from "@udecode/plate-core";
+import { usePlateEditorRef } from "@udecode/plate-core";
 import { ReactEditor } from "slate-react";
 
 
 const EditorContainer = ({children}) => {
-    const editor = useStoreEditorRef("main-editor");
+    const editor = usePlateEditorRef("main-editor");
     return (
 			<Box
 				w={{ base: "100%", lg: "85%", xl: "75%", "2xl": "70%"}}

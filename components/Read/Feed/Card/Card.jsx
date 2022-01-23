@@ -3,15 +3,22 @@ import { Badge, Box, Flex, Heading, HStack, LinkBox, LinkOverlay, Stack, Text, V
 import Likes from "./Likes"
 import Link from "next/link";
 import {  Image, Spinner, useMultiStyleConfig } from "@chakra-ui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { getLocalTimeString } from "../../../../lib/time";
 import EditIconButton from "./EditIconButton";
-const Card = ({id, example, title, postdate, genres, description, image, likes, author, authorID, userData}) => {
+import { VisibilityContext } from "react-horizontal-scrolling-menu";
+const Card = ({id, dragging, example, title, postdate, genres, description, image, likes, author, authorID, userData, click}) => {
 	const styles = useMultiStyleConfig('Card', {})
 	const postdateString = example ? "Today!" : getLocalTimeString(postdate);
 	const [isLoading, setLoading] = useState(false);
+	  const visibility = useContext(VisibilityContext);
     return (
-			<Box __css={styles.base} position="relative">
+			<Box onClick={(e) => {
+				if(dragging) {
+					e.preventDefault()
+					e.stopPropagation()
+				};
+			}} __css={styles.base} position="relative">
 				{isLoading && (
 					<Box __css={styles.blur}>
 						<Spinner
@@ -28,7 +35,15 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 				<LinkBox
 					h="full"
 					filter={isLoading ? "blur(2px)" : "none"}
-					onClick={() => setLoading(true)}
+					onMouseDown={(e) => {
+						e.preventDefault();
+						e.stopPropagation();
+					}}
+					onMouseUp={(e) => {
+						if(!dragging){
+							setLoading(true);
+						}
+					}}
 				>
 					<Box h={"3xs"} bg={"gray.100"} pos={"relative"}>
 						{image && (
