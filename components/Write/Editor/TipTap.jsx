@@ -1,4 +1,4 @@
-import { useEditor, EditorContent, FloatingMenu } from "@tiptap/react";
+import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from "@tiptap/react";
 import Blockquote from "@tiptap/extension-blockquote";
 import Document from "@tiptap/extension-document";
 import HardBreak from "@tiptap/extension-hard-break";
@@ -13,17 +13,17 @@ import Underline from "@tiptap/extension-underline";
 import Strike from "@tiptap/extension-strike";
 import Link from "@tiptap/extension-link";
 import TextAlign from "@tiptap/extension-text-align";
-import Placeholder from "@tiptap/extension-placeholder";
 import Typography from "@tiptap/extension-typography";
 import History from "@tiptap/extension-history";
 import Dropcursor from "@tiptap/extension-dropcursor";
-import BubbleMenu from "@tiptap/extension-bubble-menu";
 import { Button, useDisclosure } from "@chakra-ui/react";
 import ModalImage from "../ModalImage";
 import { TrailingNode } from "./TrailingNode";
+import { useState } from "react";
 
 const Tiptap = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [handler, setHandler] = useState(null);
 	const editor = useEditor({
 		extensions: [
 			Document,
@@ -42,29 +42,12 @@ const Tiptap = () => {
 			Strike,
 			Link,
 			TextAlign,
-			// Placeholder.configure({
-            //     // includeChildren: true,
-			// 	placeholder: ({ node }) => {
-			// 	  if (node.type.name === 'heading') {
-			// 	    return 'What’s the title?'
-			// 	  }
-            //       if(node.type.name === 'paragraph') {
-            //         return 'What’s the content?'
-            //       }
-            //       if(node.type.name === 'blockqoute') {
-            //         return 'What’s the quote?'
-            //       }
-			// 	  return 'Can you add some further context?'
-			// 	},
-			// }),
 			Typography,
 			History,
-			FloatingMenu,
 			Dropcursor,
-			BubbleMenu,
             TrailingNode
 		],
-		content: "<p>Hello World!</p>",
+		content: "",
 		autofocus: true,
         editable: true,
         // injectCSS: false,
@@ -104,12 +87,47 @@ const Tiptap = () => {
 						className={editor.isActive("blockqoute") ? "is-active" : ""}
 					></Button>
 					<Button
-						onClick={() => onOpen()}
-						className={editor.isActive("blockqoute") ? "is-active" : ""}
-					>Image</Button>
+						onClick={() => {
+                            setHandler("Image");
+                            onOpen();
+                        }}
+					>
+						Image
+					</Button>
 				</FloatingMenu>
 			)}
-            <ModalImage editor={editor} isOpen={isOpen} onClose={onClose} />
+			{editor && (
+				<BubbleMenu editor={editor}>
+					<Button
+						onClick={() => editor.chain().focus().toggleBold().run()}
+						className={editor.isActive("bold") ? "is-active" : ""}
+					>
+						bold
+					</Button>
+					<Button
+						onClick={() => editor.chain().focus().toggleItalic().run()}
+						className={editor.isActive("italic") ? "is-active" : ""}
+					>
+						italic
+					</Button>
+					<Button
+						onClick={() => editor.chain().focus().toggleUnderline().run()}
+						className={editor.isActive("strike") ? "is-active" : ""}
+					>
+						underline
+					</Button>
+					<Button
+						onClick={() => {
+                            setHandler('Link');
+                            onOpen();
+                        }}
+						className={editor.isActive("link") ? "is-active" : ""}
+					>
+						Link
+					</Button>
+				</BubbleMenu>
+			)}
+			<ModalImage editor={editor} type={handler} isOpen={isOpen} onClose={onClose} />
 			<EditorContent editor={editor} />
 		</>
 	);

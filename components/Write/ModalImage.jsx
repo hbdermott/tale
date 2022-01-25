@@ -21,7 +21,7 @@ const ModalImage = ({
 	onClose,
     editor,
 	label,
-	header = "Import Image",
+    type,
 	animation = "slideInBottom",
 	named = false,
 	namedLabel,
@@ -42,7 +42,7 @@ const ModalImage = ({
 			<ModalOverlay />
 			<ModalContent>
 				<ModalCloseButton />
-				<ModalHeader>{header}</ModalHeader>
+				<ModalHeader>{`Import ${type}`}</ModalHeader>
 				<Formik
 					initialValues={{ url: "", reference: "" }}
 					validate={(values) => {
@@ -59,8 +59,11 @@ const ModalImage = ({
 						return errors;
 					}}
 					onSubmit={async (values) => {
-						// console.log(values.url)
-						editor.chain().focus('end').setImage({ src: values.url }).run();
+                        if(type === 'Link')
+                            editor.chain().focus().setLink({href: values.url}).run()
+                        else if(type === 'Image'){
+						    editor.chain().focus('end').setImage({ src: values.url }).run();
+                        }
 						// editor.focus();
 						onClose();
 					}}
