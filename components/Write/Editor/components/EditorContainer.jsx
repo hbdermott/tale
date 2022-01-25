@@ -1,10 +1,7 @@
-import { Box, Center } from "@chakra-ui/layout"
-import { usePlateEditorRef } from "@udecode/plate-core";
-import { ReactEditor } from "slate-react";
+import { Box } from "@chakra-ui/layout"
 
 
 const EditorContainer = ({children}) => {
-    const editor = usePlateEditorRef("main-editor");
     return (
 			<Box
 				w={{ base: "100%", lg: "85%", xl: "75%", "2xl": "70%"}}
@@ -14,11 +11,6 @@ const EditorContainer = ({children}) => {
 				borderRadius={{ base: 0, lg: 20 }}
 				overflow="auto"
 				className="editor-container"
-                onClick={(e) => {
-                    e.preventDefault();
-                    if(editor)
-                        ReactEditor.focus(editor)
-                }}
 			>
 				{children}
 			</Box>

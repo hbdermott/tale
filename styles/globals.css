@@ -14,24 +14,6 @@ html {
   height: -webkit-fill-available;
 }
 
-.bg-image {
-  /* The image used */
-  background-image: url('../public/grass_pixel.jpg');
-
-  /* Add the blur effect */
-  /* filter: 
-  -webkit-filter: blur(12px); */
-  filter: brightness(0.4) blur(3px);;
-
-  /* Full height */
-  height: 100vh;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .top {
   position: fixed;
   left: 0;
@@ -76,15 +58,6 @@ a {
 .toolbar{
   backdrop-filter: blur(5px);
 }
-
-.balloonToolbar{
-  padding-left: 6px !important;
-  padding-right: 6px !important;
-  margin-left: 0px !important;
-  margin-right: 0px !important;
-  background-color: #33333333 !important;
-  backdrop-filter: blur(8px) !important;
-}
 /* body::-webkit-scrollbar {
   width: 1em;
 }
@@ -113,4 +86,12 @@ body::-webkit-scrollbar-thumb {
 }
 .rightAlign {
   text-align: right !important;
+}
+
+.ProseMirror p.is-empty::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
 }

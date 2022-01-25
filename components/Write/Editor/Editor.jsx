@@ -1,7 +1,6 @@
 import { Flex} from "@chakra-ui/layout";
 import EditorContainer from "./components/EditorContainer";
-import Toolbar from "./components/Toolbar/Toolbar";
-import PlateEditor from "./PlateEditor";
+import Tiptap from "./TipTap";
 
 const Editor = ({value}) => {
     return (
@@ -13,10 +12,8 @@ const Editor = ({value}) => {
 				align="center"
 			>
 					<EditorContainer>
-						<PlateEditor value={value?.content} />
+						<Tiptap/>
 					</EditorContainer>
-
-					<Toolbar bottom="0" position="sticky" value={value}/>
 			</Flex>
 		);
 }
