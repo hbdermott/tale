@@ -17,14 +17,17 @@ import Typography from "@tiptap/extension-typography";
 import History from "@tiptap/extension-history";
 import Dropcursor from "@tiptap/extension-dropcursor";
 import { Button, useDisclosure } from "@chakra-ui/react";
-import ModalImage from "../ModalImage";
 import { TrailingNode } from "./TrailingNode";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Publish from "../Publish";
+import ModalImport from "../ModalImport";
 
-const Tiptap = () => {
+const Tiptap = ({book, editable = true}) => {
+    const [ImportType, setImportType] = useState(null);
     const { isOpen, onOpen, onClose } = useDisclosure();
-    const [handler, setHandler] = useState(null);
+	const { isOpen: isOpenPublish, onOpen: onOpenPublish, onClose: onClosePublish } = useDisclosure();
 	const editor = useEditor({
+		editable,
 		extensions: [
 			Document,
 			Paragraph,
@@ -47,87 +50,97 @@ const Tiptap = () => {
 			Dropcursor,
             TrailingNode
 		],
-		content: "",
+		content: book?.content || '',
 		autofocus: true,
-        editable: true,
-        // injectCSS: false,
 	});
 
 	return (
 		<>
-			{editor && (
-				<FloatingMenu editor={editor}>
-					<Button
-						p={0}
-						m={2}
-						size="md"
-						fontSize="lg"
-						variant="overlay"
-						onClick={() =>
-							editor.chain().focus().toggleHeading({ level: 1 }).run()
-						}
-						className={
-							editor.isActive("heading", { level: 1 }) ? "is-active" : ""
-						}
-					>
-						h1
-					</Button>
-					<Button
-						onClick={() =>
-							editor.chain().focus().toggleHeading({ level: 2 }).run()
-						}
-						className={
-							editor.isActive("heading", { level: 2 }) ? "is-active" : ""
-						}
-					>
-						h2
-					</Button>
-					<Button
-						onClick={() => editor.chain().focus().toggleBlockquote().run()}
-						className={editor.isActive("blockqoute") ? "is-active" : ""}
-					></Button>
-					<Button
-						onClick={() => {
-                            setHandler("Image");
-                            onOpen();
-                        }}
-					>
-						Image
-					</Button>
-				</FloatingMenu>
+			{editor && editable && (
+				<>
+					<FloatingMenu editor={editor}>
+						<Button
+							p={0}
+							m={2}
+							size="md"
+							fontSize="lg"
+							variant="overlay"
+							onClick={() =>
+								editor.chain().focus().toggleHeading({ level: 1 }).run()
+							}
+							className={
+								editor.isActive("heading", { level: 1 }) ? "is-active" : ""
+							}
+						>
+							h1
+						</Button>
+						<Button
+							onClick={() =>
+								editor.chain().focus().toggleHeading({ level: 2 }).run()
+							}
+							className={
+								editor.isActive("heading", { level: 2 }) ? "is-active" : ""
+							}
+						>
+							h2
+						</Button>
+						<Button
+							onClick={() => editor.chain().focus().toggleBlockquote().run()}
+							className={editor.isActive("blockqoute") ? "is-active" : ""}
+						></Button>
+						<Button
+							onClick={() => {
+								setImportType("Image");
+								onOpen();
+							}}
+						>
+							Image
+						</Button>
+					</FloatingMenu>
+					<BubbleMenu editor={editor}>
+						<Button
+							onClick={() => editor.chain().focus().toggleBold().run()}
+							className={editor.isActive("bold") ? "is-active" : ""}
+						>
+							bold
+						</Button>
+						<Button
+							onClick={() => editor.chain().focus().toggleItalic().run()}
+							className={editor.isActive("italic") ? "is-active" : ""}
+						>
+							italic
+						</Button>
+						<Button
+							onClick={() => editor.chain().focus().toggleUnderline().run()}
+							className={editor.isActive("strike") ? "is-active" : ""}
+						>
+							underline
+						</Button>
+						<Button
+							onClick={() => {
+								setImportType("Link");
+								onOpen();
+							}}
+							className={editor.isActive("link") ? "is-active" : ""}
+						>
+							Link
+						</Button>
+					</BubbleMenu>
+					<Button onClick={() => onOpenPublish()} />
+					<ModalImport
+						editor={editor}
+						type={ImportType}
+						isOpen={isOpen}
+						onClose={onClose}
+					/>
+					<Publish
+						editor={editor}
+						book={book}
+						isOpen={isOpenPublish}
+						onClose={onClosePublish}
+					/>
+				</>
 			)}
-			{editor && (
-				<BubbleMenu editor={editor}>
-					<Button
-						onClick={() => editor.chain().focus().toggleBold().run()}
-						className={editor.isActive("bold") ? "is-active" : ""}
-					>
-						bold
-					</Button>
-					<Button
-						onClick={() => editor.chain().focus().toggleItalic().run()}
-						className={editor.isActive("italic") ? "is-active" : ""}
-					>
-						italic
-					</Button>
-					<Button
-						onClick={() => editor.chain().focus().toggleUnderline().run()}
-						className={editor.isActive("strike") ? "is-active" : ""}
-					>
-						underline
-					</Button>
-					<Button
-						onClick={() => {
-                            setHandler('Link');
-                            onOpen();
-                        }}
-						className={editor.isActive("link") ? "is-active" : ""}
-					>
-						Link
-					</Button>
-				</BubbleMenu>
-			)}
-			<ModalImage editor={editor} type={handler} isOpen={isOpen} onClose={onClose} />
 			<EditorContent editor={editor} />
 		</>
 	);

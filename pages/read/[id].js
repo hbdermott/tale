@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/layout";
 import Navbar from "../../components/Navbar";
-import PlateEditor from "../../components/Write/Editor/PlateEditor";
 import { useAuth } from "../../context/User";
 import { fetchBook, fetchBookDetails } from "../../lib/firebase/fetchBook";
 import Link from "next/link";
 import { Button } from "@chakra-ui/button";
+import Tiptap from "../../components/Write/Editor/TipTap";
 const Book = ({book}) => {
 	const {user} = useAuth();
     return (
@@ -12,7 +12,7 @@ const Book = ({book}) => {
 			<>
 				<Navbar sticky>{user && user.uid === book.authorID && <Link passHref href={`/write/${book.id}`}><Button variant="edit">Edit</Button></Link>}</Navbar>
 				<Box p={10}>
-					<PlateEditor id="second" readonly={true} value={book.content}></PlateEditor>
+					<Tiptap book={book} editable={false} />
 				</Box>
 			</>
 		);

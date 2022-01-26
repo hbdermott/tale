@@ -16,7 +16,7 @@ import { Flex } from "@chakra-ui/layout";
 import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/alert";
 import { Link } from "@styled-icons/fluentui-system-filled";
 
-const ModalImage = ({
+const ModalImport = ({
 	isOpen,
 	onClose,
     editor,
@@ -124,7 +124,7 @@ const ModalImage = ({
 								)}
 							</ModalBody>
 							<ModalFooter>
-								<Flex w="100%" align="center" justify="flex-start">
+							<Flex w="100%" align="center" justify="flex-start">
 									<ErrorMessage name="url">
 										{(msg) => (
 											<Alert borderRadius={4} mr={3} status="error">
@@ -134,7 +134,7 @@ const ModalImage = ({
 										)}
 									</ErrorMessage>
 								</Flex>
-								<Button type="submit" color="green.400">
+								<Button type="submit" variant="submit">
 									Sumbit
 								</Button>
 							</ModalFooter>
@@ -146,4 +146,4 @@ const ModalImage = ({
 	);
 };
 
-export default ModalImage;
+export default ModalImport;

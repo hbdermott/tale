@@ -3,7 +3,7 @@ import EditorContainer from "./components/EditorContainer";
 import Tiptap from "./TipTap";
 
 
-const Editor = ({value}) => {
+const Editor = ({book}) => {
     return (
 			<Flex
 				w="100%"
@@ -13,7 +13,7 @@ const Editor = ({value}) => {
 				align="center"
 			>
 					<EditorContainer>
-						<Tiptap/>
+						<Tiptap book={book}/>
 					</EditorContainer>
 			</Flex>
 		);
