@@ -1,4 +1,4 @@
-import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from "@tiptap/react";
+import { useEditor, EditorContent } from "@tiptap/react";
 import Blockquote from "@tiptap/extension-blockquote";
 import Document from "@tiptap/extension-document";
 import HardBreak from "@tiptap/extension-hard-break";
@@ -16,16 +16,12 @@ import TextAlign from "@tiptap/extension-text-align";
 import Typography from "@tiptap/extension-typography";
 import History from "@tiptap/extension-history";
 import Dropcursor from "@tiptap/extension-dropcursor";
-import { Button, useDisclosure } from "@chakra-ui/react";
 import { TrailingNode } from "./TrailingNode";
-import { useEffect, useState } from "react";
-import Publish from "../Publish";
-import ModalImport from "../ModalImport";
+import Menus from "./Menus";
+import { Box, Center, Flex } from "@chakra-ui/layout";
 
 const Tiptap = ({book, editable = true}) => {
-    const [ImportType, setImportType] = useState(null);
-    const { isOpen, onOpen, onClose } = useDisclosure();
-	const { isOpen: isOpenPublish, onOpen: onOpenPublish, onClose: onClosePublish } = useDisclosure();
+
 	const editor = useEditor({
 		editable,
 		extensions: [
@@ -44,104 +40,42 @@ const Tiptap = ({book, editable = true}) => {
 			Underline,
 			Strike,
 			Link,
-			TextAlign,
+			TextAlign.configure({
+				types: ["heading", "paragraph", "blockquote"],
+			}),
 			Typography,
 			History,
 			Dropcursor,
-            TrailingNode
+			TrailingNode,
 		],
-		content: book?.content || '',
+		content: book?.content || "",
 		autofocus: true,
 	});
 
 	return (
 		<>
-			{editor && editable && (
-				<>
-					<FloatingMenu editor={editor}>
-						<Button
-							p={0}
-							m={2}
-							size="md"
-							fontSize="lg"
-							variant="overlay"
-							onClick={() =>
-								editor.chain().focus().toggleHeading({ level: 1 }).run()
-							}
-							className={
-								editor.isActive("heading", { level: 1 }) ? "is-active" : ""
-							}
-						>
-							h1
-						</Button>
-						<Button
-							onClick={() =>
-								editor.chain().focus().toggleHeading({ level: 2 }).run()
-							}
-							className={
-								editor.isActive("heading", { level: 2 }) ? "is-active" : ""
-							}
-						>
-							h2
-						</Button>
-						<Button
-							onClick={() => editor.chain().focus().toggleBlockquote().run()}
-							className={editor.isActive("blockqoute") ? "is-active" : ""}
-						></Button>
-						<Button
-							onClick={() => {
-								setImportType("Image");
-								onOpen();
-							}}
-						>
-							Image
-						</Button>
-					</FloatingMenu>
-					<BubbleMenu editor={editor}>
-						<Button
-							onClick={() => editor.chain().focus().toggleBold().run()}
-							className={editor.isActive("bold") ? "is-active" : ""}
-						>
-							bold
-						</Button>
-						<Button
-							onClick={() => editor.chain().focus().toggleItalic().run()}
-							className={editor.isActive("italic") ? "is-active" : ""}
-						>
-							italic
-						</Button>
-						<Button
-							onClick={() => editor.chain().focus().toggleUnderline().run()}
-							className={editor.isActive("strike") ? "is-active" : ""}
-						>
-							underline
-						</Button>
-						<Button
-							onClick={() => {
-								setImportType("Link");
-								onOpen();
-							}}
-							className={editor.isActive("link") ? "is-active" : ""}
-						>
-							Link
-						</Button>
-					</BubbleMenu>
-					<Button onClick={() => onOpenPublish()} />
-					<ModalImport
-						editor={editor}
-						type={ImportType}
-						isOpen={isOpen}
-						onClose={onClose}
-					/>
-					<Publish
-						editor={editor}
-						book={book}
-						isOpen={isOpenPublish}
-						onClose={onClosePublish}
-					/>
-				</>
-			)}
-			<EditorContent editor={editor} />
+			<Box w={{ base: "100%", lg: "85%", xl: "75%", "2xl": "70%" }} h="100%" mt={10} >
+				{editor && editable && (
+						<Menus editor={editor} book={book} />
+				)}
+				<Box
+					p={10}
+					h={{ base: "100%", lg: "90%", xl: "85%" }}
+					// borderX={{ base: "none", lg: "2px solid gray" }}
+					// borderBottom={{ base: "none", lg: "2px solid gray" }}
+					roundedBottom={{ base: "none", lg: "xl" }}
+					overflow="auto"
+					bg="#33333333"
+					boxShadow="dark-lg"
+					backdropFilter={`blur(10px)`}
+					className="editor-container"
+					cursor="pointer" 
+					onClick={() => editor.commands.focus()}
+				>
+					<EditorContent editor={editor} />
+				</Box>
+			</Box>
+			{/* </Box> */}
 		</>
 	);
     

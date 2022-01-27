@@ -1,16 +1,20 @@
 export const global = (props) => ({
 	".ProseMirror": {
+		// px: "10",
+		p: {
+			fontSize: "2xl",
+		},
 		"h1, h2, h3": {
 			fontWeight: "bold",
 		},
 		h1: {
-			fontSize: "4xl",
+			fontSize: "5xl",
 		},
 		h2: {
-			fontSize: "3xl",
+			fontSize: "4xl",
 		},
 		h3: {
-			fontSize: "2xl",
+			fontSize: "3xl",
 		},
 		blockquote: {
 			borderColor: "gray.300",

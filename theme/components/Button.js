@@ -1,9 +1,9 @@
 const sizes = {
-	lg: {
-		fontSize: "md",
-		borderRadius: "lg",
-		p: "3",
-	}
+	// lg: {
+	// 	fontSize: "md",
+	// 	borderRadius: "lg",
+	// 	// p: "3",
+	// }
 };
 
 const variants = {
@@ -40,6 +40,7 @@ const variants = {
 		// border: "1px",
 		// borderColor: props.colorMode === "dark" ? "gray.800" : "gray.100",
 		boxShadow: "inner",
+		fontWeight: "bold",
 	}),
 	overlay: (props) => ({
 		backdropFilter: "blur(10px)",
