@@ -18,10 +18,13 @@ import History from "@tiptap/extension-history";
 import Dropcursor from "@tiptap/extension-dropcursor";
 import { TrailingNode } from "./TrailingNode";
 import Menus from "./Menus";
-import { Box, Center, Flex } from "@chakra-ui/layout";
+import { Box, Center, Flex, Heading as  Title } from "@chakra-ui/layout";
+import { useColorModeValue } from "@chakra-ui/system";
+import Likes from "../../Read/Feed/Card/Likes";
 
-const Tiptap = ({book, editable = true}) => {
-
+const Tiptap = ({book, editable = true, userData}) => {
+	const bg = useColorModeValue("#E2E4E6", "#2D3540");
+	const toolbarBG = useColorModeValue("#33333355", "gray.900");
 	const editor = useEditor({
 		editable,
 		extensions: [
@@ -58,8 +61,24 @@ const Tiptap = ({book, editable = true}) => {
 				w={{ base: "95%", lg: "85%", xl: "75%", "2xl": "70%" }}
 				h="100%"
 				maxH="100%"
+				alignSelf={"center"}
 				mt={{ base: "3", md: "5", lg: "10" }}
 			>
+				{!editable && (
+					<Flex
+						justify="space-between"
+						boxShadow="dark-lg"
+						alignItems={"center"}
+						bg={toolbarBG}
+						w="full"
+						px="6"
+						py="2"
+						roundedTop="xl"
+					>
+						<Title fontSize="2xl">{book?.title}</Title>
+						<Likes bookID={book?.id} likes={book?.likes} {...userData} />
+					</Flex>
+				)}
 				{editor && editable && <Menus editor={editor} book={book} />}
 				<Box
 					// p={10}
@@ -71,7 +90,7 @@ const Tiptap = ({book, editable = true}) => {
 					// borderBottom={{ base: "none", lg: "2px solid gray" }}
 					roundedBottom={"xl"}
 					overflow="auto"
-					bg="#33333333"
+					bg={bg}
 					boxShadow="dark-lg"
 					backdropFilter={`blur(10px)`}
 					className="editor-container"
