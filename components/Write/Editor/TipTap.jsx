@@ -48,29 +48,35 @@ const Tiptap = ({book, editable = true}) => {
 			Dropcursor,
 			TrailingNode,
 		],
-		content: book?.content || "",
+		content: book?.content || "<p></p><p></p><p></p><p></p><p></p><p></p>",
 		autofocus: true,
 	});
 
 	return (
 		<>
-			<Box w={{ base: "100%", lg: "85%", xl: "75%", "2xl": "70%" }} h="100%" mt={10} >
-				{editor && editable && (
-						<Menus editor={editor} book={book} />
-				)}
+			<Box
+				w={{ base: "95%", lg: "85%", xl: "75%", "2xl": "70%" }}
+				h="100%"
+				maxH="100%"
+				mt={{ base: "3", md: "5", lg: "10" }}
+			>
+				{editor && editable && <Menus editor={editor} book={book} />}
 				<Box
-					p={10}
-					h={{ base: "100%", lg: "90%", xl: "85%" }}
+					// p={10}
+					h={{ base: "80%", lg: "70%", xl: "60%" }}
+					w={{ base: "95%", lg: "85%", xl: "75%", "2xl": "70%" }}
+					// pb="10"
+					position="fixed"
 					// borderX={{ base: "none", lg: "2px solid gray" }}
 					// borderBottom={{ base: "none", lg: "2px solid gray" }}
-					roundedBottom={{ base: "none", lg: "xl" }}
+					roundedBottom={"xl"}
 					overflow="auto"
 					bg="#33333333"
 					boxShadow="dark-lg"
 					backdropFilter={`blur(10px)`}
 					className="editor-container"
-					cursor="pointer" 
-					onClick={() => editor.commands.focus()}
+					cursor="pointer"
+					// onClick={() => editor.commands.focus()}
 				>
 					<EditorContent editor={editor} />
 				</Box>

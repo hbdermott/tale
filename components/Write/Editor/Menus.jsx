@@ -27,7 +27,7 @@ const Menus = ({editor, book}) => {
 					editor={editor}
 					importLink={importLink}
 					importImage={importImage}
-					publish={onOpen}
+					publish={onOpenPublish}
 				/>
 				<ModalImport
 					editor={editor}

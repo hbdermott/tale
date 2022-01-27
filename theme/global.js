@@ -1,6 +1,28 @@
 export const global = (props) => ({
+	// "div:has(.ProseMirror)": {
+	// 	h: "100%",
+	// },
+	".editor-container::-webkit-scrollbar-track": {
+		"-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.3)",
+		rounded: "10px",
+		bg: "#FFFFFF00",
+	},
+
+	".editor-container::-webkit-scrollbar": {
+		w: "12px",
+		bg: "#FFFFFF00",
+	},
+
+	".editor-container::-webkit-scrollbar-thumb": {
+		rounded: "10px",
+		"-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,.3)",
+		bg: props.colorMode === "dark" ? "gray.700" : "#33333333",
+	},
 	".ProseMirror": {
-		// px: "10",
+		h: "95%",
+		px: "10",
+		py: "10",
+		// overflow: "none",
 		p: {
 			fontSize: "2xl",
 		},

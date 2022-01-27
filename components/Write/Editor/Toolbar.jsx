@@ -1,13 +1,14 @@
 import { Flex, HStack, Stack } from "@chakra-ui/layout";
 import { Button, IconButton } from "@chakra-ui/react";
-import { useMultiStyleConfig } from "@chakra-ui/system";
+import { useColorModeValue, useMultiStyleConfig } from "@chakra-ui/system";
 import { AlignCenter, AlignLeft, AlignRight, Bold, Continue, Header1, Header2, Header3, Image, IndentIncrease, Italic, Link, Quote, Redo, Strikethrough, Underline, Undo } from "../../Icons";
 const Toolbar = ({editor, publish, importImage, importLink}) => {
+	const bg = useColorModeValue("#33333355", "gray.900");
 	return (
 		<Flex
 			justify="space-between"
 			boxShadow="dark-lg"
-			bg="gray.900"
+			bg={bg}
 			w="full"
 			px="6"
 			py="2"
