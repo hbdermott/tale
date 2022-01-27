@@ -22,7 +22,7 @@ const Edit = ({book}) => {
 	}, [user, loading, router]);
 	return (
 		// <Flex direction="column" overflow="hidden" align="center" w="100%" h="100%">
-			user && user.uid === book.authorID && <Editor value={book} />
+			user && user.uid === book.authorID && <Editor book={book} />
 	);
 };
 
@@ -50,8 +50,8 @@ Edit.getLayout = function getLayout(edit) {
 };
 
 export async function getServerSideProps(context) {
-	const book = await fetchBook(context.params.id, true);
-
+	let book = await fetchBook(context.params.id, true);
+	book = {...book, id: context.params.id};
 	return { props: { book: book } };
 }
 

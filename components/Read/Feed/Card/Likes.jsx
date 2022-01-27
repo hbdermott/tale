@@ -23,12 +23,9 @@ const Likes = ({bookID, likes = 0, likedBooks, userID, ...rest }) => {
 						await likeBook(userID, likedBooks, bookID, likeCount);
 					}
 				}}
-				rightIcon={<Star width="36px" color={isLiked ? "gold" : "gray"} />}
+				rightIcon={<Star size="36px" color={isLiked ? "gold" : "gray"} />}
 				variant="inset"
-				fontSize="md"
 				aria-label="Like"
-				color="gray.400"
-				fontWeight="bold"
 			>
 				{likeCount < 1000 ? likeCount : `${(likeCount / 1000).toFixed(1)}k`}
 			</Button>

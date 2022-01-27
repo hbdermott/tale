@@ -10,14 +10,10 @@ import { Button } from "@chakra-ui/button";
 import { useAuth } from "../../context/User";
 import { useRouter } from "next/router";
 import { postBook, updateBook } from "../../lib/firebase/postBook";
-import { parseContent } from "../../lib/parseContent";
 import Card from "../Read/Feed/Card/Card";
-import { usePlateSelectors } from "@udecode/plate";
 
 
-const BookDrawer = ({isOpen, onClose, title = "", description = "", image= "", id}) => {
-    const contentValue = usePlateSelectors('main-editor').value()
-	// useEffect(() => {console.log(contentValue)},[contentValue])
+const Publish = ({isOpen, onClose, book, editor}) => {
     const { user } = useAuth();
     const router = useRouter();
 	const firstField = useRef();
@@ -36,9 +32,9 @@ const BookDrawer = ({isOpen, onClose, title = "", description = "", image= "", i
 						<DrawerHeader borderBottomWidth="1px">Book Details</DrawerHeader>
 						<Formik
 							initialValues={{
-								title: title,
-								description: description,
-								image: image,
+								title: book?.title || "",
+								description: book?.description || "",
+								image: book?.image || "",
 								genres: [],
 							}}
 							validate={(values) => {
@@ -59,10 +55,10 @@ const BookDrawer = ({isOpen, onClose, title = "", description = "", image= "", i
 								return errors;
 							}}
 							onSubmit={async (values, { setSubmitting }) => {
-								const parsedContent = parseContent(contentValue);
-								const bookID = id
-									? await updateBook(parsedContent, values, id)
-									: await postBook(parsedContent, values, user);
+								const content = editor.getHTML()
+								const bookID = book?.id
+									? await updateBook(content, values, book.id)
+									: await postBook(content, values, user);
 								setSubmitting(false);
 								router.push(`/read/${bookID}`);
 							}}
@@ -179,4 +175,4 @@ const BookDrawer = ({isOpen, onClose, title = "", description = "", image= "", i
 			</>
 		);
 	};
-export default BookDrawer;
+export default Publish;
