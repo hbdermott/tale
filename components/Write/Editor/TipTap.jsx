@@ -94,7 +94,7 @@ const Tiptap = ({book, editable = true, userData}) => {
 					boxShadow="dark-lg"
 					backdropFilter={`blur(10px)`}
 					className="editor-container"
-					cursor="pointer"
+					cursor="text"
 					// onClick={() => editor.commands.focus()}
 				>
 					<EditorContent editor={editor} />

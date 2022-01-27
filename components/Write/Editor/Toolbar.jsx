@@ -78,19 +78,19 @@ const Toolbar = ({editor, publish, importImage, importLink}) => {
 			<HStack>
 				<IconButton
 					variant="inset"
-					onClick={() => editor.chain().setTextAlign("left").redo().run()}
+					onClick={() => editor.chain().focus().setTextAlign("left").run()}
 				>
 					<AlignLeft />
 				</IconButton>
 				<IconButton
 					variant="inset"
-					onClick={() => editor.chain().setTextAlign("center").redo().run()}
+					onClick={() => editor.chain().focus().setTextAlign("center").run()}
 				>
 					<AlignCenter />
 				</IconButton>
 				<IconButton
 					variant="inset"
-					onClick={() => editor.chain().setTextAlign("right").redo().run()}
+					onClick={() => editor.chain().focus().setTextAlign("right").run()}
 				>
 					<AlignRight />
 				</IconButton>

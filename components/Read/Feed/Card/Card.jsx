@@ -2,17 +2,17 @@ import { Avatar } from "@chakra-ui/avatar"
 import { Badge, Box, Flex, Heading, HStack, LinkBox, LinkOverlay, Stack, Text, VStack } from "@chakra-ui/layout"
 import Likes from "./Likes"
 import Link from "next/link";
-import {  Image, Spinner, useMultiStyleConfig } from "@chakra-ui/react";
+import {  Image, Spinner, Tag, useMultiStyleConfig } from "@chakra-ui/react";
 import { useState } from "react";
 import { getLocalTimeString } from "../../../../lib/time";
 import EditIconButton from "./EditIconButton";
-const Card = ({id, example, title, postdate, genres, description, image, likes, author, authorID, userData, click}) => {
+const Card = ({id, example, title, postdate, tags, description, image, likes, author, authorID, userData, click}) => {
 	const styles = useMultiStyleConfig('Card', {})
 	const postdateString = example ? "Today!" : getLocalTimeString(postdate);
 	const [isLoading, setLoading] = useState(false);
     return (
 			<Box __css={styles.base} position="relative">
-				{isLoading && (
+				{isLoading && !example && (
 					<Box __css={styles.blur}>
 						<Spinner
 							size="xl"
@@ -20,7 +20,6 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 							width="80px"
 							variant="centered"
 							thickness="10px"
-							
 						/>
 					</Box>
 				)}
@@ -29,7 +28,7 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 					h="full"
 					filter={isLoading ? "blur(2px)" : "none"}
 					onClick={() => {
-						setLoading(true)
+						setLoading(true);
 					}}
 				>
 					<Box h={"3xs"} bg={"gray.100"} pos={"relative"}>
@@ -55,6 +54,15 @@ const Card = ({id, example, title, postdate, genres, description, image, likes, 
 					<Box __css={styles.body}>
 						<Flex h="full" direction="column" justify="space-between">
 							<Stack>
+								{tags && (
+									<HStack pt="0">
+										{tags.slice(0,5).map((tag, index) => (
+											<Tag size={"md"} key={tag} variant="solid">
+												{tag}
+											</Tag>
+										))}
+									</HStack>
+								)}
 								<Heading fontSize="2xl">
 									{example ? (
 										<>{title}</>

@@ -11,12 +11,35 @@ import { useAuth } from "../../context/User";
 import { useRouter } from "next/router";
 import { postBook, updateBook } from "../../lib/firebase/postBook";
 import Card from "../Read/Feed/Card/Card";
+import {
+	AutoComplete,
+	AutoCompleteInput,
+	AutoCompleteItem,
+	AutoCompleteList,
+	AutoCompleteTag,
+	AutoCompleteCreatable,
+} from "@choc-ui/chakra-autocomplete";
 
 
 const Publish = ({isOpen, onClose, book, editor}) => {
     const { user } = useAuth();
     const router = useRouter();
 	const firstField = useRef();
+	const [selectedTags, setSelectedTags] = React.useState([]);
+	 const tags = [
+			"Fantasy",
+			"Sci-Fi",
+			"Mystery",
+			"Romance",
+			"Horror",
+			"Thriller",
+			"Drama",
+			"Action",
+			"Adventure",
+			"Comedy",
+			"Non-Fiction",
+			"Fiction",
+		];
 		return (
 			<>
 				<Drawer
@@ -35,12 +58,12 @@ const Publish = ({isOpen, onClose, book, editor}) => {
 								title: book?.title || "",
 								description: book?.description || "",
 								image: book?.image || "",
-								genres: [],
+								tags: book?.tags || [],
 							}}
 							validate={(values) => {
 								const errors = {};
 								for (const value in values) {
-									if (value === "genres") continue;
+									if (value === "tags") continue;
 									if (values[value] === "") {
 										errors[value] = "Required";
 									} else if (
@@ -55,10 +78,12 @@ const Publish = ({isOpen, onClose, book, editor}) => {
 								return errors;
 							}}
 							onSubmit={async (values, { setSubmitting }) => {
-								const content = editor.getHTML()
+								const content = editor.getHTML();
+								let details = values;
+								details["tags"] = selectedTags;
 								const bookID = book?.id
-									? await updateBook(content, values, book.id)
-									: await postBook(content, values, user);
+									? await updateBook(content, details, book.id)
+									: await postBook(content, details, user);
 								setSubmitting(false);
 								router.push(`/read/${bookID}`);
 							}}
@@ -128,24 +153,44 @@ const Publish = ({isOpen, onClose, book, editor}) => {
 														</Field>
 													</InputGroup>
 												</FormControl>
-												<FormControl id="genres">
-													<FormLabel htmlFor="genres">Genres</FormLabel>
+												<FormControl id="tags">
+													<FormLabel htmlFor="tags">Tags</FormLabel>
 													<InputGroup>
-														<CheckboxGroup colorScheme="green">
-															<HStack>
-																{/* <Field type="checkbox" name="genres">
-																	<Checkbox value="Action">Action</Checkbox>
-																</Field>
-																<Field type="checkbox" name="genres">
-																	<Checkbox value="Adventure">Adventure</Checkbox>
-																</Field>
-																<Field type="checkbox" name="genres">
-																	<Checkbox value="the goods">The goods</Checkbox>
-																</Field> */}
-															</HStack>
-														</CheckboxGroup>
+														<AutoComplete
+															openOnFocus
+															multiple
+															creatable
+															defaultValues={book?.tags}
+															onChange={(vals) => setSelectedTags(vals)}
+														>
+															<AutoCompleteInput variant="filled">
+																{({ tags }) =>
+																	tags.map((tag, tid) => (
+																		<AutoCompleteTag
+																			key={tid}
+																			label={tag.label}
+																			onRemove={tag.onRemove}
+																		/>
+																	))
+																}
+															</AutoCompleteInput>
+															<AutoCompleteList>
+																{tags.map((tag, cid) => (
+																	<AutoCompleteItem
+																		key={`option-${cid}`}
+																		value={tag}
+																		textTransform="capitalize"
+																		_selected={{ bg: "whiteAlpha.50" }}
+																		_focus={{ bg: "whiteAlpha.100" }}
+																	>
+																		{tag}
+																	</AutoCompleteItem>
+																))}
+															<AutoCompleteCreatable/>
+															</AutoCompleteList>
+														</AutoComplete>
 													</InputGroup>
-													<FormHelperText>Soon to come!</FormHelperText>
+													<FormHelperText>Tags are optional!</FormHelperText>
 												</FormControl>
 
 												<Card
