@@ -21,6 +21,7 @@ import Menus from "./Menus";
 import { Box, Center, Flex, Heading as  Title } from "@chakra-ui/layout";
 import { useColorModeValue } from "@chakra-ui/system";
 import Likes from "../../Read/Feed/Card/Likes";
+import Placeholder from "@tiptap/extension-placeholder";
 
 const Tiptap = ({book, editable = true, userData}) => {
 	const bg = useColorModeValue("#E2E4E6", "#2D3540");
@@ -42,6 +43,18 @@ const Tiptap = ({book, editable = true, userData}) => {
 			Italic,
 			Underline,
 			Strike,
+			Placeholder.configure({
+				placeholder: ({ node }) => {
+					if (node.type.name === "heading") {
+						return "What’s the title?";
+					} else if (node.type.name === "paragraph") {
+						return "What’s the content?";
+					} else if (node.type.name === "blockquote") {
+						return "What’s the quote?";
+					}
+					return "Where am I?";
+				},
+			}),
 			Link,
 			TextAlign.configure({
 				types: ["heading", "paragraph", "blockquote"],
@@ -51,29 +64,29 @@ const Tiptap = ({book, editable = true, userData}) => {
 			Dropcursor,
 			TrailingNode,
 		],
-		content: book?.content || "<p></p><p></p><p></p><p></p><p></p><p></p>",
+		content: book?.content || "<p></p><p></p><p></p><p></p>",
 		autofocus: true,
 	});
 
 	return (
 		<>
 			<Box
-				w={{ base: "95%", lg: "85%", xl: "75%", "2xl": "70%" }}
-				h="100%"
-				maxH="100%"
+				w={{ base: "95%", lg: "85%", xl: "70%", "2xl": "60%" }}
+				bg={bg}
+				h={"100%"}
 				alignSelf={"center"}
-				mt={{ base: "3", md: "5", lg: "10" }}
+				mt={3}
+				boxShadow="dark-lg"
+				roundedTop="xl"
 			>
 				{!editable && (
 					<Flex
 						justify="space-between"
-						boxShadow="dark-lg"
 						alignItems={"center"}
 						bg={toolbarBG}
 						w="full"
 						px="6"
 						py="2"
-						roundedTop="xl"
 					>
 						<Title fontSize="2xl">{book?.title}</Title>
 						<Likes bookID={book?.id} likes={book?.likes} {...userData} />
@@ -81,21 +94,13 @@ const Tiptap = ({book, editable = true, userData}) => {
 				)}
 				{editor && editable && <Menus editor={editor} book={book} />}
 				<Box
-					// p={10}
-					h={{ base: "80%", lg: "70%", xl: "60%" }}
-					w={{ base: "95%", lg: "85%", xl: "75%", "2xl": "70%" }}
-					// pb="10"
+					w={{ base: "95%", lg: "85%", xl: "70%", "2xl": "60%" }}
+					h={"80%"}
+					className="editor-container"
 					position="fixed"
-					// borderX={{ base: "none", lg: "2px solid gray" }}
-					// borderBottom={{ base: "none", lg: "2px solid gray" }}
-					roundedBottom={"xl"}
 					overflow="auto"
 					bg={bg}
-					boxShadow="dark-lg"
-					backdropFilter={`blur(10px)`}
-					className="editor-container"
 					cursor="text"
-					// onClick={() => editor.commands.focus()}
 				>
 					<EditorContent editor={editor} />
 				</Box>

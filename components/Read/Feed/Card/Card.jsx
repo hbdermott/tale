@@ -26,7 +26,7 @@ const Card = ({id, example, title, postdate, tags, description, image, likes, au
 
 				<LinkBox
 					h="full"
-					filter={isLoading ? "blur(2px)" : "none"}
+					filter={(isLoading && !example) ? "blur(2px)" : "none"}
 					onClick={() => {
 						setLoading(true);
 					}}

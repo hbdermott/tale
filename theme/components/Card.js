@@ -13,7 +13,7 @@ const baseStyle = (props) => ({
 		// borderColor: props.colorMode === "dark" ? "gray.800" : "gray.100",
 	},
 	body: {
-		p: "6",
+		p: "4",
 		fontSize: "md",
 		h: "2xs",
 		bg: props.colorMode === "dark" ? "gray.900" : "gray.50",
