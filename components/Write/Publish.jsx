@@ -1,10 +1,8 @@
 import { FormControl, FormHelperText, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup } from "@chakra-ui/input";
-import {  HStack, VStack } from "@chakra-ui/layout";
+import {  VStack } from "@chakra-ui/layout";
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay } from "@chakra-ui/modal";
-import { CheckboxGroup } from "@chakra-ui/react";
 import { Textarea } from "@chakra-ui/textarea";
-import { Field, Form, Formik } from "formik";
 import React, {useRef} from "react";
 import { Button } from "@chakra-ui/button";
 import { useAuth } from "../../context/User";
@@ -21,12 +19,16 @@ import {
 } from "@choc-ui/chakra-autocomplete";
 
 
-const Publish = ({isOpen, onClose, book, editor}) => {
+const Publish = ({isOpen, onClose, book, updateDetails, editor}) => {
     const { user } = useAuth();
     const router = useRouter();
 	const firstField = useRef();
-	const [selectedTags, setSelectedTags] = React.useState([]);
-	 const tags = [
+	const [title, setTitle] = React.useState(book?.title || "");
+	const [description, setDescription] = React.useState(book?.description || "");
+	const [image, setImage] = React.useState(book?.image || "");
+	const [tags, setTags] = React.useState(book?.tags || []);
+	const [isSubmitting, setSubmitting] = React.useState(false);
+	 const genres = [
 			"Fantasy",
 			"Sci-Fi",
 			"Mystery",
@@ -47,174 +49,153 @@ const Publish = ({isOpen, onClose, book, editor}) => {
 					size="md"
 					placement="right"
 					initialFocusRef={firstField}
-					onClose={onClose}
+					onClose={() => {
+						const details = {
+							title,
+							description,
+							image,
+							tags,
+						};
+						updateDetails(details);
+						onClose();
+					}}
 				>
 					<DrawerOverlay />
-					<DrawerContent overflowY="scroll">
+					<DrawerContent overflowY="none">
 						<DrawerCloseButton mt={1.5} size="md" />
 						<DrawerHeader borderBottomWidth="1px">Book Details</DrawerHeader>
-						<Formik
-							initialValues={{
-								title: book?.title || "",
-								description: book?.description || "",
-								image: book?.image || "",
-								tags: book?.tags || [],
-							}}
-							validate={(values) => {
-								const errors = {};
-								for (const value in values) {
-									if (value === "tags") continue;
-									if (values[value] === "") {
-										errors[value] = "Required";
-									} else if (
-										value === "image" &&
-										!values[value].match(
-											/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
-										)
-									) {
-										errors.image = "Invalid URL";
-									}
-								}
-								return errors;
-							}}
-							onSubmit={async (values, { setSubmitting }) => {
-								const content = editor.getHTML();
-								let details = values;
-								details["tags"] = selectedTags;
-								const bookID = book?.id
-									? await updateBook(content, details, book.id)
-									: await postBook(content, details, user);
-								setSubmitting(false);
-								router.push(`/read/${bookID}`);
-							}}
-						>
-							{({ values, isSubmitting }) => (
-								<>
-									<Form>
-										<DrawerBody>
-											<VStack mt={5} mb={10} spacing={10}>
-												<FormControl id="title">
-													<FormLabel htmlFor="title">Title</FormLabel>
-													<InputGroup>
-														<Field type="text" name="title">
-															{({ field, form: { errors } }) => (
-																<Input
-																	isInvalid={errors.title}
-																	id="title"
-																	size="lg"
-																	variant="filled"
-																	isRequired={true}
-																	ref={firstField}
-																	{...field}
-																	placeholder="A strong title..."
-																	type="text"
-																/>
-															)}
-														</Field>
-													</InputGroup>
-												</FormControl>
-												<FormControl id="description">
-													<FormLabel htmlFor="description">
-														Description
-													</FormLabel>
-													<InputGroup>
-														<Field type="text" name="description">
-															{({ field, form: { errors } }) => (
-																<Textarea
-																	isInvalid={errors.description}
-																	id="description"
-																	{...field}
-																	isRequired={true}
-																	placeholder="A catchy description..."
-																	variant="filled"
-																	size="lg"
-																	type="text"
-																/>
-															)}
-														</Field>
-													</InputGroup>
-												</FormControl>
-												<FormControl id="image">
-													<FormLabel htmlFor="image">Cover Image</FormLabel>
-													<InputGroup>
-														<Field type="text" name="image">
-															{({ field, form: { errors } }) => (
-																<Input
-																	isInvalid={errors.image}
-																	id="image"
-																	size="lg"
-																	variant="filled"
-																	isRequired={true}
-																	{...field}
-																	placeholder="A cover image..."
-																	type="text"
-																/>
-															)}
-														</Field>
-													</InputGroup>
-												</FormControl>
-												<FormControl id="tags">
-													<FormLabel htmlFor="tags">Tags</FormLabel>
-													<InputGroup>
-														<AutoComplete
-															openOnFocus
-															multiple
-															creatable
-															defaultValues={book?.tags}
-															onChange={(vals) => setSelectedTags(vals)}
-														>
-															<AutoCompleteInput variant="filled">
-																{({ tags }) =>
-																	tags.map((tag, tid) => (
-																		<AutoCompleteTag
-																			key={tid}
-																			label={tag.label}
-																			onRemove={tag.onRemove}
-																		/>
-																	))
-																}
-															</AutoCompleteInput>
-															<AutoCompleteList>
-																{tags.map((tag, cid) => (
-																	<AutoCompleteItem
-																		key={`option-${cid}`}
-																		value={tag}
-																		textTransform="capitalize"
-																		_selected={{ bg: "whiteAlpha.50" }}
-																		_focus={{ bg: "whiteAlpha.100" }}
-																	>
-																		{tag}
-																	</AutoCompleteItem>
-																))}
-															<AutoCompleteCreatable/>
-															</AutoCompleteList>
-														</AutoComplete>
-													</InputGroup>
-													<FormHelperText>Tags are optional!</FormHelperText>
-												</FormControl>
+						<DrawerBody>
+							<VStack mt={5} mb={10} spacing={10}>
+								<FormControl id="title" isRequired>
+									<FormLabel htmlFor="title">Title</FormLabel>
+									<InputGroup>
+										<Input
+											isInvalid={title === ""}
+											id="title"
+											size="lg"
+											variant="filled"
+											isRequired
+											ref={firstField}
+											placeholder="A strong title..."
+											type="text"
+											value={title}
+											onChange={(e) => setTitle(e.target.value)}
+										/>
+									</InputGroup>
+								</FormControl>
+								<FormControl id="description" isRequired>
+									<FormLabel htmlFor="description">Description</FormLabel>
+									<InputGroup>
+										<Textarea
+											isInvalid={description === ""}
+											id="description"
+											isRequired
+											placeholder="A catchy description..."
+											variant="filled"
+											size="lg"
+											type="text"
+											value={description}
+											onChange={(e) => setDescription(e.target.value)}
+										/>
+									</InputGroup>
+								</FormControl>
+								<FormControl id="image" isRequired>
+									<FormLabel htmlFor="image">Cover Image</FormLabel>
+									<InputGroup>
+										<Input
+											isInvalid={
+												!image.match(
+													/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+												)
+											}
+											id="image"
+											size="lg"
+											variant="filled"
+											isRequired
+											placeholder="A cover image..."
+											type="text"
+											value={image}
+											onChange={(e) => setImage(e.target.value)}
+										/>
+									</InputGroup>
+								</FormControl>
+								<FormControl id="tags">
+									<FormLabel htmlFor="tags">Tags</FormLabel>
+									<InputGroup>
+										<AutoComplete
+											openOnFocus
+											multiple
+											creatable
+											defaultValues={book?.tags}
+											onChange={(vals) => setTags(vals)}
+										>
+											<AutoCompleteInput variant="filled">
+												{({ tags }) =>
+													tags.map((tag, tid) => (
+														<AutoCompleteTag
+															key={tid}
+															label={tag.label}
+															onRemove={tag.onRemove}
+														/>
+													))
+												}
+											</AutoCompleteInput>
+											<AutoCompleteList>
+												{genres.map((genre, cid) => (
+													<AutoCompleteItem
+														key={`option-${cid}`}
+														value={genre}
+														textTransform="capitalize"
+														_selected={{ bg: "whiteAlpha.50" }}
+														_focus={{ bg: "whiteAlpha.100" }}
+													>
+														{genre}
+													</AutoCompleteItem>
+												))}
+												<AutoCompleteCreatable />
+											</AutoCompleteList>
+										</AutoComplete>
+									</InputGroup>
+									<FormHelperText>Tags are optional!</FormHelperText>
+								</FormControl>
 
-												<Card
-													example
-													{...values}
-													likes={0}
-													author={user?.name || "Your Name"}
-												/>
-											</VStack>
-										</DrawerBody>
-										<DrawerFooter borderTopWidth="1px">
-											<Button
-												variant="submit"
-												type="submit"
-												disabled={isSubmitting}
-												isLoading={isSubmitting}
-											>
-												Publish
-											</Button>
-										</DrawerFooter>
-									</Form>
-								</>
-							)}
-						</Formik>
+								<Card
+									example
+									title={title}
+									description={description}
+									image={image}
+									tags={tags}
+									likes={book?.likes || 0}
+									author={user?.name || "Your Name"}
+								/>
+							</VStack>
+						</DrawerBody>
+						<DrawerFooter borderTopWidth="1px">
+							<Button
+								variant="submit"
+								type="submit"
+								disabled={isSubmitting}
+								isLoading={isSubmitting}
+								onClick={async () => {
+									setSubmitting(true);
+									const details = {
+										title,
+										description,
+										image,
+										tags,
+									};
+									updateDetails(details);
+									const content = editor.getHTML();
+									const bookID = book?.id
+										? await updateBook(content, details, book.id)
+										: await postBook(content, details, user);
+									setSubmitting(false);
+									router.push(`/read/${bookID}`);
+								}}
+							>
+								Publish
+							</Button>
+						</DrawerFooter>
 					</DrawerContent>
 				</Drawer>
 			</>

@@ -2,7 +2,7 @@ import { Avatar } from "@chakra-ui/avatar"
 import { Badge, Box, Flex, Heading, HStack, LinkBox, LinkOverlay, Stack, Text, VStack } from "@chakra-ui/layout"
 import Likes from "./Likes"
 import Link from "next/link";
-import {  Image, Spinner, Tag, useMultiStyleConfig } from "@chakra-ui/react";
+import {  Image, Spinner, Tag, Tooltip, useMultiStyleConfig } from "@chakra-ui/react";
 import { useState } from "react";
 import { getLocalTimeString } from "../../../../lib/time";
 import EditIconButton from "./EditIconButton";
@@ -26,7 +26,7 @@ const Card = ({id, example, title, postdate, tags, description, image, likes, au
 
 				<LinkBox
 					h="full"
-					filter={isLoading ? "blur(2px)" : "none"}
+					filter={isLoading && !example ? "blur(2px)" : "none"}
 					onClick={() => {
 						setLoading(true);
 					}}
@@ -56,23 +56,52 @@ const Card = ({id, example, title, postdate, tags, description, image, likes, au
 							<Stack>
 								{tags && (
 									<HStack pt="0">
-										{tags.slice(0,5).map((tag, index) => (
+										{tags.slice(0, 5).map((tag, index) => (
 											<Tag size={"md"} key={tag} variant="solid">
 												{tag}
 											</Tag>
 										))}
 									</HStack>
 								)}
-								<Heading fontSize="2xl">
-									{example ? (
-										<>{title}</>
-									) : (
+								<Tooltip
+									maxH={"70px"}
+									// closeDelay={200}
+									placement="top"
+									rounded={"lg"}
+									overflowY="hidden"
+									label={title.repeat(8)}
+									aria-label="A tooltip"
+								>
+									<Heading
+										fontSize="2xl"
+										overflow="hidden"
+										textOverflow={"ellipsis"}
+										whiteSpace={"nowrap"}
+									>
+										{example ? (
+											<>{title}</>
+										) : (
+											<Link href={`/read/${id}`} passHref>
+												<LinkOverlay>{title.repeat(3)}</LinkOverlay>
+											</Link>
+										)}
+									</Heading>
+								</Tooltip>
+								<Tooltip
+									maxH={"130px"}
+									closeDelay={200}
+									placement="top"
+									rounded={"lg"}
+									overflowY="hidden"
+									label={description.repeat(8)}
+									aria-label="A tooltip"
+								>
+									<Text zIndex={0} color={"gray.400"} className="description">
 										<Link href={`/read/${id}`} passHref>
-											<LinkOverlay>{title}</LinkOverlay>
+											{description.repeat(6)}
 										</Link>
-									)}
-								</Heading>
-								<Text color={"gray.400"}>{description}</Text>
+									</Text>
+								</Tooltip>
 							</Stack>
 							<Flex justify="space-between">
 								<HStack>

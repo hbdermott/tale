@@ -135,7 +135,7 @@ const ModalImport = ({
 									</ErrorMessage>
 								</Flex>
 								<Button type="submit" variant="submit">
-									Sumbit
+									Submit
 								</Button>
 							</ModalFooter>
 						</Form>

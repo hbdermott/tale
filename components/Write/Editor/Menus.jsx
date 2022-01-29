@@ -6,11 +6,14 @@ import Bubble from "./Bubble"
 import Floating from "./Floating";
 import Toolbar from "./Toolbar"
 
-const Menus = ({editor, book}) => {
+const Menus = ({editor, book, handler}) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 	const { isOpen: isOpenPublish, onOpen: onOpenPublish, onClose: onClosePublish } = useDisclosure();
     const [ImportType, setImportType] = useState(null);
-
+	const [bookDetails, setBookDetails] = useState(book);
+	const updateDetails = (details) => {
+		setBookDetails(details)
+	}
     const importImage = () => {
 			setImportType("Image");
 			onOpen();
@@ -21,13 +24,14 @@ const Menus = ({editor, book}) => {
 	};
     return (
 			<>
-				<Floating editor={editor} importImage={importImage}/>
+				{/* <Floating editor={editor} importImage={importImage}/> */}
 				<Bubble editor={editor} importLink={importLink} />
 				<Toolbar
 					editor={editor}
 					importLink={importLink}
 					importImage={importImage}
 					publish={onOpenPublish}
+					toolbarToggle={handler}
 				/>
 				<ModalImport
 					editor={editor}
@@ -37,7 +41,8 @@ const Menus = ({editor, book}) => {
 				/>
 				<Publish
 					editor={editor}
-					book={book}
+					book={bookDetails}
+					updateDetails={updateDetails}
 					isOpen={isOpenPublish}
 					onClose={onClosePublish}
 				/>

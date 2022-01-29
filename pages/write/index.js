@@ -4,6 +4,7 @@ import { Flex } from "@chakra-ui/layout";
 import Editor from "../../components/Write/Editor/Editor";
 import Navbar from "../../components/Navbar";
 import useWindowDimensions from "../../lib/useWindowDimensions";
+import { useEffect } from "react";
 
 const Write = (props) => {
 	// const { user, loading } = useAuth();
@@ -22,11 +23,12 @@ export default Write;
 
 const WriteLayout = ({ children }) => {
 	const { height, width } = useWindowDimensions();
+
 	return (
 		<Flex
 			minH="-webkit-fill-available"
 			w="100%"
-			h={height}
+			h={"100vh"}
 			flexDir="column"
 			overflow="hidden"
 			justify="space-between"

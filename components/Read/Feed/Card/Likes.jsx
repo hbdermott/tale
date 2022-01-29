@@ -3,6 +3,7 @@ import { IconButton, Button } from "@chakra-ui/button";
 import { Flex, HStack, Text } from "@chakra-ui/layout";
 import { Star } from "@styled-icons/fluentui-system-filled";
 import { likeBook } from "../../../../lib/firebase/postBook";
+import { Tooltip } from "@chakra-ui/react";
 
 
 const Likes = ({bookID, likes = 0, likedBooks, userID, ...rest }) => {
@@ -12,7 +13,7 @@ const Likes = ({bookID, likes = 0, likedBooks, userID, ...rest }) => {
 		likedBooks ? setLiked(likedBooks.includes(bookID)) : setLiked(false);
 	}, [likedBooks, bookID])
 	return (
-
+		<Tooltip >
 			<Button
 				onClick={async (e) => {
 					e.stopPropagation();
@@ -29,6 +30,7 @@ const Likes = ({bookID, likes = 0, likedBooks, userID, ...rest }) => {
 			>
 				{likeCount < 1000 ? likeCount : `${(likeCount / 1000).toFixed(1)}k`}
 			</Button>
+		</Tooltip>
 	);
 };
 
