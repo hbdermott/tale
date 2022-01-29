@@ -63,34 +63,40 @@ const Card = ({id, example, title, postdate, tags, description, image, likes, au
 										))}
 									</HStack>
 								)}
-								<Heading
-									fontSize="2xl"
-									overflow="hidden"
-									textOverflow={"ellipsis"}
-									whiteSpace={"nowrap"}
+								<Tooltip
+									maxH={"70px"}
+									// closeDelay={200}
+									placement="top"
+									rounded={"lg"}
+									overflowY="hidden"
+									label={title.repeat(8)}
+									aria-label="A tooltip"
 								>
-									{example ? (
-										<>{title}</>
-									) : (
-										<Link href={`/read/${id}`} passHref>
-											<LinkOverlay>{title.repeat(3)}</LinkOverlay>
-										</Link>
-									)}
-								</Heading>
+									<Heading
+										fontSize="2xl"
+										overflow="hidden"
+										textOverflow={"ellipsis"}
+										whiteSpace={"nowrap"}
+									>
+										{example ? (
+											<>{title}</>
+										) : (
+											<Link href={`/read/${id}`} passHref>
+												<LinkOverlay>{title.repeat(3)}</LinkOverlay>
+											</Link>
+										)}
+									</Heading>
+								</Tooltip>
 								<Tooltip
 									maxH={"130px"}
 									closeDelay={200}
-									placement="bottom"
+									placement="top"
 									rounded={"lg"}
 									overflowY="hidden"
 									label={description.repeat(8)}
 									aria-label="A tooltip"
 								>
-									<Text
-										zIndex={0}
-										color={"gray.400"}
-										className="description"
-									>
+									<Text zIndex={0} color={"gray.400"} className="description">
 										<Link href={`/read/${id}`} passHref>
 											{description.repeat(6)}
 										</Link>

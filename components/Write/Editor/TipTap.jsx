@@ -43,12 +43,13 @@ import {
 	Underline as UnderlineIcon,
 	Undo,
 } from "../../Icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Tiptap = ({book, editable = true, userData}) => {
 	const bg = useColorModeValue("#E2E4E6", "#2D3540");
 	const toolbarBG = useColorModeValue("#33333355", "gray.900");
 	const [visibleToolbar, setVisibleToolbar] = useState(false);
+
 	const toggleToolbar = () => {
 		if (editor)
 			editor.commands.focus();
@@ -103,7 +104,16 @@ const Tiptap = ({book, editable = true, userData}) => {
 		content: book?.content || "<p></p><p></p><p></p><p></p>",
 		autofocus: true,
 	});
-
+		useEffect(() => {
+			if (editable && editor && !book) {
+				const tempContent = localStorage.getItem("tempWritingContent");
+				editor.commands.setContent(tempContent);
+			}
+			return () => {
+				if (editable && editor)
+					localStorage.setItem("tempWritingContent", editor.getHTML());
+			};
+		}, [editable, editor, book]);
 	return (
 		<>
 			<Box
@@ -111,7 +121,7 @@ const Tiptap = ({book, editable = true, userData}) => {
 				bg={bg}
 				h={"100%"}
 				alignSelf={"center"}
-				mt={3}
+				// mt={3}
 				position={'relative'}
 				boxShadow="dark-lg"
 				roundedTop="xl"
@@ -137,12 +147,13 @@ const Tiptap = ({book, editable = true, userData}) => {
 						// transition="all 0.3s ease-in-out"
 						// top=""
 						visibility={visibleToolbar ? "visible" : "hidden"}
-						right="0"
-						h={"93.4%"}
+						right="0px"
+						h={"94%"}
 						py={5}
 						px={1}
 						boxShadow={'2xl'}
 						bg="gray.900"
+						// opacity={0.7}
 						direction="column"
 						justify={"space-between"}
 						zIndex={500}
@@ -266,7 +277,7 @@ const Tiptap = ({book, editable = true, userData}) => {
 				)}
 				<Box
 					w={{ base: "95%", lg: "85%", xl: "70%", "2xl": "60%" }}
-					h={"80%"}
+					h={"82%"}
 					className="editor-container"
 					position="fixed"
 					overflow="auto"
