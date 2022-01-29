@@ -61,7 +61,7 @@ const Publish = ({isOpen, onClose, book, updateDetails, editor}) => {
 					}}
 				>
 					<DrawerOverlay />
-					<DrawerContent overflowY="scroll">
+					<DrawerContent overflowY="none">
 						<DrawerCloseButton mt={1.5} size="md" />
 						<DrawerHeader borderBottomWidth="1px">Book Details</DrawerHeader>
 						<DrawerBody>

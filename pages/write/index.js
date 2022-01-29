@@ -12,7 +12,7 @@ const Write = (props) => {
 	// 	if (!loading && !user) router.push("/login");
 	// }, [user, loading, router]);
 	return (
-		<Flex direction="column" overflow="hidden" align="center" w="100%" h="100%">
+		<Flex direction="column" overflow="hidden" align="center" w="100%" h="100vh">
 			<Editor />
 		</Flex>
 	);

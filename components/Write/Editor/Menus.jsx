@@ -6,7 +6,7 @@ import Bubble from "./Bubble"
 import Floating from "./Floating";
 import Toolbar from "./Toolbar"
 
-const Menus = ({editor, book}) => {
+const Menus = ({editor, book, handler}) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 	const { isOpen: isOpenPublish, onOpen: onOpenPublish, onClose: onClosePublish } = useDisclosure();
     const [ImportType, setImportType] = useState(null);
@@ -31,6 +31,7 @@ const Menus = ({editor, book}) => {
 					importLink={importLink}
 					importImage={importImage}
 					publish={onOpenPublish}
+					toolbarToggle={handler}
 				/>
 				<ModalImport
 					editor={editor}
