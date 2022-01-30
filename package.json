@@ -44,7 +44,6 @@
 		"@tiptap/extension-underline": "^2.0.0-beta.22",
 		"@tiptap/react": "^2.0.0-beta.106",
 		"firebase": "^9.1.3",
-		"formik": "^2.2.9",
 		"framer-motion": "^4",
 		"next": "^11",
 		"react": "17.0.2",

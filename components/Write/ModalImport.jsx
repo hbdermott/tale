@@ -11,9 +11,6 @@ import {
 import { FormControl, FormLabel } from "@chakra-ui/form-control";
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 import { Button } from "@chakra-ui/button";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { Flex } from "@chakra-ui/layout";
-import { Alert, AlertIcon, AlertTitle } from "@chakra-ui/alert";
 import { Link } from "@styled-icons/fluentui-system-filled";
 
 const ModalImport = ({
@@ -28,50 +25,22 @@ const ModalImport = ({
 	...props
 }) => {
 	const firstField = useRef();
-    // const finalFocus = useRef();
+	const [url, setUrl] = React.useState("");
+	const [name, setName] = React.useState("");
 	return (
 		<Modal
-			// closeOnOverlayClick={false}
 			motionPreset="slideInBottom"
 			isOpen={isOpen}
 			onClose={onClose}
 			isCentered
 			initialFocusRef={firstField}
-            // finalFocusRef={finalFocus}
 		>
 			<ModalOverlay />
 			<ModalContent>
 				<ModalCloseButton />
 				<ModalHeader>{`Import ${type}`}</ModalHeader>
-				<Formik
-					initialValues={{ url: "", reference: "" }}
-					validate={(values) => {
-						const errors = {};
-						if (!values.url) {
-							errors.url = "URL Required";
-						} else if (
-							!values.url.match(
-								/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
-							)
-						) {
-							errors.url = "Invalid URL";
-						}
-						return errors;
-					}}
-					onSubmit={async (values) => {
-                        if(type === 'Link')
-                            editor.chain().focus().setLink({href: values.url}).run()
-                        else if(type === 'Image'){
-						    editor.chain().focus('end').setImage({ src: values.url }).run();
-                        }
-						// editor.focus();
-						onClose();
-					}}
-				>
-					{({ errors }) => (
-						<Form>
 							<ModalBody>
-								<FormControl id="url">
+								<FormControl id="url" isRequired>
 									{label && <FormLabel>{label}</FormLabel>}
 									<InputGroup>
 										<InputLeftElement
@@ -83,18 +52,19 @@ const ModalImport = ({
 										>
 											<Link style={{ width: "24px" }} />
 										</InputLeftElement>
-										<Field type="text" name="url">
-											{({ field, form: { errors } }) => (
 												<Input
-													isInvalid={errors.url}
-													{...field}
+													isInvalid={!url.match(
+														/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+													)}
+													value={url}
+													onChange={(e) => {
+														setUrl(e.target.value);
+													}}
 													ref={firstField}
 													placeholder="A nice link..."
 													type="text"
 													pl={12}
 												/>
-											)}
-										</Field>
 									</InputGroup>
 								</FormControl>
 								{named && (
@@ -109,38 +79,32 @@ const ModalImport = ({
 											>
 												<Link style={{ width: "24px" }} />
 											</InputLeftElement>
-											<Field type="text" name="reference">
-												{({ field }) => (
 													<Input
-														{...field}
+														isInvalid={name === ""}
+														value={name}
+														onChange={(e) => {
+															setName(e.target.value);
+														}}
 														placeholder="How it Looks..."
 														type="text"
 														pl={12}
 													/>
-												)}
-											</Field>
 										</InputGroup>
 									</FormControl>
 								)}
 							</ModalBody>
 							<ModalFooter>
-							<Flex w="100%" align="center" justify="flex-start">
-									<ErrorMessage name="url">
-										{(msg) => (
-											<Alert borderRadius={4} mr={3} status="error">
-												<AlertIcon />
-												<AlertTitle mr={2}>{msg}</AlertTitle>
-											</Alert>
-										)}
-									</ErrorMessage>
-								</Flex>
-								<Button type="submit" variant="submit">
+								<Button type="submit" variant="submit" onClick={async (values) => {
+									if(type === 'Link')
+										editor.chain().focus().setLink({href: url}).run()
+									else if(type === 'Image'){
+										editor.chain().focus('end').setImage({ src: url }).run();
+									}
+									onClose();
+							}}>
 									Submit
 								</Button>
 							</ModalFooter>
-						</Form>
-					)}
-				</Formik>
 			</ModalContent>
 		</Modal>
 	);

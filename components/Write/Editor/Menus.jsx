@@ -10,10 +10,6 @@ const Menus = ({editor, book, handler}) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 	const { isOpen: isOpenPublish, onOpen: onOpenPublish, onClose: onClosePublish } = useDisclosure();
     const [ImportType, setImportType] = useState(null);
-	const [bookDetails, setBookDetails] = useState(book);
-	const updateDetails = (details) => {
-		setBookDetails(details)
-	}
     const importImage = () => {
 			setImportType("Image");
 			onOpen();
@@ -41,8 +37,7 @@ const Menus = ({editor, book, handler}) => {
 				/>
 				<Publish
 					editor={editor}
-					book={bookDetails}
-					updateDetails={updateDetails}
+					book={book}
 					isOpen={isOpenPublish}
 					onClose={onClosePublish}
 				/>

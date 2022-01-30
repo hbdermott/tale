@@ -1,8 +1,8 @@
 import { IconButton } from "@chakra-ui/button";
 import { useState } from "react";
-import { useAuth } from "../../context/User";
+import { useAuth } from "../../../context/User";
 
-const ProviderLogin = ({provider, icon, color}) => {
+const ProviderLoginIcon = ({provider, icon, color}) => {
 	const {loginWithProvider, linkProvider} = useAuth();
 	const [isLoading, setLoading] = useState(false);
 	return (
@@ -23,4 +23,4 @@ const ProviderLogin = ({provider, icon, color}) => {
 	);
 };
 
-export default ProviderLogin;
+export default ProviderLoginIcon;

@@ -1,15 +1,11 @@
 import { useAuth } from "../../context/User";
 import { useRouter } from "next/dist/client/router";
 import { Box, Flex } from "@chakra-ui/layout";
-import { db } from "../../app/firebase/Firebase";
-import { collection, addDoc } from "firebase/firestore";
-import Editor from "../../components/Write/Editor/Editor";
 import Navbar from "../../components/Navbar";
-import { useMediaQuery } from "@chakra-ui/react";
-import NavbarCompact from "../../components/Navbar";
 import useWindowDimensions from "../../lib/useWindowDimensions";
 import { useEffect } from "react";
 import { fetchBook } from "../../lib/firebase/fetchBook";
+import Tiptap from "../../components/Write/Editor/TipTap";
 
 const Edit = ({book}) => {
 	const { user, loading } = useAuth();
@@ -22,7 +18,7 @@ const Edit = ({book}) => {
 	}, [user, loading, router]);
 	return (
 		// <Flex direction="column" overflow="hidden" align="center" w="100%" h="100%">
-			user && user.uid === book.authorID && <Editor book={book} />
+			user && user.uid === book.authorID && <Tiptap book={book}/>
 	);
 };
 

@@ -21,7 +21,7 @@ import {
 	TextStrikethrough,
 	TextUnderline,
 } from "@styled-icons/fluentui-system-filled";
-
+import { FacebookF, Github as GithubIcon, Google as GoogleIcon } from "@styled-icons/fa-brands";
 const Undo = () => {
 	return <ArrowHookUpLeft size="24px" />;
 };
@@ -106,6 +106,18 @@ const Quote = () => {
     return <TextQuote size="24px" />;
 }
 
+const Github = () => {
+    return <GithubIcon size="24px" />;
+}
+
+const Google = () => {
+    return <GoogleIcon size="24px" color="#de5246" />;
+}
+
+const Facebook = () => {
+    return <FacebookF size="24px" />;
+}
+
 export {
     Undo,
     Redo,
@@ -128,4 +140,7 @@ export {
     Star,
     Continue,
     Quote,
+    Github,
+    Google,
+    Facebook,
 }

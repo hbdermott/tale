@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Popover, PopoverTrigger, PopoverContent, PopoverCloseButton, PopoverHeader, PopoverBody, PopoverFooter } from "@chakra-ui/popover";
 import { HStack } from "@chakra-ui/layout";
 import { Heading } from "@chakra-ui/layout";
-import Login from "../../../Login/Login";
+import EmailPasswordLogin from "../../../Login/EmailPasswordLogin";
 import { useStyleConfig } from "@chakra-ui/system";
 const NavbarPopover = () => {
 	const { loading, user, logout } = useAuth();
@@ -36,7 +36,7 @@ const NavbarPopover = () => {
 				</PopoverHeader>
 				<PopoverBody m={0} p={0}>
 					<PopoverFooter>
-						<Login/>
+						<EmailPasswordLogin/>
 					</PopoverFooter>
 				</PopoverBody>
 			</PopoverContent>

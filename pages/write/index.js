@@ -1,10 +1,10 @@
 import { useAuth } from "../../context/User";
 import { useRouter } from "next/dist/client/router";
 import { Flex } from "@chakra-ui/layout";
-import Editor from "../../components/Write/Editor/Editor";
 import Navbar from "../../components/Navbar";
 import useWindowDimensions from "../../lib/useWindowDimensions";
 import { useEffect } from "react";
+import Tiptap from "../../components/Write/Editor/TipTap";
 
 const Write = (props) => {
 	// const { user, loading } = useAuth();
@@ -14,7 +14,7 @@ const Write = (props) => {
 	// }, [user, loading, router]);
 	return (
 		<Flex direction="column" overflow="hidden" align="center" w="100%" h="100%">
-			<Editor />
+			<Tiptap/>
 		</Flex>
 	);
 };

@@ -3,7 +3,7 @@ import { Input, InputGroup } from "@chakra-ui/input";
 import {  VStack } from "@chakra-ui/layout";
 import { Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay } from "@chakra-ui/modal";
 import { Textarea } from "@chakra-ui/textarea";
-import React, {useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import { Button } from "@chakra-ui/button";
 import { useAuth } from "../../context/User";
 import { useRouter } from "next/router";
@@ -19,7 +19,7 @@ import {
 } from "@choc-ui/chakra-autocomplete";
 
 
-const Publish = ({isOpen, onClose, book, updateDetails, editor}) => {
+const Publish = ({isOpen, onClose, book, editor}) => {
     const { user } = useAuth();
     const router = useRouter();
 	const firstField = useRef();
@@ -28,6 +28,31 @@ const Publish = ({isOpen, onClose, book, updateDetails, editor}) => {
 	const [image, setImage] = React.useState(book?.image || "");
 	const [tags, setTags] = React.useState(book?.tags || []);
 	const [isSubmitting, setSubmitting] = React.useState(false);
+	const [set, isSet] = React.useState(false);
+	useEffect(() => {
+		if (!book && !set) {
+			const tempContent = localStorage.getItem("tempWritingDetails");
+			// editor.commands.setContent(tempContent);
+			if(tempContent){
+				const details = JSON.parse(tempContent);
+				setTitle(details.title);
+				setDescription(details.description);
+				setImage(details.image);
+				setTags(details.tags);
+				isSet(true);
+			}
+		}
+		return () => {
+			const details = {
+				title,
+				description,
+				image,
+				tags,
+			}
+			localStorage.setItem("tempWritingDetails", JSON.stringify(details));
+		};
+	}, [book, set, title, description, image, tags]);
+
 	 const genres = [
 			"Fantasy",
 			"Sci-Fi",
@@ -49,16 +74,7 @@ const Publish = ({isOpen, onClose, book, updateDetails, editor}) => {
 					size="md"
 					placement="right"
 					initialFocusRef={firstField}
-					onClose={() => {
-						const details = {
-							title,
-							description,
-							image,
-							tags,
-						};
-						updateDetails(details);
-						onClose();
-					}}
+					onClose={onClose}
 				>
 					<DrawerOverlay />
 					<DrawerContent overflowY="none">
@@ -126,7 +142,7 @@ const Publish = ({isOpen, onClose, book, updateDetails, editor}) => {
 											openOnFocus
 											multiple
 											creatable
-											defaultValues={book?.tags}
+											defaultValues={tags}
 											onChange={(vals) => setTags(vals)}
 										>
 											<AutoCompleteInput variant="filled">
@@ -184,7 +200,6 @@ const Publish = ({isOpen, onClose, book, updateDetails, editor}) => {
 										image,
 										tags,
 									};
-									updateDetails(details);
 									const content = editor.getHTML();
 									const bookID = book?.id
 										? await updateBook(content, details, book.id)

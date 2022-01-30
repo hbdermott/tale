@@ -57,51 +57,37 @@ const Card = ({id, example, title, postdate, tags, description, image, likes, au
 								{tags && (
 									<HStack pt="0">
 										{tags.slice(0, 5).map((tag, index) => (
-											<Tag size={"md"} key={tag} variant="solid">
+											<Tag
+												size={"md"}
+												key={tag}
+												whiteSpace={"nowrap"}
+												overflow="hidden"
+												variant="solid"
+												maxW="100px"
+												textOverflow={"ellipsis"}
+											>
 												{tag}
 											</Tag>
 										))}
 									</HStack>
 								)}
-								<Tooltip
-									maxH={"70px"}
-									// closeDelay={200}
-									placement="top"
-									rounded={"lg"}
-									overflowY="hidden"
-									label={title.repeat(8)}
-									aria-label="A tooltip"
+								<Heading
+									fontSize="2xl"
+									overflow="hidden"
+									textOverflow={"ellipsis"}
+									whiteSpace={"nowrap"}
 								>
-									<Heading
-										fontSize="2xl"
-										overflow="hidden"
-										textOverflow={"ellipsis"}
-										whiteSpace={"nowrap"}
-									>
-										{example ? (
-											<>{title}</>
-										) : (
-											<Link href={`/read/${id}`} passHref>
-												<LinkOverlay>{title.repeat(3)}</LinkOverlay>
-											</Link>
-										)}
-									</Heading>
-								</Tooltip>
-								<Tooltip
-									maxH={"130px"}
-									closeDelay={200}
-									placement="top"
-									rounded={"lg"}
-									overflowY="hidden"
-									label={description.repeat(8)}
-									aria-label="A tooltip"
-								>
-									<Text zIndex={0} color={"gray.400"} className="description">
+									{example ? (
+										<>{title}</>
+									) : (
 										<Link href={`/read/${id}`} passHref>
-											{description.repeat(6)}
+											<LinkOverlay>{title}</LinkOverlay>
 										</Link>
-									</Text>
-								</Tooltip>
+									)}
+								</Heading>
+								<Text zIndex={0} color={"gray.400"} className="description">
+									{description}
+								</Text>
 							</Stack>
 							<Flex justify="space-between">
 								<HStack>
