@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://tale.ink">
-    ![Vector logo png](https://user-images.githubusercontent.com/47306691/152618644-43edd531-3da5-43fd-9c25-69cc330abebe.png)
+<!--     ![Vector logo png](https://raw.githubusercontent.com/47306691/152618644-43edd531-3da5-43fd-9c25-69cc330abebe.png) -->
   </a>
 
   <h3 align="center">Tale.ink</h3>
@@ -81,18 +81,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
-
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
-
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
+Tale.ink aims to change the way creative works are written and published. By moving book publishing to a more social media style approach, tale allows for writers to get faster feedback on their books. This makes book writing and publishing more agile. Additionally, the UI takes a more modern approach to facilitate a good reading and writing experience across all platforms
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
