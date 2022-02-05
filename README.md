@@ -30,7 +30,7 @@
 <br />
 <div align="center">
   <a href="https://tale.ink">
-<!--     ![Vector logo png](https://raw.githubusercontent.com/47306691/152618644-43edd531-3da5-43fd-9c25-69cc330abebe.png) -->
+    <img height="200px" src="https://user-images.githubusercontent.com/47306691/152618644-43edd531-3da5-43fd-9c25-69cc330abebe.png" />
   </a>
 
   <h3 align="center">Tale.ink</h3>
